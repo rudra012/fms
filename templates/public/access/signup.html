@@ -1,0 +1,60 @@
+<div class="register-box">
+  <div class="register-logo">
+    <a href=""><b>FM</b>S</a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">Register a new membership</p>
+
+    <flash-message></flash-message>
+    <form novalidate name="RegisterForm" ng-submit="doRegister(user,RegisterForm.$valid)">
+
+      <div ng-class="((RegisterForm.$submitted || RegisterForm.username.$touched ) && RegisterForm.username.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+        <input ng-model="user.username" type="text" id="Rusername" name="username" class="form-control" placeholder="Username" required>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+
+      <div ng-class="((RegisterForm.$submitted || RegisterForm.email.$touched ) && RegisterForm.email.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+        <input ng-model="user.email" id="Remail" type="email" name="email" class="form-control" placeholder="Email" required>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+
+      <div ng-class="((RegisterForm.$submitted || RegisterForm.password.$touched ) && RegisterForm.password.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+        <input ng-model="user.password" type="password" id="Rpassword" name="password" class="form-control" placeholder="Password" required>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+      <div ng-class="((RegisterForm.$submitted || RegisterForm.password2.$touched ) && RegisterForm.password2.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+        <input ng-model="user.password2" type="password" id="Rpassword2" name="password2" class="form-control" placeholder="Retype password" required>
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-8">-->
+          <!--<div class="checkbox icheck">-->
+            <!--<label>-->
+              <!--<input type="checkbox"> I agree to the <a href="#">terms</a>-->
+            <!--</label>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign Up</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <!--<div class="social-auth-links text-center">-->
+      <!--<p>- OR -</p>-->
+      <!--<a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using-->
+        <!--Facebook</a>-->
+      <!--<a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using-->
+        <!--Google+</a>-->
+    <!--</div>-->
+    <br/>
+    <a href="#/login" class="text-center">I already have a membership?</a>
+  </div>
+  <!-- /.form-box -->
+</div>
+<!-- /.register-box -->

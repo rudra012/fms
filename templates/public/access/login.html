@@ -1,0 +1,58 @@
+
+<div class="login-box">
+  <div class="login-logo">
+    <a href=""><b>FM</b>S</a>
+  </div>
+
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+
+    <flash-message></flash-message>
+    <form novalidate name="LoginForm" ng-submit="doLogin(user,LoginForm.$valid)">
+
+
+      <div ng-class="((LoginForm.$submitted || LoginForm.username.$touched ) && LoginForm.username.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+        <input id="Lusername" name="username" ng-model="user.username" type="text" ng-class="((LoginForm.$submitted || LoginForm.username.$touched ) && LoginForm.username.$error.required)?'form-control shake':'form-control'" placeholder="Email" required>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+
+
+      <div ng-class="((LoginForm.$submitted || LoginForm.password.$touched ) && LoginForm.password.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+        <input id="Lpassword" ng-model="user.password" name="password" type="password" ng-class="((LoginForm.$submitted || LoginForm.password.$touched ) && LoginForm.password.$error.required)?'form-control shake':'form-control'" placeholder="Password" required>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <!--<div class="col-xs-8">-->
+          <!--<div class="checkbox icheck">-->
+            <!--<label>-->
+              <!--<input type="checkbox"> Remember Me-->
+            <!--</label>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <!--<div class="social-auth-links text-center">-->
+      <!--<p>- OR -</p>-->
+      <!--<a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using-->
+        <!--Facebook</a>-->
+      <!--<a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using-->
+        <!--Google+</a>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.social-auth-links &ndash;&gt;-->
+
+    <!--<a href="#">I forgot my password</a><br>-->
+    <br/>
+    <a href="#/signup" class="text-center">SignUp a new membership?</a>
+
+  </div>
+  <!-- /.login-box-body -->
+
+</div>
+<!-- /.login-box -->
