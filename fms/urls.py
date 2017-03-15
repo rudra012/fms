@@ -17,8 +17,11 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from users.api.views import UserLoginAPIView, UserCreateAPIView
+from company.api.views import CompanyAPIView
+from group.api.views import GroupAPIView
+from users.api.views import UserLoginAPIView, UserCreateAPIView, UserAPIView
 from users.views import AngularTemplateView
+from vehicle.api.views import VehicleListAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,6 +29,14 @@ urlpatterns = [
 
     url(r'^api/v1/login/$', UserLoginAPIView.as_view(), name='login'),
     url(r'^api/v1/register/$', UserCreateAPIView.as_view(), name='register'),
+    url(r'^api/v1/company/$', CompanyAPIView.as_view(), name='register'),
+    url(r'^api/v1/vehicle/$', VehicleListAPIView.as_view(), name='register'),
+    url(r'^api/v1/group/$', GroupAPIView.as_view(), name='register'),
+
+    url(r'^api/v1/user/$', UserAPIView.as_view(), name='register'),
+
+
+
 
 ]
 urlpatterns += [

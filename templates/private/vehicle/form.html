@@ -1,0 +1,121 @@
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Vehicle
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="">Vehicle</a></li>
+        <li class="active">Vehicle</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add Vehicle</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form novalidate ng-submit="doAddVehicle(vehicle)" name="VehicleForm">
+
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="vehicle_name">Vehicle Name</label>
+                  <input type="text" ng-model="vehicle.vehicle_name" name="vehicle_name" class="form-control form-group-sm" id="vehicle_name" placeholder="Vehicle Name" required >
+
+                  <div ng-messages="VehicleForm.vehicle_name.$error"  style="color:red" ng-if="VehicleForm.vehicle_name.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label for="vin_no">Vin No</label>
+                  <input type="number" ng-model="vehicle.vin_no" name="vin_no" class="form-control form-group-sm" id="vin_no" placeholder="Password" required>
+                  <div ng-messages="VehicleForm.vin_no.$error"  style="color:red" ng-if="VehicleForm.vin_no.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="vehicle_make">Vehicle Make</label>
+                  <input type="text" ng-model="vehicle.vehicle_make" name="vehicle_make" class="form-control form-group-sm" id="vehicle_make" placeholder="Vehicle Make" required >
+                  <div ng-messages="VehicleForm.vehicle_make.$error"  style="color:red" ng-if="VehicleForm.vehicle_make.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="vehicle_model">Vehicle Model</label>
+                  <input type="text" ng-model="vehicle.vehicle_model" name="vehicle_model" class="form-control form-group-sm" id="vehicle_model" placeholder="Vehicle Model" required>
+                  <div ng-messages="VehicleForm.vehicle_model.$error"  style="color:red" ng-if="VehicleForm.vehicle_model.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="vehicle_year">Vehicle Year</label>
+                  <input type="text" ng-model="vehicle.vehicle_year" name="vehicle_year" class="form-control form-group-sm" id="vehicle_year" placeholder="Vehicle Year" required>
+                  <div ng-messages="VehicleForm.vehicle_year.$error"  style="color:red" ng-if="VehicleForm.vehicle_year.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="vehicle_model">Vehicle License</label>
+                  <input type="text"  ng-model="vehicle.vehicle_license" name="vehicle_license" class="form-control form-group-sm" id="vehicle_license" placeholder="Vehicle Year" required>
+                  <div ng-messages="VehicleForm.vehicle_license.$error"  style="color:red" ng-if="VehicleForm.vehicle_license.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+                <div class="registration_state">
+                  <label for="vehicle_model">Registration State</label>
+                  <input type="text" ng-model="vehicle.registration_state" name="registration_state" class="form-control form-group-sm" id="registration_state" placeholder="Vehicle Year" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="vehiclestatus_id">Vehicle status</label>
+                  <input type="text" ng-model="vehicle.vehiclestatus_id" name="vehiclestatus_id" class="form-control form-group-sm" id="vehiclestatus_id" placeholder="Vehicle Year" required>
+                  <div ng-messages="VehicleForm.vehiclestatus_id.$error"  style="color:red" ng-if="VehicleForm.vehiclestatus_id.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="ownership">Ownership</label>
+                  <input type="text" ng-model="vehicle.ownership" name="ownership" class="form-control form-group-sm" id="ownership" placeholder="Vehicle Year" required>
+                  <div ng-messages="VehicleForm.ownership.$error"  style="color:red" ng-if="VehicleForm.ownership.$touched || VehicleForm.$submitted" role="alert">
+                      <p ng-message="required">Vehicle name name is required.</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

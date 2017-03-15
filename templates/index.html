@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html >
-<html lang="en">
+<html lang="en" ng-app="fms">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,14 +40,17 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
     <link rel="stylesheet" href='https://sachinchoolur.github.io/angular-flash/dist/angular-flash.css'>
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+
+
   <style>
 
     .main.ng-enter {
-        -webkit-animation:scaleUp 0.4s both ease-in;
-        -moz-animation:scaleUp 0.4s both ease-in;
-        animation:scaleUp 0.4s both ease-in;
+        -webkit-animation:scaleUp 0.2s both ease-in;
+        -moz-animation:scaleUp 0.2s both ease-in;
+        animation:scaleUp 0.2s both ease-in;
     }
+
     .main.ng-leave {
     }
 
@@ -167,24 +170,58 @@
         animation: shake 300ms ease-in-out;
     }
 
+
+
+    .animate-show-hide.ng-hide {
+      opacity: 0;
+    }
+    .animate-show-hide.ng-hide-add,
+    .animate-show-hide.ng-hide-remove {
+      transition: all linear 0.5s;
+    }
+    .check-element {
+      border: 1px solid black;
+      opacity: 1;
+      padding: 10px;
+    }
+
+
+    .input-custom{
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+
+
   </style>
 
 </head>
 
-<body ng-class="bodyClass"  ng-app="fms">
+<body ng-class="bodyClass">
 
-<div class="wrappers">
 
-    <div class="header" ui-view="header"></div>
+    <div ui-view="header"></div>
     <div ui-view="left"></div>
+
     <div ui-view="container" class="main"></div>
 
-</div>
 
 </body>
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.8/angular-strap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.8/angular-strap.tpl.min.js"></script>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js'></script>
+
+    <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.js'></script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <script src="http://sachinchoolur.github.io/angular-flash/dist/angular-flash.js"></script>
@@ -202,6 +239,17 @@
 
     <script src='{% static "js/app/register-detail/register-detail.module.js" %}'></script>
     <script src='{% static "js/app/register-detail/register-detail.component.js" %}'></script>
+
+
+    <script src='{% static "js/app/vehicle/vehicle.module.js" %}'></script>
+    <script src='{% static "js/app/vehicle/vehicle.component.js" %}'></script>
+
+
+    <script src='{% static "js/app/group/group.module.js" %}'></script>
+    <script src='{% static "js/app/group/group.component.js" %}'></script>
+
+    <script src='{% static "js/app/users/user.module.js" %}'></script>
+    <script src='{% static "js/app/users/user.component.js" %}'></script>
 
 
     <script src='{% static "plugins/jQuery/jquery-2.2.3.min.js" %}'></script>

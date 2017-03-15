@@ -22,11 +22,11 @@
                 if (tokenExists) {
                     // verify token
                     $scope.loggedIn = true;
-                    $cookies.remove("token")
+                    $cookies.remove("token");
+                    $cookies.remove("username");
                     $scope.user = {
                         username: $cookies.get("username")
                     }
-
                     //window.location.reload()
                 }
 
@@ -69,7 +69,9 @@
                         requestAction.success(function(r_data, r_status, r_headers, r_config){
                                  $cookies.put("token", r_data.token)
                                 $cookies.put("username", r_data.username)
+
                                 $location.path("/home")
+
 //                                window.location.reload()
                         })
                         requestAction.error(function(e_data, e_status, e_headers, e_config){
