@@ -114,7 +114,8 @@ class UserLoginSerializer(ModelSerializer):
         raise ValidationError("Invalid credentials")
 
 
-# class UserCreateUpdateSerializer(serializers.ModelSerializer):
+
+    # class UserCreateUpdateSerializer(serializers.ModelSerializer):
 #     password = CharField(allow_blank=True, required=False, allow_null=True)
 #     username = CharField(allow_blank=True, required=False, allow_null=True)
 #     email = CharField(allow_blank=True, required=False, allow_null=True)

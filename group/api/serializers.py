@@ -12,4 +12,5 @@ class GroupCreateUpdateSerializer(Serializer):
     class Meta:
         fields = [
             'group_name ',
+
         ]
