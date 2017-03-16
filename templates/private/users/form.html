@@ -7,7 +7,7 @@
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#/contacts">Contact</a></li>
         <li class="active">Contact</li>
       </ol>
@@ -28,6 +28,8 @@
             <!-- form start -->
 
             <flash-message></flash-message>
+
+              <toast></toast>
 
             <form novalidate class="form-horizontal " ng-submit="doAddUser(user,UserForm.$valid)" name="UserForm">
               <div class="box-body">
@@ -62,11 +64,8 @@
                         </div>
 
                         <div ng-class="((UserForm.$submitted || UserForm.password.$touched ) && UserForm.password.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-                          <input ng-model="user.password" class="form-control input-lg input-custom" id="password" name="password" placeholder="Password" type="password" required aria-required="true">
+                          <input ng-model="user.password" class="form-control input-lg input-custom" id="password" name="password" placeholder="Password" type="password" ng-required="!updateContact" aria-required="true">
                           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                          <!--<div ng-messages="UserForm.password.$error"  style="color:red"  ng-if="UserForm.password.$touched || UserForm.$submitted" role="alert">-->
-                            <!--<p ng-message="required">Email is required.</p>-->
-                          <!--</div>-->
                         </div>
 
                     </div>
@@ -94,8 +93,8 @@
                       </div>
 
 
-                        <div ng-class="((UserForm.$submitted || UserForm.mobile_number.$touched ) && UserForm.mobile_number.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-                            <input ng-model="user.mobile_number" class="form-control input-lg input-custom" id="mobile_number" name="mobile_number" placeholder="Model Number" type="text" required aria-required="true">
+                        <div ng-class="((UserForm.$submitted || UserForm.mobile_no.$touched ) && UserForm.mobile_no.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                            <input ng-model="user.mobile_no" class="form-control input-lg input-custom" id="mobile_no" name="mobile_no" placeholder="Model Number" type="text" required aria-required="true">
                           <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                           <!--<div ng-messages="UserForm.mobile_number.$error"  style="color:red"  ng-if="UserForm.mobile_number.$touched || UserForm.$submitted" role="alert">-->
                               <!--<p ng-message="required">Name is required.</p>-->
@@ -119,7 +118,7 @@
                 </div>
 
                 <button style="border-radius: 8px;" type="submit" class="btn btn-primary btn-flat btn-lg	">Submit</button>
-                <a href="#/contact" style="border-radius: 8px;" class="btn btn-default btn-flat btn-lg	">Cancel</a>
+                <a href="#/contacts" style="border-radius: 8px;" class="btn btn-default btn-flat btn-lg	">Cancel</a>
 
               </div>
             </form>

@@ -40,17 +40,30 @@
                   <th>Username</th>
                   <th>Name</th>
                   <th>Last Login</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="user in userData">
+
                     <td>{{ (user.email)?user.email:"-" }}</td>
                     <td>{{ (user.username)?user.username:"-" }}</td>
                     <td>{{ (user.first_name)?user.first_name:"-" }}</td>
                     <td>{{ (user.last_login)?user.last_login:"-" }}</td>
 
+                    <td><a href="#/contact-update~index~{{ user.id }}" class="badge bg-light-blue" ng-click="updateClick(group,$index)">
+                           <span class="fa fa-pencil"></span>
+                        </a>
+                    </td>
+
                   </tr>
                 </tbody>
+
+
+                <tfoot ng-if="userData.length==0">
+                    <tr><th colspan="4">No Records Found</th></tr>
+                </tfoot>
+
 
               </table>
 

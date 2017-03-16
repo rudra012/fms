@@ -79,6 +79,18 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
 
+         .state('private.users-update', {
+          url: '/contact-update~index~:id',
+          views: {
+            'container@': {
+              template: '<users-add></users-add>'
+            }
+          },
+          authenticate:true,
+        })
+
+
+
         .state('private.users-add', {
           url: '/contact-add',
           views: {
@@ -134,7 +146,7 @@ mainApp.run(['$state', '$rootScope','$location','Auth','$http','$cookies', funct
             $rootScope.bodyClass="hold-transition login-page";
             if(stateType && stateType[0]=='private' && toState.authenticate)
             {
-                $http.defaults.headers.common['Authorization'] ="JWT "+$cookies.get('token');
+                //$http.defaults.headers.common['Authorization'] ="JWT "+$cookies.get('token');
                 if(!Auth.isLoggedIn() && fromState.name!="")
                     event.preventDefault();
                 else if(!Auth.isLoggedIn()  && fromState.name == "")

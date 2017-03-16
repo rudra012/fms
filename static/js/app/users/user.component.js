@@ -18,15 +18,24 @@ userApp.factory("User", ['$http',function($http){
         return $http(req);
     }
 
-
-
     obj.updateUser = function(data){
          var req = {
              method: 'PUT',
              url: '/api/v1/user/',
              data: data
         }
+        return $http(req);
+    }
 
+    obj.getUserDetail = function(data){
+         var req = {
+             method: 'GET',
+             url: '/api/v1/user/',
+             params: {
+                id: data,
+              }
+
+        }
         return $http(req);
     }
 
@@ -52,15 +61,9 @@ userApp.
             ){
 
             User.getUserList().success(function(response){
-                $scope.userData = response;
+                $scope.userData = response.User;
             }).error(function(e_data, e_status, e_headers, e_config){
-
             });
-
-
-            $scope.tooltip = {title: 'Hello Tooltip<br />This is a multiline message!', checked: false};
-
-
 
 
         }
@@ -80,7 +83,9 @@ userAdd.component('usersAdd', {
                 $animate,
                 User,
                 Group,
-                $tooltip
+                $tooltip,
+                ngToast,
+                $stateParams
 
             ){
 
@@ -91,31 +96,50 @@ userAdd.component('usersAdd', {
             }).error(function(e_data, e_status, e_headers, e_config){
             });
 
-            $scope.user={};
-
-
-            $scope.doAddUser=function(user,valid)
+            if(!$stateParams.id)
             {
-                console.log(user);
-                console.log(valid);
-
-                if(valid)
-                {
-                    User.addUser(user).success(function(response){
-                    $location.path("/contacts")
-                    }).error(function(e_data, e_status, e_headers, e_config){
-                        Flash.create("error",e_data.message,0);
-                    });
-
-                }
-
-
-
-
+                $scope.user={};
+            }
+            else
+            {
+                $scope.updateContact=true;
+                User.getUserDetail($stateParams.id).success(function(response){
+                console.log(response.User)
+                $scope.user=response.User[0];
+                }).error(function(e_data, e_status, e_headers, e_config){
+                   Flash.create("error",e_data.message,0);
+                });
 
             }
 
 
+            $scope.doAddUser=function(user,valid)
+            {
+
+                console.log(user.id);
+
+                if(valid)
+                {
+                    if(!user.id)
+                    {
+                        User.addUser(user).success(function(response){
+                        $location.path("/contacts")
+                        }).error(function(e_data, e_status, e_headers, e_config){
+                           Flash.create("error",e_data.message,0);
+                        });
+                    }
+                    else
+                    {
+                        User.updateUser(user).success(function(response){
+                            $location.path("/contacts")
+                        }).error(function(e_data, e_status, e_headers, e_config){
+                           Flash.create("error",e_data.message,0);
+                        });
+                    }
+
+                }
+
+            }
 
 
         }
