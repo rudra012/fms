@@ -31,7 +31,6 @@ class UserCreateSerializer(ModelSerializer):
             'email',
             'email2',
             'password',
-
         ]
         extra_kwargs = {"password":
                             {"write_only": True}
@@ -103,6 +102,7 @@ class UserLoginSerializer(ModelSerializer):
             user_obj = user_qs.first()
             password_passes = user_obj.check_password(password)
             user_obj.last_login = datetime.datetime.now()
+            user_obj.save();
             if not user_obj.is_active:
                 raise ValidationError("This user is inactive")
             if password_passes:
@@ -196,13 +196,14 @@ class UserLoginSerializer(ModelSerializer):
 
 class UserCreateUpdateSerializer(Serializer):
     email = serializers.CharField(required=True)
-    is_deleted= serializers.CharField(required=False)
+    is_deleted= serializers.BooleanField(required=False)
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
     group_id = serializers.CharField(required=False)
     mobile_no = serializers.CharField(required=False)
     id = serializers.CharField(required=False)
     username = serializers.CharField(required=True)
+    password= serializers.CharField(required=False)
     class Meta:
         fields = [
             'email ',

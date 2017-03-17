@@ -21,7 +21,7 @@ from company.api.views import CompanyAPIView
 from group.api.views import GroupAPIView
 from users.api.views import UserLoginAPIView, UserCreateAPIView, UserAPIView
 from users.views import AngularTemplateView
-from vehicle.api.views import VehicleListAPIView
+from vehicle.api.views import VehicleListAPIView, VehicleStatusAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -34,6 +34,10 @@ urlpatterns = [
     url(r'^api/v1/group/$', GroupAPIView.as_view(), name='register'),
 
     url(r'^api/v1/user/$', UserAPIView.as_view(), name='register'),
+
+    url(r'^api/v1/vehiclestatus/$', VehicleStatusAPIView.as_view(), name='register'),
+
+
 
 
 

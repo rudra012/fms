@@ -33,9 +33,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-
               <table class="table table-bordered table-hover">
-
                 <thead>
                 <tr>
                   <th>Name</th>
@@ -43,6 +41,7 @@
                   <th>Vehicle Model</th>
                   <th>Registration State</th>
                   <th>Vehicle License</th>
+                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,8 +51,24 @@
                     <td>{{ (vehicle.vehicle_model)?vehicle.vehicle_model:"-" }}</td>
                     <td>{{ (vehicle.registration_state)?vehicle.registration_state:"-" }}</td>
                     <td>{{ (vehicle.vehicle_license)?vehicle.vehicle_license:"-" }}</td>
+
+                    <td><a href="#/vehicle-update~index~{{ vehicle.id }}" class="badge bg-light-blue"
+                        ng-click="updateClick(vehicle,$index)">
+                        <span class="fa fa-pencil"></span>
+                    </a>
+                      <span ng-click="deletVehicle(vehicle,$index)" style="cursor:pointer" class="badge bg-red"><span class="fa fa-remove"></span></span>
+
+                    </td>
+
                   </tr>
                 </tbody>
+                  <tfoot ng-if="vehicleData && vehicleData.length==0">
+                      <tr>
+                        <th colspan="6"><center>No Records Found</center></th>
+                      </tr>
+                  </tfoot>
+
+
 
               </table>
 

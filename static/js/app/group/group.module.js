@@ -1,5 +1,5 @@
 'use strict';
 
-var vehicleApp=angular.module('group', []);
+angular.module('group', []);
 
-var vehicleAdd=angular.module('groupAdd', ['ngMessages']);
+var groupAdd =angular.module('groupAdd', ['ngMessages']);

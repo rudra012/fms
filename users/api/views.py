@@ -24,8 +24,6 @@ class UserLoginAPIView(APIView):
     permission_classes = [AllowAny]
     serializer_class = UserLoginSerializer
 
-
-
     def post(self, request, *args, **kwargs):
         data = request.data
         serializer = UserLoginSerializer(data=data)
@@ -75,7 +73,8 @@ class UserAPIView(APIView):
         if (request.GET.get('id')):
             userdata = User.objects.filter(is_deleted=False, id=request.GET.get('id')).order_by('-modified')
         else:
-            userdata = User.objects.filter(is_deleted=False).order_by('-modified').exclude(id=request.user.id)
+            userdata = User.objects.filter(is_deleted=False, i_by=request.user.id).order_by('-modified').exclude(
+                id=request.user.id)
 
         if userdata:
             return_arr = {'code': 200, 'success': 'true', 'User': []}
@@ -83,8 +82,8 @@ class UserAPIView(APIView):
                 array_local = {
                     'id': detail.id or "",
                     'username': detail.username or "",
-                    'password': detail.password or "",
                     'email': detail.email or "",
+                    'last_login': str(detail.last_login) or "",
                     'first_name': detail.first_name or "",
                     'last_name': detail.last_name or "",
                     'group_id': detail.group_id or "",
@@ -105,7 +104,7 @@ class UserAPIView(APIView):
                 return_arr['User'].append(array_local)
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
         else:
-            return_arr = {'code': 200, 'success': 'false', 'message': 'No User found', 'Group': []}
+            return_arr = {'code': 200, 'success': 'false', 'message': 'No User found', 'User': []}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
     def post(self, request, format=None):
@@ -132,11 +131,15 @@ class UserAPIView(APIView):
                 username=serializer.data.get("username", ""),
                 email=serializer.data.get("email", ""),
             )
-            user_obj.set_password(serializer.data.get("password", ""))
+            print ("************************************");
+            print (serializer.data.get("password"));
+            print ("************************************");
+            user_obj.set_password(serializer.data.get("password"))
             user_obj.i_by = request.user.id
             user_obj.u_by = request.user.id
             user_obj.first_name = serializer.data.get("first_name", "")
             user_obj.last_name = serializer.data.get("last_name", "")
+            user_obj.mobile_no = serializer.data.get("mobile_no", "")
             user_obj.group_id = serializer.data.get("group_id", "")
             user_obj.company_id = serializer.data.get("company_id", "")
             user_obj.save()
@@ -154,7 +157,6 @@ class UserAPIView(APIView):
         return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
     def put(self, request, *args, **kwargs):
-        print (request.data)
         serializer = serializers.UserCreateUpdateSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
 
@@ -198,10 +200,15 @@ class UserAPIView(APIView):
 
             if serializer.validated_data.get("username"):
                 user_model.username = serializer.validated_data.get("username")
+
+            if serializer.validated_data.get("email"):
+                user_model.email = serializer.validated_data.get("email")
+
             if serializer.validated_data.get("group_id"):
                 user_model.group_id = serializer.validated_data.get("group_id")
+
             if serializer.validated_data.get("is_deleted"):
-                user_model.group_id = True
+                user_model.is_deleted = True
 
             if serializer.validated_data.get("first_name"):
                 user_model.first_name = serializer.validated_data.get("first_name")

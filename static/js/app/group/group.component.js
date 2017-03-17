@@ -1,9 +1,9 @@
 'use strict';
 
-//var vehicleApp=angular.module('vehicles');
+//var groupApp=angular.module('vehicles');
 
 
-vehicleApp.factory("Group", ['$http',function($http){
+mainApp.factory("Group", ['$http',function($http){
     var obj = {};
 
     obj.getGroupList = function(){
@@ -24,8 +24,6 @@ vehicleApp.factory("Group", ['$http',function($http){
         return $http(req);
     }
 
-
-
     obj.updateGroup = function(data){
          var req = {
              method: 'PUT',
@@ -36,30 +34,27 @@ vehicleApp.factory("Group", ['$http',function($http){
         return $http(req);
     }
 
-
  return obj;
 }]);
 
-vehicleApp.
+
+angular.module('group', []).
     component('group', {
         templateUrl: '/djangotemplates/private/group/list.html',
         controller: function(
                 $cookies,
                 $http,
                 $location,
-                $rootScope,
                 $scope,
                 Flash,
                 $animate,
                 Group,
-                $timeout
+                $timeout,
+                $rootScope
             ){
 
 
-            Group.getCompanyList().success(function(response){
-                $scope.companyData = response.Company;
-            }).error(function(e_data, e_status, e_headers, e_config){
-            });
+            console.log($rootScope.currentState);
 
             Group.getGroupList().success(function(response){
                 $scope.groupData = response.Group;
@@ -102,10 +97,8 @@ vehicleApp.
                     $scope.groupData.splice(0, 0, response.Group);
 
                 }).error(function(e_data, e_status, e_headers, e_config){
-
                 });
                 $scope.group=null;
-
             }
 
             $scope.addOpen=function()
@@ -117,12 +110,9 @@ vehicleApp.
                     $scope.open=true;
                 else
                     $scope.open=false;
-
             }
-
             $scope.deletGroup=function(group,index)
             {
-
                 var delGroup=angular.copy(group);
                 delGroup.is_deleted="Y";
                 Group.updateGroup(delGroup).success(function(response){
@@ -130,17 +120,17 @@ vehicleApp.
                         $scope.groupData.splice(index, 1);
                 }).error(function(e_data, e_status, e_headers, e_config){
                 });
-
             }
-
-
 
         }
 })
 
 
 
-vehicleAdd.component('groupAdd', {
+
+
+
+groupAdd.component('groupAdd', {
         templateUrl: '/djangotemplates/private/group/form.html',
         controller: function(
                 $cookies,
@@ -157,17 +147,11 @@ vehicleAdd.component('groupAdd', {
 
             $scope.vehicle={};
 
-            $scope.doAddVehicle=function(group)
-            {
+            $scope.doAddVehicle=function(group){
 
-            Vehicle.addGroup(group).success(function(response){
-
-
-            }).error(function(e_data, e_status, e_headers, e_config){
-            });
-
-
-
+                Vehicle.addGroup(group).success(function(response){
+                }).error(function(e_data, e_status, e_headers, e_config){
+                });
             }
 
 

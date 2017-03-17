@@ -1,6 +1,5 @@
 'use strict';
 
-
 userApp.factory("User", ['$http',function($http){
     var obj = {};
 
@@ -47,23 +46,31 @@ userApp.
     component('users', {
         templateUrl: '/djangotemplates/private/users/list.html',
         controller: function(
-                $cookies,
-                $http,
-                $location,
-                $rootScope,
-                $scope,
-                Flash,
-                $animate,
-                User,
-                $timeout,
-                Group,
-                $tooltip
+                $cookies,$http,$location,$rootScope,$scope,
+                Flash,$animate,User,$timeout,Group,$tooltip
             ){
 
             User.getUserList().success(function(response){
                 $scope.userData = response.User;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
+            $scope.deletUser=function(user,index){
+
+                console.log(index);
+                console.log(user);
+
+                user.is_deleted=true;
+                User.updateUser(user).success(function(response){
+
+                    if(response.code==200)
+                        $scope.userData.splice(index, 1);
+
+                }).error(function(e_data, e_status, e_headers, e_config){
+                });
+
+
+            }
+
 
 
         }
@@ -113,33 +120,25 @@ userAdd.component('usersAdd', {
             }
 
 
-            $scope.doAddUser=function(user,valid)
-            {
-
-                console.log(user.id);
-
-                if(valid)
-                {
-                    if(!user.id)
-                    {
+            $scope.doAddUser=function(user,valid){
+                if(valid){
+                    if(!user.id){
                         User.addUser(user).success(function(response){
-                        $location.path("/contacts")
+                        $location.path("/users")
                         }).error(function(e_data, e_status, e_headers, e_config){
                            Flash.create("error",e_data.message,0);
                         });
-                    }
-                    else
-                    {
+                    }else{
                         User.updateUser(user).success(function(response){
-                            $location.path("/contacts")
+                            $location.path("/users")
                         }).error(function(e_data, e_status, e_headers, e_config){
                            Flash.create("error",e_data.message,0);
                         });
                     }
-
                 }
-
             }
+
+
 
 
         }

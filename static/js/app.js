@@ -1,6 +1,8 @@
 var mainApp=angular.module("fms", [
     // external
     //'ngMaterial',
+
+    'left',
     'ngMessages',
     'ui.router',
     'ngAnimate',
@@ -12,6 +14,7 @@ var mainApp=angular.module("fms", [
     'ngToast',
 
     //internal Modules
+
     'loginDetail',
     'registerDetail',
     'vehicles',
