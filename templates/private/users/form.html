@@ -1,135 +1,301 @@
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        User
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#/users">Users</a></li>
-        <li class="active">Users</li>
-      </ol>
+        <h1>
+            User
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#/users">Users</a></li>
+            <li class="active">Users</li>
+        </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Add Users</h3>
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Users</h3>
+                    </div>
+
+                    <!-- /.box-header -->
+                    <!-- form start -->
+
+                    <flash-message></flash-message>
+
+                    <toast></toast>
+
+                    <form novalidate class="form-horizontal " ng-submit="doAddUser(user,UserForm.$valid)"
+                          name="UserForm">
+                        <div class="box-body">
+
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-4">
+
+
+                                    <h6 class="text-blue text-uppercase" style="font-size: 16px;">Personal Info</h6>
+                                    <div ng-class="((UserForm.$submitted || UserForm.email.$touched ) && (UserForm.email.$error.required || UserForm.email.$error.email ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input class="input-lg form-control input-custom" name="email"
+                                               ng-model="user.email" placeholder="Email" type="email" required
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+
+                                        <!--<label data-placement="bottom-left" data-type="info" data-animation="am-fade-and-scale" bs-tooltip="tooltip" bs-enabled="tooltip.checked">-->
+                                        <!--<input type="checkbox" ng-model="tooltip.checked" > Check me to enable my tooltip-->
+                                        <!--</label>-->
+
+
+                                        <!--<div ng-messages="UserForm.email.$error"  style="color:red"  ng-if="UserForm.email.$touched || UserForm.$submitted" role="alert">-->
+                                        <!--<p ng-message="required">Email is required.</p>-->
+                                        <!--</div>-->
+
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.username.$touched ) && UserForm.username.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.username" class="form-control input-lg input-custom"
+                                               name="username" placeholder="User Name" type="text" required
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                        <!--<div ng-messages="UserForm.username.$error"  style="color:red"  ng-if="UserForm.username.$touched || UserForm.$submitted" role="alert">-->
+                                        <!--<p ng-message="required">Email is required.</p>-->
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.password.$touched ) && UserForm.password.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.password" class="form-control input-lg input-custom"
+                                               id="password" name="password" placeholder="Password" type="password"
+                                               ng-required="!updateContact" aria-required="true">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-2"></div>
+
+                                <div class="col-sm-4">
+
+                                    <h6 class="text-blue text-uppercase" style="font-size: 16px;">Additional Info</h6>
+
+                                    <div class="form-group">
+
+                                        <div ng-class="((UserForm.$submitted || UserForm.first_name.$touched ) && UserForm.group_id.$error.required)?'col-xs-6 has-error':'col-xs-6 has-feedback'"
+                                             style="padding-left: 0px;">
+                                            <input ng-model="user.first_name" class="input-lg form-control input-custom"
+                                                   id="first_name" name="first_name" placeholder="First Name" style=""
+                                                   type="text" required aria-required="true">
+                                            <!--<div ng-messages="UserForm.first_name.$error"  style="color:red"  ng-if="UserForm.first_name.$touched || UserForm.$submitted" role="alert">-->
+                                            <!--<p ng-message="required">Name is required.</p>-->
+                                            <!--</div>-->
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <input ng-model="user.last_name" class="input-lg form-control input-custom"
+                                                   id="last_name" name="last_name" placeholder="Last Name" style=""
+                                                   type="text" required="" aria-required="true">
+                                        </div>
+
+                                    </div>
+
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.mobile_no.$touched ) && UserForm.mobile_no.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.mobile_no" class="form-control input-lg input-custom"
+                                               id="mobile_no" name="mobile_no" placeholder="Model Number" type="text"
+                                               required aria-required="true">
+                                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                                        <!--<div ng-messages="UserForm.mobile_number.$error"  style="color:red"  ng-if="UserForm.mobile_number.$touched || UserForm.$submitted" role="alert">-->
+                                        <!--<p ng-message="required">Name is required.</p>-->
+                                        <!--</div>-->
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.group_id.$touched ) && UserForm.group_id.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <select ng-model="user.group_id" class="input-lg form-control input-custom"
+                                                id="group_id" name="group_id" required aria-required="true">
+                                            <option value="" selected="selected">--Select Group--</option>
+                                            <option ng-repeat="group in groupData" value="{{ group.id }}">{{
+                                                group.group_name }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-sm-1"></div>
+
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-4">
+
+
+                                    <h6 class="text-blue text-uppercase" style="font-size: 16px;">Address Info</h6>
+                                    <div ng-class="((UserForm.$submitted || UserForm.address.$touched ) && (UserForm.address.$error.required || UserForm.email.$error.email ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input class="input-lg form-control input-custom" name="address"
+                                               ng-model="user.address" placeholder="Address" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.city_name.$touched ) && UserForm.city_name.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.city_name" class="form-control input-lg input-custom"
+                                               name="City Name" placeholder="City Name" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.state_name.$touched ) && UserForm.state_name.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.state_name" class="form-control input-lg input-custom"
+                                               id="state_name" name="State Name" placeholder="state_name" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.postal_code.$touched ) && UserForm.postal_code.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.postal_code" class="form-control input-lg input-custom"
+                                               id="postal_code" name="postal_code" placeholder="Postal Code" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-2"></div>
+
+                                <div class="col-sm-4">
+
+                                    <h6 class="text-blue text-uppercase" style="font-size: 16px;">Employment Info</h6>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.employee_no.$touched ) && UserForm.employee_no.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.employee_no" class="form-control input-lg input-custom"
+                                               id="employee_no" name="employee_no" placeholder="Employee No" type="text"
+                                               aria-required="true">
+                                        <!--<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
+                                    </div>
+
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.job_title.$touched ) && UserForm.job_title.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.mobile_no" class="form-control input-lg input-custom"
+                                               id="job_title" name="job_title" placeholder="Job Title" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.start_date.$touched ) && UserForm.start_date.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.start_date" class="form-control input-lg input-custom"
+                                               id="start_date" name="start_date" placeholder="Start Date" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.leave_date.$touched ) && UserForm.leave_date.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.leave_date" class="form-control input-lg input-custom"
+                                               id="leave_date" name="leave_date" placeholder="Leave Date" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="col-sm-1"></div>
+
+                            </div>
+
+
+                            <br>
+                            <br>
+
+
+
+                            <div class="row">
+                                <div class="col-sm-1">
+                                </div>
+                                <div class="col-sm-4">
+
+
+                                    <h6 class="text-blue text-uppercase" style="font-size: 16px;">Licence Info</h6>
+                                    <div ng-class="((UserForm.$submitted || UserForm.license_no.$touched ) && (UserForm.license_no.$error.required || UserForm.license_no.$error ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input class="input-lg form-control input-custom" name="license_no"
+                                               ng-model="user.license_no" placeholder="License No" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                    </div>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.license_region.$touched ) && UserForm.license_region.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.license_region" class="form-control input-lg input-custom"
+                                               name="license_region" placeholder="License Region" type="text"
+                                               aria-required="true">
+                                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-sm-2"></div>
+
+                                <div class="col-sm-4">
+
+                                    <h6 class="text-blue text-uppercase" style="font-size: 16px;">Document Info</h6>
+
+                                    <div ng-class="((UserForm.$submitted || UserForm.employee_no.$touched ) && UserForm.employee_no.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
+                                        <input ng-model="user.image" class="form-control input-lg input-custom"
+                                               id="" name="employee_no" type="file"
+                                               aria-required="true">
+                                        <!--<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
+                                    </div>
+
+
+
+                                </div>
+
+
+                                <div class="col-sm-1"></div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+
+                            <div class="col-sm-5">
+                            </div>
+                            <button style="border-radius: 8px;" type="submit"
+                                    class="btn btn-primary btn-flat btn-lg	">Submit
+                            </button>
+                            <a href="#/users" style="border-radius: 8px;" class="btn btn-default btn-flat btn-lg	">Cancel</a>
+                        </div>
+                    </form>
+
+                </div>
+                <!-- /.box -->
+
             </div>
 
-            <!-- /.box-header -->
-            <!-- form start -->
-
-            <flash-message></flash-message>
-
-              <toast></toast>
-
-            <form novalidate class="form-horizontal " ng-submit="doAddUser(user,UserForm.$valid)" name="UserForm">
-              <div class="box-body">
-              <div class="col-sm-1">
-                </div>
-                <div class="col-sm-4">
-
-
-                        <h6 class="text-blue text-uppercase" style="font-size: 16px;">Personal Info</h6>
-                        <div ng-class="((UserForm.$submitted || UserForm.email.$touched ) && (UserForm.email.$error.required || UserForm.email.$error.email ))?'form-group has-feedback has-error':'form-group has-feedback'">
-                            <input class="input-lg form-control input-custom" name="email" ng-model="user.email" placeholder="Email" type="email" required aria-required="true">
-                          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-
-
-                          <!--<label data-placement="bottom-left" data-type="info" data-animation="am-fade-and-scale" bs-tooltip="tooltip" bs-enabled="tooltip.checked">-->
-                                <!--<input type="checkbox" ng-model="tooltip.checked" > Check me to enable my tooltip-->
-                          <!--</label>-->
-
-
-                          <!--<div ng-messages="UserForm.email.$error"  style="color:red"  ng-if="UserForm.email.$touched || UserForm.$submitted" role="alert">-->
-                            <!--<p ng-message="required">Email is required.</p>-->
-                          <!--</div>-->
-
-                        </div>
-
-                        <div ng-class="((UserForm.$submitted || UserForm.username.$touched ) && UserForm.username.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-                          <input ng-model="user.username" class="form-control input-lg input-custom" name="username" placeholder="User Name" type="text" required aria-required="true">
-                          <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                          <!--<div ng-messages="UserForm.username.$error"  style="color:red"  ng-if="UserForm.username.$touched || UserForm.$submitted" role="alert">-->
-                            <!--<p ng-message="required">Email is required.</p>-->
-                          <!--</div>-->
-                        </div>
-
-                        <div ng-class="((UserForm.$submitted || UserForm.password.$touched ) && UserForm.password.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-                          <input ng-model="user.password" class="form-control input-lg input-custom" id="password" name="password" placeholder="Password" type="password" ng-required="!updateContact" aria-required="true">
-                          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        </div>
-
-                    </div>
-
-                <div class="col-sm-2">
-                </div>
-
-                <div class="col-sm-4">
-
-                  <h6 class="text-blue text-uppercase" style="font-size: 16px;">Additional Info</h6>
-
-                      <div class="form-group">
-
-                        <div ng-class="((UserForm.$submitted || UserForm.first_name.$touched ) && UserForm.group_id.$error.required)?'col-xs-6 has-error':'col-xs-6 has-feedback'" style="padding-left: 0px;">
-                            <input ng-model="user.first_name" class="input-lg form-control input-custom" id="first_name" name="first_name" placeholder="First Name" style="" type="text" required aria-required="true">
-                              <!--<div ng-messages="UserForm.first_name.$error"  style="color:red"  ng-if="UserForm.first_name.$touched || UserForm.$submitted" role="alert">-->
-                                <!--<p ng-message="required">Name is required.</p>-->
-                              <!--</div>-->
-                        </div>
-
-                        <div class="col-xs-6" >
-                            <input ng-model="user.last_name" class="input-lg form-control input-custom" id="last_name" name="last_name" placeholder="Last Name" style="" type="text" required="" aria-required="true">
-                        </div>
-
-                      </div>
-
-
-                        <div ng-class="((UserForm.$submitted || UserForm.mobile_no.$touched ) && UserForm.mobile_no.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-                            <input ng-model="user.mobile_no" class="form-control input-lg input-custom" id="mobile_no" name="mobile_no" placeholder="Model Number" type="text" required aria-required="true">
-                          <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-                          <!--<div ng-messages="UserForm.mobile_number.$error"  style="color:red"  ng-if="UserForm.mobile_number.$touched || UserForm.$submitted" role="alert">-->
-                              <!--<p ng-message="required">Name is required.</p>-->
-                            <!--</div>-->
-                        </div>
-
-                        <div ng-class="((UserForm.$submitted || UserForm.group_id.$touched ) && UserForm.group_id.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-                            <select ng-model="user.group_id" class="input-lg form-control input-custom" id="group_id" name="group_id" required aria-required="true">
-                              <option value="" selected="selected">--Select Group--</option>
-                                <option ng-repeat="group in groupData" value="{{ group.id }}">{{ group.group_name }}</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-
-                <div class="col-sm-5">
-                </div>
-                <button style="border-radius: 8px;" type="submit" class="btn btn-primary btn-flat btn-lg	">Submit</button>
-                <a href="#/users" style="border-radius: 8px;" class="btn btn-default btn-flat btn-lg	">Cancel</a>
-              </div>
-            </form>
-
-          </div>
-          <!-- /.box -->
-
         </div>
-
-      </div>
-      <!-- /.row -->
+        <!-- /.row -->
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+</div>
+<!-- /.content-wrapper -->
