@@ -124,7 +124,7 @@
                                             <tr ng-repeat="group in groupData | filter:search as filtered_result" ng-class="(group.new)?'shake':''" >
 
                                                 <td class="text-center">
-                                                    <input ng-change="subCheck(group.select)"  ng-model="group.select" type="checkbox">
+                                                    <input ng-change="subCheck(group.select,group.id)"  ng-model="group.select" type="checkbox">
                                                 </td>
 
                                                     <td width="900"  ng-dblclick="updateClick(group,$index)" > <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>

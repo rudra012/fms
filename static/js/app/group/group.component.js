@@ -53,29 +53,44 @@ angular.module('group', []).
                 $rootScope
             ){
 
-
             $scope.checkCount=0;
+            $scope.deletingIds=[];
 
-            $scope.subCheck=function(select)
+            $scope.subCheck=function(select,id)
             {
 
+                console.log(id)
+
                 if(select)
-                  $scope.checkCount += 1
+                {
+                    $scope.deletingIds.push(id);
+                    $scope.checkCount += 1
+                }
                 else
+                {
+                    $scope.deletingIds.pop(id);
                     $scope.checkCount -=1
+                }
+
 
                 if($scope.checkCount==$scope.groupData.length)
                     $scope.selectedAllGroup=true
                 else
                     $scope.selectedAllGroup=false
 
+
             }
 
             $scope.allCheckChange=function(select)
             {
 
+                $scope.deletingIds=[];
+
                 angular.forEach($scope.groupData, function (item) {
+
                      item.select = select;
+                     if(select)
+                        $scope.deletingIds.push(item.id)
                 });
 
             }
