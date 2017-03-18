@@ -75,6 +75,10 @@ class UserAPIView(APIView):
         else:
             userdata = User.objects.filter(is_deleted=False, i_by=request.user.id).order_by('-modified').exclude(
                 id=request.user.id)
+            if request.GET.get('type') == 'v':
+                userdata = userdata.filter(user_type='v')
+            else:
+                userdata = userdata.filter(user_type='u')
 
         if userdata:
             return_arr = {'code': 200, 'success': 'true', 'User': []}
@@ -94,12 +98,17 @@ class UserAPIView(APIView):
                     'postal_code': detail.postal_code or "",
                     'country_id': detail.country_id or "",
                     'employee_no': detail.employee_no or "",
-                    'start_date': detail.start_date or "",
-                    'leave_date': detail.leave_date or "",
+                    'job_title': detail.job_title or "",
+                    'start_date': str(detail.start_date) or "",
+                    'leave_date': str(detail.leave_date) or "",
                     'user_type': detail.user_type or "",
                     'license_no': detail.license_no or "",
                     'license_region': detail.license_region or "",
                     'company_id': detail.company_id or "",
+                    'contact_person': detail.contact_person or "",
+                    'contact_person_email': detail.contact_person_email or "",
+                    'contact_person_phone': detail.contact_person_phone or "",
+                    'website_url': detail.website_url or "",
                 }
                 return_arr['User'].append(array_local)
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
@@ -111,13 +120,15 @@ class UserAPIView(APIView):
         serializer = serializers.UserCreateUpdateSerializer(data=request.data)
         if serializer.is_valid():
 
-            check_obj = User.objects.filter(email=serializer.data.get("email"))
-            if check_obj:
-                return_arr = {}
-                return_arr['code'] = 600
-                return_arr['success'] = 'false'
-                return_arr['message'] = 'Email Already In use.'
-                return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
+            if(serializer.data.get("email")):
+                check_obj = User.objects.filter(email=serializer.data.get("email"))
+                if check_obj:
+                    return_arr = {}
+                    return_arr['code'] = 600
+                    return_arr['success'] = 'false'
+                    return_arr['message'] = 'Email Already In use.'
+                    return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
+
 
             check_obj = User.objects.filter(username=serializer.data.get("username"))
             if check_obj:
@@ -131,17 +142,34 @@ class UserAPIView(APIView):
                 username=serializer.data.get("username", ""),
                 email=serializer.data.get("email", ""),
             )
-            print ("************************************");
-            print (serializer.data.get("password"));
-            print ("************************************");
             user_obj.set_password(serializer.data.get("password"))
             user_obj.i_by = request.user.id
             user_obj.u_by = request.user.id
             user_obj.first_name = serializer.data.get("first_name", "")
             user_obj.last_name = serializer.data.get("last_name", "")
             user_obj.mobile_no = serializer.data.get("mobile_no", "")
+            user_obj.user_type = serializer.data.get("user_type", "u")
             user_obj.group_id = serializer.data.get("group_id", "")
             user_obj.company_id = serializer.data.get("company_id", "")
+            user_obj.address = serializer.data.get("address", "")
+            user_obj.city_name = serializer.data.get("city_name", "")
+            user_obj.state_name = serializer.data.get("state_name", "")
+            user_obj.postal_code = serializer.data.get("postal_code", "")
+            user_obj.country_id = serializer.data.get("country_id", "")
+            user_obj.employee_no = serializer.data.get("employee_no", "")
+            user_obj.job_title = serializer.data.get("job_title", "")
+
+            user_obj.contact_person = serializer.data.get("contact_person", "")
+            user_obj.website_url = serializer.data.get("website_url", "")
+            user_obj.contact_person_email = serializer.data.get("contact_person_email", "")
+            user_obj.contact_person_phone = serializer.data.get("contact_person_phone", "")
+
+            # user_obj.start_date = serializer.data.get("start_date", "")
+            # user_obj.leave_date = serializer.data.get("leave_date ", "")
+
+            user_obj.license_no = serializer.data.get("license_no", "")
+            user_obj.license_region = serializer.data.get("license_region", "")
+
             user_obj.save()
 
             return_arr = {}
@@ -179,15 +207,16 @@ class UserAPIView(APIView):
                 return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
             user_model = user_model.first()
+            if(serializer.validated_data.get("email")):
+                check_user = User.objects.filter(email=serializer.validated_data.get("email")).exclude(id=id)
+                if check_user:
+                    return_arr = {
+                        "code": 400,
+                        "message": "Email already in use",
+                        "success": False
+                    }
+                    return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
-            check_user = User.objects.filter(email=serializer.validated_data.get("email")).exclude(id=id)
-            if check_user:
-                return_arr = {
-                    "code": 400,
-                    "message": "Email already in use",
-                    "success": False
-                }
-                return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
             check_user = User.objects.filter(username=serializer.validated_data.get("username")).exclude(id=id)
             if check_user:
@@ -218,6 +247,56 @@ class UserAPIView(APIView):
 
             if serializer.validated_data.get("mobile_no"):
                 user_model.mobile_no = serializer.validated_data.get("mobile_no")
+
+            if serializer.validated_data.get("date_of_birth"):
+                user_model.date_of_birth = serializer.validated_data.get("date_of_birth")
+
+            if serializer.validated_data.get("address"):
+                user_model.address = serializer.validated_data.get("address")
+
+            if serializer.validated_data.get("city_name"):
+                user_model.city_name = serializer.validated_data.get("city_name")
+
+            if serializer.validated_data.get("state_name"):
+                user_model.state_name = serializer.validated_data.get("state_name")
+            if serializer.validated_data.get("postal_code"):
+                user_model.postal_code = serializer.validated_data.get("postal_code")
+
+            if serializer.validated_data.get("country_id"):
+                user_model.country_id = serializer.validated_data.get("country_id")
+
+            if serializer.validated_data.get("employee_no"):
+                user_model.employee_no = serializer.validated_data.get("employee_no")
+            if serializer.validated_data.get("job_title"):
+                user_model.job_title = serializer.validated_data.get("job_title")
+
+            # if serializer.validated_data.get("start_date"):
+            #     user_model.start_date = serializer.validated_data.get("start_date")
+            #
+            # if serializer.validated_data.get("leave_date"):
+            #     user_model.leave_date = serializer.validated_data.get("leave_date")
+
+
+            # user_obj.start_date = serializer.data.get("start_date", "")
+            # user_obj.leave_date = serializer.data.get("leave_date ", "")
+
+            if serializer.validated_data.get("contact_person"):
+                user_model.contact_person = serializer.validated_data.get("contact_person")
+
+            if serializer.validated_data.get("website_url"):
+                user_model.website_url = serializer.validated_data.get("website_url")
+
+            if serializer.validated_data.get("contact_person_email"):
+                user_model.contact_person_email = serializer.validated_data.get("contact_person_email")
+
+            if serializer.validated_data.get("contact_person_phone"):
+                user_model.contact_person_phone = serializer.validated_data.get("contact_person_phone")
+
+            if serializer.validated_data.get("license_no"):
+                user_model.license_no = serializer.validated_data.get("license_no")
+
+            if serializer.validated_data.get("license_region"):
+                user_model.license_region = serializer.validated_data.get("license_region")
 
             user_model.u_by = request.user.id
             save_object = user_model.save()

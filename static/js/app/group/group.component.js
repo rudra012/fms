@@ -54,7 +54,32 @@ angular.module('group', []).
             ){
 
 
-            console.log($rootScope.currentState);
+            $scope.checkCount=0;
+
+            $scope.subCheck=function(select)
+            {
+
+                if(select)
+                  $scope.checkCount += 1
+                else
+                    $scope.checkCount -=1
+
+                if($scope.checkCount==$scope.groupData.length)
+                    $scope.selectedAllGroup=true
+                else
+                    $scope.selectedAllGroup=false
+
+            }
+
+            $scope.allCheckChange=function(select)
+            {
+
+                angular.forEach($scope.groupData, function (item) {
+                     item.select = select;
+                });
+
+            }
+
 
             Group.getGroupList().success(function(response){
                 $scope.groupData = response.Group;

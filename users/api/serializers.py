@@ -115,8 +115,10 @@ class UserLoginSerializer(ModelSerializer):
 
 
 
-    # class UserCreateUpdateSerializer(serializers.ModelSerializer):
-#     password = CharField(allow_blank=True, required=False, allow_null=True)
+        # class UserCreateUpdateSerializer(serializers.ModelSerializer):
+
+
+# password = CharField(allow_blank=True, required=False, allow_null=True)
 #     username = CharField(allow_blank=True, required=False, allow_null=True)
 #     email = CharField(allow_blank=True, required=False, allow_null=True)
 #
@@ -195,31 +197,39 @@ class UserLoginSerializer(ModelSerializer):
 
 
 class UserCreateUpdateSerializer(Serializer):
-    email = serializers.CharField(required=True)
-    is_deleted= serializers.BooleanField(required=False)
-    first_name = serializers.CharField(required=False)
-    last_name = serializers.CharField(required=False)
-    group_id = serializers.CharField(required=False)
-    mobile_no = serializers.CharField(required=False)
-    id = serializers.CharField(required=False)
-    username = serializers.CharField(required=True)
-    password= serializers.CharField(required=False)
+    email = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    is_deleted = serializers.BooleanField(required=False)
+    first_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    last_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    group_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    mobile_no = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    username = serializers.CharField(required=True, allow_blank=True, max_length=100)
+    password = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    address = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    city_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    state_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    postal_code = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    country_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    employee_no = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    start_date = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    leave_date = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    user_type = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    company_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    job_title = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    website_url = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    contact_person_email = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    contact_person = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    contact_person_phone = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    license_no = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    license_region = serializers.CharField(required=False, allow_blank=True, max_length=100)
+
     class Meta:
         fields = [
             'email ',
-            'username ','id ','first_name','last_name','group_id','mobile_no',
-            'address',
-            'city_name',
+            'username ', 'id ', 'first_name', 'last_name', 'group_id', 'mobile_no', 'address', 'city_name',
             'state_name',
-            'postal_code',
-            'country_id',
-            'city_name',
-            'employee_no',
-            'start_date',
-            'leave_date',
-            'user_type',
-            'user_type',
-            'license_no',
-            'license_region',
-            'company_id',
+            'postal_code', 'country_id', 'city_name', 'employee_no', 'start_date', 'leave_date', 'user_type',
+            'user_type', 'license_no', 'license_region', 'company_id',
+            'job_title', 'website_url', 'contact_person_email', 'contact_person_phone','contact_person',
         ]

@@ -1,143 +1,167 @@
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Vehicle
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#/vehicles">Vehicle</a></li>
-        <li class="active">Vehicle</li>
-      </ol>
-    </section>
+ <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Vendor
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#/"><i class="fa fa-dashboard"></i>Home</a></li>
+                        <li class="active">Vehicle</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h2 class="box-title">Add Vehicle</h2>
+                        </div>
+                        <!-- /.box-header -->
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Add Vehicle</h3>
+                        <flash-message></flash-message>
+
+                        <form novalidate role="form" class="form-horizontal" ng-submit="doAddVehicle(vehicle,VehicleForm.$valid)" name="VehicleForm">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <!-- text input -->
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.vehicle_name.$touched ) && (VehicleForm.vehicle_name.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vehicle Name</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.vehicle_name" name="vehicle_name" class="form-control" id="vehicle_name" placeholder="Vehicle Name" required >
+                                            <div ng-messages="VehicleForm.vehicle_name.$error"  style="color:red"  ng-if="VehicleForm.vehicle_name.$touched || VehicleForm.$submitted" role="alert">
+                                                <p ng-message="required">This is required.</p>
+                                            </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.vin_no.$touched ) && (VehicleForm.vin_no.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vin No</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.vin_no" name="vin_no" class="form-control" id="vin_no" placeholder="Vin No" required>
+                                            <div ng-messages="VehicleForm.vin_no.$error"  style="color:red"  ng-if="VehicleForm.vin_no.$touched || VehicleForm.$submitted" role="alert">
+                                                <p ng-message="required">This is required.</p>
+                                            </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.vehicle_make.$touched ) && (VehicleForm.vehicle_make.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vehicle Make</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.vehicle_make" name="vehicle_make" class="form-control" id="vehicle_make" placeholder="Vehicle Make" required >
+                                                <div ng-messages="VehicleForm.vehicle_make.$error"  style="color:red"  ng-if="VehicleForm.vehicle_make.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.vehicle_model.$touched ) && (VehicleForm.vehicle_model.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vehicle Model</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.vehicle_model" name="vehicle_model" class="form-control" id="vehicle_model" placeholder="Vehicle Model" required>
+                                                <div ng-messages="VehicleForm.vehicle_model.$error"  style="color:red"  ng-if="VehicleForm.vehicle_model.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.vehicle_year.$touched ) && (VehicleForm.vehicle_year.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vehicle Year</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.vehicle_year" name="vehicle_year" class="form-control form-group-sm input-custom" id="vehicle_year" placeholder="Vehicle Year" required>
+                                                <div ng-messages="VehicleForm.vehicle_year.$error"  style="color:red"  ng-if="VehicleForm.vehicle_year.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                      <div ng-class="((VehicleForm.$submitted || VehicleForm.vehicle_license.$touched ) && (VehicleForm.vehicle_license.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vehicle License</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.vehicle_license" name="vehicle_license" class="form-control form-group-sm input-custom" id="vehicle_license" placeholder="Vehicle Year" required>
+                                                <div ng-messages="VehicleForm.vehicle_license.$error"  style="color:red"  ng-if="VehicleForm.vehicle_license.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.registration_state.$touched ) && (VehicleForm.registration_state.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Registration State</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.registration_state" name="registration_state" class="form-control" id="registration_state" placeholder="Registration State" required>
+                                                <div ng-messages="VehicleForm.registration_state.$error"  style="color:red"  ng-if="VehicleForm.registration_state.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.vehiclestatus_id.$touched ) && (VehicleForm.vehiclestatus_id.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vehicle Status</label>
+                                            <div class="col-sm-8">
+                                              <select ng-model="vehicle.vehiclestatus_id" class="form-control" id="vehiclestatus_id" name="group_id" required aria-required="true">
+                                                    <option value="" selected="selected">--Select Status--</option>
+                                                      <option ng-repeat="status in vehicleStatusData" value="{{ status.id }}">{{ status.title }}</option>
+                                                  </select>
+                                                <div ng-messages="VehicleForm.vehiclestatus_id.$error"  style="color:red"  ng-if="VehicleForm.vehiclestatus_id.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.ownership.$touched ) && (VehicleForm.ownership.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">ownership</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="vehicle.ownership" name="ownership" class="form-control" id="ownership" placeholder="ownership" required>
+
+                                                <div ng-messages="VehicleForm.ownership.$error"  style="color:red"  ng-if="VehicleForm.ownership.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VehicleForm.$submitted || VehicleForm.group_id.$touched ) && (VehicleForm.group_id.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Group</label>
+                                            <div class="col-sm-8">
+                                                <select ng-model="vehicle.group_id" class="form-control" id="group_id" name="group_id" required aria-required="true">
+                                                <option value="" selected="selected">--Select Group--</option>
+                                                  <option ng-repeat="group in groupData" value="{{ group.id }}">{{ group.group_name }}</option>
+                                              </select>
+                                                <div ng-messages="VehicleForm.group_id.$error"  style="color:red"  ng-if="VehicleForm.group_id.$touched || VehicleForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-4">
+                                                <button  type="submit" class="btn btn-primary load-button">Submit</button>
+                                                <a href="#/vendors" class="btn btn-default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                        <!-- /form -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.content -->
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form novalidate ng-submit="doAddVehicle(vehicle,VehicleForm.$valid)" name="VehicleForm">
-
-              <div class="box-body">
-
-                <div class="form-group">
-                  <label for="vehicle_name">Vehicle Name</label>
-                  <input type="text" ng-model="vehicle.vehicle_name" name="vehicle_name" class="form-control form-group-sm input-custom" id="vehicle_name" placeholder="Vehicle Name" required >
-
-                  <div ng-messages="VehicleForm.vehicle_name.$error"  style="color:red" ng-if="VehicleForm.vehicle_name.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Vehicle name is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="vin_no">Vin No</label>
-                  <input type="text" ng-model="vehicle.vin_no" name="vin_no" class="form-control form-group-sm input-custom" id="vin_no" placeholder="Vin No" required>
-                  <div ng-messages="VehicleForm.vin_no.$error"  style="color:red" ng-if="VehicleForm.vin_no.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Vin no is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="vehicle_make">Vehicle Make</label>
-                  <input type="text" ng-model="vehicle.vehicle_make" name="vehicle_make" class="form-control form-group-sm input-custom" id="vehicle_make" placeholder="Vehicle Make" required >
-                  <div ng-messages="VehicleForm.vehicle_make.$error"  style="color:red" ng-if="VehicleForm.vehicle_make.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Vehicle Make is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="vehicle_model">Vehicle Model</label>
-                  <input type="text" ng-model="vehicle.vehicle_model" name="vehicle_model" class="form-control form-group-sm input-custom" id="vehicle_model" placeholder="Vehicle Model" required>
-                  <div ng-messages="VehicleForm.vehicle_model.$error"  style="color:red" ng-if="VehicleForm.vehicle_model.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Vehicle Model is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="vehicle_year">Vehicle Year</label>
-                  <input type="text" ng-model="vehicle.vehicle_year" name="vehicle_year" class="form-control form-group-sm input-custom" id="vehicle_year" placeholder="Vehicle Year" required>
-                  <div ng-messages="VehicleForm.vehicle_year.$error"  style="color:red" ng-if="VehicleForm.vehicle_year.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Vehicle Year is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="vehicle_model">Vehicle License</label>
-                  <input type="text"  ng-model="vehicle.vehicle_license" name="vehicle_license" class="form-control form-group-sm input-custom" id="vehicle_license" placeholder="vehicle license" required>
-                  <div ng-messages="VehicleForm.vehicle_license.$error"  style="color:red" ng-if="VehicleForm.vehicle_license.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Vehicle License is required.</p>
-                  </div>
-                </div>
-
-                <div class="registration_state">
-                  <label for="vehicle_model">Registration State</label>
-                  <input type="text" ng-model="vehicle.registration_state" name="registration_state" class="form-control form-group-sm input-custom" id="registration_state" placeholder="Registration State" required>
-                  <div ng-messages="VehicleForm.registration_state.$error"  style="color:red" ng-if="VehicleForm.registration_state.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Registration State is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="vehiclestatus_id">Vehicle status</label>
-
-                  <!--<input type="text" ng-model="vehicle.vehiclestatus_id" name="vehiclestatus_id" class="form-control form-group-sm input-custom" id="vehiclestatus_id" placeholder="Vehicle Status " required>-->
-
-                  <select ng-model="vehicle.vehiclestatus_id" class="form-control form-group-sm input-custom" id="vehiclestatus_id" name="group_id" required aria-required="true">
-                      <option value="" selected="selected">--Select Group--</option>
-                        <option ng-repeat="status in vehicleStatusData" value="{{ status.id }}">{{ status.title }}</option>
-                    </select>
-
-                  <div ng-messages="VehicleForm.vehiclestatus_id.$error"  style="color:red" ng-if="VehicleForm.vehiclestatus_id.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">vehicle Status is required.</p>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="ownership">Ownership</label>
-
-                  <input type="text" ng-model="vehicle.ownership" name="ownership" class="form-control form-group-sm input-custom" id="ownership" placeholder="ownership" required>
-
-                  <div ng-messages="VehicleForm.ownership.$error"  style="color:red" ng-if="VehicleForm.ownership.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Ownership is required.</p>
-                  </div>
-                </div>
-
-
-                <div class="form-group">
-                  <label for="ownership">Group</label>
-                    <select ng-model="vehicle.group_id" class="form-control form-group-sm input-custom" id="group_id" name="group_id" required aria-required="true">
-                      <option value="" selected="selected">--Select Group--</option>
-                        <option ng-repeat="group in groupData" value="{{ group.id }}">{{ group.group_name }}</option>
-                    </select>
-                  <div ng-messages="VehicleForm.group_id.$error"  style="color:red" ng-if="VehicleForm.group_id.$touched || VehicleForm.$submitted" role="alert">
-                      <p ng-message="required">Group is required.</p>
-                  </div>
-                </div>
-
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
-          <!-- /.box -->
-
-        </div>
-
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->

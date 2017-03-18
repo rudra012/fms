@@ -95,6 +95,43 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Users",
         })
 
+
+
+        .state('private.vendors', {
+          url: '/vendors',
+          views: {
+            'container@': {
+              template: '<vendors></vendors>'
+            }
+          },
+          authenticate:true,
+          display:"Vendors",
+        })
+
+
+        .state('private.vendor-add', {
+          url: '/vendor-add',
+          views: {
+            'container@': {
+              template: '<vendor-add></vendor-add>'
+            }
+          },
+          authenticate:true,
+          display:"Users",
+        })
+
+        .state('private.vendor-update', {
+          url: '/vendor-update~index~:id',
+          views: {
+            'container@': {
+              template: '<vendor-add></vendor-add>'
+            }
+          },
+          authenticate:true,
+          display:"Users",
+        })
+
+
         .state('private.vehicle-update', {
           url: '/vehicle-update~index~:id',
           views: {
@@ -316,6 +353,21 @@ mainApp
                    ],
                    'faClass':'fa fa-user text-green',
                 },
+
+                 {
+                   'name':'vendors',
+                   'display':'Vendors',
+                   'url':'vendors',
+                   'activeWhen':[
+                    'private.vendors',
+                    //'private.vendors-update',
+                   ],
+                   'faClass':'fa fa-user text-orange',
+                },
+
+
+
+
 
             ];
 

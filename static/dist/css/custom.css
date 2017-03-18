@@ -1,0 +1,151 @@
+
+/* ================================================================
+    Reset
+=================================================================== */
+
+.box-header,
+.box-body,
+.box-footer{
+    padding: 15px;
+}
+.box-header>.box-tools{
+    top: 10px;
+    right: 15px;
+}
+.box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title{
+    font-size: 22px;
+}
+.margin-l-5{
+    margin-left: 5px;
+}
+.margin-l-10{
+    margin-left: 10px;
+}
+.margin-r-10{
+    margin-right: 10px;
+}
+
+/* ================================================================
+    Buttons
+=================================================================== */
+
+.btn .caret{
+    margin-left: 5px;
+}
+.btn .btn-icon{
+    margin-right: 5px;
+}
+.buttons-set{
+    white-space: nowrap;
+}
+.btn-icon-only{
+    width: 25px;
+    height: 25px;
+    line-height: 23px;
+    text-align: center;
+    padding: 0px;
+    font-size: 12px;    
+}
+.btn-social>:first-child{
+    font-size: 1em;
+}
+
+/* ================================================================
+    Form
+=================================================================== */
+
+.form-control,
+.input-group .input-group-addon,
+.select2-container--default .select2-selection--single, .select2-selection .select2-selection--single,
+.select2-container--default .select2-selection--multiple{
+    border-radius: 4px;
+}
+.input-group .form-control:first-child,
+.input-group.bootstrap-timepicker .dropdown-menu + .form-control,
+.input-group.bootstrap-timepicker .dropdown-menu + .input-group-addon{
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;    
+}
+.input-group-addon:last-child{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0    
+}
+.input-group-addon:first-child{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0    
+}
+.input-group.bootstrap-timepicker .dropdown-menu + .input-group-addon{
+    border-right: 0;
+}
+
+/* Checkbox / Radio */
+.icheckbox label,
+.iradio label{
+    padding-left: 0px;
+}
+.icheckbox label > div,
+.iradio label > div,
+.icheck label > div{
+    margin-right: 5px;
+}
+
+/* Paginatinom */
+.pagination-table{
+    line-height: 30px;
+    margin: -15px;
+    margin-top: 0px;
+}
+
+/* ================================================================
+    Header
+=================================================================== */
+
+.content-header>.breadcrumb{
+    /*float: none;*/
+    /*position: initial;*/
+}
+
+/* ================================================================
+    List
+=================================================================== */
+
+.filter-bottom-margin{
+    margin-bottom: 15px;
+}
+
+#changelist-filter .dropdown-menu .dropdown-header{
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #444;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+#changelist-filter .dropdown-menu>li>a:hover,
+#changelist-filter .dropdown-menu>.active>a,
+#changelist-filter .dropdown-menu>.active>a:focus,
+#changelist-filter .dropdown-menu>.active>a:hover{
+    color: #333;
+    background-color: #f4f4f4;    
+}
+
+/* ================================================================
+    Table
+=================================================================== */
+
+.table-field-actions{
+    width: 120px;
+    text-align: center;
+}
+.table-field-status{
+    width: 120px;
+    text-align: center;    
+}
+.label-block{
+    font-size: 14px;
+    font-weight: normal;
+    display: block;
+    padding: .428em .6em .429em;
+    max-width: 90px;
+    margin: 0 auto;
+}

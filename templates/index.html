@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href='{% static "dist/css/AdminLTE.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "dist/css/custom.css" %}'>
+
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href='{% static "dist/css/skins/_all-skins.min.css" %}'>
@@ -39,10 +42,13 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-    <link rel="stylesheet" href='https://sachinchoolur.github.io/angular-flash/dist/angular-flash.css'>
+<link rel="stylesheet" href='https://sachinchoolur.github.io/angular-flash/dist/angular-flash.css'>
 
-    <link rel="stylesheet" href='http://tamerayd.in/ngToast/bower_components/ngtoast/dist/ngToast.min.css'>
-    <link rel="stylesheet" href='http://tamerayd.in/ngToast/bower_components/ngtoast/dist/ngToast-animations.min.css'>
+<link rel="stylesheet" href='http://tamerayd.in/ngToast/bower_components/ngtoast/dist/ngToast.min.css'>
+<link rel="stylesheet" href='http://tamerayd.in/ngToast/bower_components/ngtoast/dist/ngToast-animations.min.css'>
+
+
+<link rel="stylesheet" href='{% static "plugins/angular-datetimepicker/angularjs-datetime-picker.css" %}' />
 
 
 
@@ -260,7 +266,7 @@
     <div ui-view="header"></div>
     <div ui-view="left"></div>
 
-    <div ui-view="container" class="mains"></div>
+    <div ui-view="container"></div>
 
 
 </body>
@@ -271,6 +277,8 @@
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.8/angular-strap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/2.3.8/angular-strap.tpl.min.js"></script>
+
+
 
 
     <script src="http://tamerayd.in/ngToast/bower_components/ngtoast/dist/ngToast.min.js"></script>
@@ -289,6 +297,8 @@
 
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js'></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+    <script src='{% static "plugins/angular-datetimepicker/angularjs-datetime-picker.js" %}'></script>
 
     <script src='{% static "js/app.js" %}'></script>
     <script src='{% static "js/app.config.js" %}'></script>
@@ -320,6 +330,9 @@
 
     <script src='{% static "js/app/users/user.module.js" %}'></script>
     <script src='{% static "js/app/users/user.component.js" %}'></script>
+
+    <script src='{% static "js/app/vendors/vendor.module.js" %}'></script>
+    <script src='{% static "js/app/vendors/vendor.component.js" %}'></script>
 
 
     <script src='{% static "plugins/jQuery/jquery-2.2.3.min.js" %}'></script>

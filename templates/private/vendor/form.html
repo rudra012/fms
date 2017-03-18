@@ -1,0 +1,177 @@
+ <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Vendor
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Vendor</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h2 class="box-title">Add Vendor</h2>
+                        </div>
+                        <!-- /.box-header -->
+
+                        <flash-message></flash-message>
+
+                        <form novalidate role="form" class="form-horizontal" ng-submit="doAddVendor(vendor,VendorForm.$valid)" name="VendorForm">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <!-- text input -->
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.username.$touched ) && (VendorForm.username.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">User Name</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="username" ng-model="vendor.username" class="form-control" placeholder="User Name" required>
+                                            <div ng-messages="VendorForm.username.$error"  style="color:red"  ng-if="VendorForm.username.$touched || VendorForm.$submitted" role="alert">
+                                                <p ng-message="required">This is required.</p>
+                                            </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.first_name.$touched ) && (VendorForm.first_name.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Name</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="first_name" ng-model="vendor.first_name" class="form-control" placeholder="Name" required>
+                                            <div ng-messages="VendorForm.first_name.$error"  style="color:red"  ng-if="VendorForm.first_name.$touched || VendorForm.$submitted" role="alert">
+                                                <p ng-message="required">This is required.</p>
+                                            </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.mobile_no.$touched ) && (VendorForm.mobile_no.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vendor Phone</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.mobile_no" name="mobile_no" class="form-control" placeholder="Vendor Phone" required>
+                                                <div ng-messages="VendorForm.mobile_no.$error"  style="color:red"  ng-if="VendorForm.mobile_no.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.website_url.$touched ) && (VendorForm.website_url.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Website Url</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.website_url" name="website_url" class="form-control" placeholder="Website Url" required>
+                                                <div ng-messages="VendorForm.website_url.$error"  style="color:red"  ng-if="VendorForm.website_url.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.address.$touched ) && (VendorForm.address.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Address</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.address" name="address" class="form-control" placeholder="address" required>
+                                                <div ng-messages="VendorForm.address.$error"  style="color:red"  ng-if="VendorForm.address.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.city_name.$touched ) && (VendorForm.city_name.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Vity name</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.city_name" name="city_name" class="form-control" placeholder="city_name" required>
+                                                <div ng-messages="VendorForm.city_name.$error"  style="color:red"  ng-if="VendorForm.city_name.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.state_name.$touched ) && (VendorForm.state_name.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">State name</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.state_name" name="state_name" class="form-control" placeholder="State Name" required>
+                                                <div ng-messages="VendorForm.state_name.$error"  style="color:red"  ng-if="VendorForm.city_name.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.postal_code.$touched ) && (VendorForm.postal_code.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Postal Code</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.postal_code" name="postal_code" class="form-control" placeholder="Postal Code" required>
+                                                <div ng-messages="VendorForm.postal_code.$error"  style="color:red"  ng-if="VendorForm.postal_code.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.contact_person.$touched ) && (VendorForm.contact_person.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Contact Person</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.contact_person" name="contact_person" class="form-control" placeholder="Contact Person" required>
+                                                <div ng-messages="VendorForm.contact_person.$error"  style="color:red"  ng-if="VendorForm.contact_person.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.contact_person_email.$touched ) && (VendorForm.contact_person_email.$error.required || VendorForm.contact_person_email.$error.email ))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Contact Person Email</label>
+                                            <div class="col-sm-8">
+                                                <input type="email" ng-model="vendor.contact_person_email" name="contact_person_email" class="form-control" placeholder="Contact Person Email" required>
+                                                <div ng-messages="VendorForm.contact_person_email.$error"  style="color:red"  ng-if="VendorForm.contact_person_email.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                    <p ng-message="email">Invalid email.</p>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <!--<span ng-hide="true" ng-bind="vendor.email=vendor.contact_person_email"></span>-->
+
+
+                                        <div ng-class="((VendorForm.$submitted || VendorForm.contact_person_phone.$touched ) && (VendorForm.contact_person_phone.$error.required))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Contact Person Phone</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" ng-model="vendor.contact_person_phone" name="contact_person_phone" class="form-control" placeholder="Contact Person Phone" required>
+                                                <div ng-messages="VendorForm.contact_person_phone.$error"  style="color:red"  ng-if="VendorForm.contact_person_phone.$touched || VendorForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-4">
+                                                <button  type="submit" class="btn btn-primary load-button">Submit</button>
+                                                <a href="#/vendors" class="btn btn-default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                        <!-- /form -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->

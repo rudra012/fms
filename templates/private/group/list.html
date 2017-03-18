@@ -1,37 +1,33 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Group Lists
-            <small>Lists</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{ currentState.url }}">{{ currentState }}</a></li>
-            <li class="active">{{ currentState.display }} Lists</li>
-        </ol>
-    </section>
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Group
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Group</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h2 class="box-title">List</h2>
+                            <!--<div class="box-tools">-->
+                                <!--<a  href="#/vehicles-add" class="addlink btn btn-primary pull-right margin-r-5">-->
+                                    <!--<i class="btn-icon fa fa-plus"></i> Add New-->
+                                <!--</a>-->
+                            <!--</div>-->
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
 
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
 
-            <div class="col-xs-12">
-
-                <div class="box">
-
-                    <div class="box-header">
-
-                        <!--<h3 class="box-title">-->
-                        <!--<button class="btn btn-block btn-primary btn-flat">Add Group</button>-->
-                        <!--</h3>-->
-
-
-                        <div class="col-md-12" style="width: 35%;">
-
-                            <div class="box box-warning">
+                            <div class="box box-warning" style="width: 35%;">
                                 <div class="box-header with-border" style="cursor:pointer" ng-click="addOpen()">
                                     <h3 class="box-title">Add Group <span ng-show="!open" class="fa fa-plus"></span>
                                         <span ng-show="open" class="fa fa-minus"></span></h3>
@@ -68,67 +64,120 @@
                                 </div>
 
                             </div>
-                            <!-- /.box -->
+
+
+
+
+                            <div class="pull-right filter-bottom-margin">
+                                <form id="changelist-search">
+                                    <div class="input-group" style="width: 250px;">
+                                        <input type="text" ng-model="search" class="form-control pull-right" placeholder="Search" autofocus />
+
+                                        <!--<div class="input-group-btn">-->
+                                            <!--<button class="btn btn-default" type="submit" value="Search"><i class="fa fa-search"></i></button>-->
+                                        <!--</div>-->
+
+                                    </div>
+                                </form>
+                            </div>
+                            <form>
+                                <!--<div id="changelist-filter" class="pull-right margin-r-10 dropdown filter-bottom-margin">-->
+                                    <!--<button id="changelist-filter-dd" class="btn btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+                                        <!--Filters <b class="caret margin-l-5"></b>-->
+                                    <!--</button>-->
+                                    <!--<ul class="dropdown-menu" aria-labelledby="changelist-filter-dd">-->
+                                        <!--<li class="dropdown-header"> staff status </li>-->
+                                        <!--<li class="active" ><a href="javascript:;">All</a></option></li>-->
+                                        <!--<li><a href="javascript:;">Yes</a></option></li>-->
+                                        <!--<li><a href="javascript:;">No</a></option>-->
+                                        <!--<li class="dropdown-header"> superuser status </li>-->
+                                        <!--<li class="active" ><a href="javascript:;">All</a></option></li>-->
+                                        <!--<li><a href="javascript:;">Yes</a></option></li>-->
+                                        <!--<li><a href="javascript:;">No</a></option></li>-->
+                                        <!--<li class="dropdown-header"> active </li>-->
+                                        <!--<li class="active" ><a href="javascript:;">All</a></option></li>-->
+                                        <!--<li><a href="javascript:;">Yes</a></option></li>-->
+                                        <!--<li><a href="javascript:;">No</a></option></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+
+
+                                <div class="actions pull-left filter-bottom-margin">
+                                    <a href="javascript:;" class="addlink btn btn-default margin-r-5"><i class="btn-icon fa fa-trash-o"></i> Deleat All</a>
+                                    <span class="action-counter" data-actions-icnt="1"> {{ checkCount }} of {{ groupData.length }}</span>
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="example1">
+                                        <thead>
+                                            <tr>
+                                              <th ng-click="checkAll(selectedAllGroup)" class="text-center">
+                                                  <input ng-change="allCheckChange(selectedAllGroup)" type="checkbox" ng-model="selectedAllGroup" id="action-toggle"></th>
+                                              <th>Name</th>
+                                              <th class="table-field-actions">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr ng-repeat="group in groupData | filter:search as filtered_result" ng-class="(group.new)?'shake':''" >
+
+                                                <td class="text-center">
+                                                    <input ng-change="subCheck(group.select)"  ng-model="group.select" type="checkbox">
+                                                </td>
+
+                                                    <td width="900"  ng-dblclick="updateClick(group,$index)" > <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>
+                                                        <div  ng-show="group.edit">
+                                                            <input ng-blur="done(group,$index)" class="form-control" type="text" ng-model="group.group_name" />
+                                                        </div>
+                                                    </td>
+
+                                                <td class="table-field-actions">
+
+                                                    <div class="buttons-set">
+                                                        <button ng-show="!group.edit" ng-click="updateClick(group,$index)"  class="btn btn-default btn-sm btn-icon-only">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+
+                                                        <button ng-show="group.edit" class="btn btn-default btn-sm btn-icon-only">
+                                                            <i class="fa fa-check"></i>
+                                                        </button>
+
+
+                                                        <button href="javascript:void(0);" ng-click="deletGroup(group,$index)" class="btn btn-default btn-sm btn-icon-only">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                         <tfoot>
+                                            <th ng-if="!search && groupData && groupData.length==0" colspan="3"><center>No Records Found</center> </th>
+                                            <th ng-if="search && filtered_result.length==0" colspan="7"><center>No Results Found " {{ search }}"</center> </th>
+                                        </tfoot>
+
+                                    </table>
+                                </div>
+                                <!--<div class="box-footer pagination-table">-->
+                                    <!--&lt;!&ndash;7 {{ List }}&ndash;&gt;-->
+                                    <!--<ul class="pagination pagination-sm no-margin pull-right">-->
+                                        <!--<li><a href="#">&laquo;</a></li>-->
+                                        <!--<li><a href="#">1</a></li>-->
+                                        <!--<li class="active"><a href="#">2</a></li>-->
+                                        <!--<li><a href="#">3</a></li>-->
+                                        <!--<li><a href="#">&raquo;</a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+
+                            </form>
                         </div>
+                        <!-- /.box-body -->
                     </div>
-
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>No#</th>
-                                <th>Group Name</th>
-                                <!--<th>Company</th>-->
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-
-                            <tr height="50" ng-repeat="group in groupData"  ng-class="(group.new)?'shake':''" ng-style="group.new && {'background-color':'#f5f5f5'}">
-
-                                <td>{{ $index+1 }} </td>
-
-                                <td width="350" ng-dblclick="updateClick(group,$index)" > <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>
-                                    <div  ng-show="group.edit"> <input ng-blur="done(group,$index)" class="form-control input-sm" type="text" ng-model="group.group_name" /> </div>
-                                </td>
-
-                                <!--<td width="350"> <div  ng-show="!group.edit"> {{ (group.company_id)?group.company_name:"-" }} </div>-->
-
-                                    <!--<div  ng-show="group.edit"> <select class="form-control input-sm" ng-model="group.company_id" name="company_id"-->
-                                            <!--placeholder="Company">-->
-                                        <!--<option ng-repeat="x in companyData" value="{{x.id}}">-->
-                                            <!--{{x.company_name}}-->
-                                        <!--</option>-->
-                                    <!--</select> </div>-->
-                                <!--</td>-->
-
-                                <td width="350">  <span ng-show="!group.edit" style="cursor:pointer" class="badge bg-light-blue" ng-click="updateClick(group,$index)"><span class="fa fa-pencil"></span></span>
-                                    <span ng-show="group.edit" style="cursor:pointer" class="badge bg-light-blue" ng-click="done(group,$index)"><span class="fa fa-check"></span></span>
-
-                                    <span ng-click="deletGroup(group,$index)" style="cursor:pointer" class="badge bg-red"><span class="fa fa-remove"></span></span>
-                                </td>
-
-                            </tr>
-                            </tbody>
-
-                            <tfoot ng-if="groupData.length==0">
-                                <tr><th colspan="4">No Records Found</th></tr>
-                            </tfoot>
-
-                        </table>
-                    </div>
-
-                    <!-- /.box-body -->
-                </div>
-
-
+                    <!-- /.box -->
+                </section>
+                <!-- /.content -->
             </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+            <!-- /.content-wrapper -->

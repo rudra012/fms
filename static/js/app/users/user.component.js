@@ -33,7 +33,6 @@ userApp.factory("User", ['$http',function($http){
              params: {
                 id: data,
               }
-
         }
         return $http(req);
     }
@@ -121,6 +120,8 @@ userAdd.component('usersAdd', {
 
 
             $scope.doAddUser=function(user,valid){
+                console.log(user);
+
                 if(valid){
                     if(!user.id){
                         User.addUser(user).success(function(response){

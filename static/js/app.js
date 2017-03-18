@@ -11,6 +11,9 @@ var mainApp=angular.module("fms", [
     'ngResource',
     'mgcrea.ngStrap',
 
+    'angularjs-datetime-picker',
+
+
     'ngToast',
 
     //internal Modules
@@ -23,5 +26,7 @@ var mainApp=angular.module("fms", [
     'users',
 
     'usersAdd',
+    'vendors',
+    'vendorAdd',
 
 ]);
