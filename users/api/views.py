@@ -169,16 +169,10 @@ class UserAPIView(APIView):
 
             # if serializer.validated_data.get("start_date"):
             #     user_model.start_date = serializer.validated_data.get("start_date")
-            #
             # if serializer.validated_data.get("leave_date"):
             #     user_model.leave_date = serializer.validated_data.get("leave_date")
 
-
-            # user_obj.start_date = serializer.data.get("start_date", "")
-            # user_obj.leave_date = serializer.data.get("leave_date ", "")
-
             user_model.u_by = request.user.id
-
             if user_model.save() is None:
                 return_arr = {"code": 200, "message": "Contact Update successfully", "success": True, }
                 return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
