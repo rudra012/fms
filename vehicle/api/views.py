@@ -23,6 +23,7 @@ class VehicleListAPIView(APIView):
     ]
 
     def get(self, request, format=None):
+        serializer = serializers.VehiclReadSerializer
 
         if (request.GET.get('id')):
             vehicledata = Vehicle.objects.filter(is_deleted=False, id=request.GET.get('id')).order_by('-modified')
@@ -30,28 +31,10 @@ class VehicleListAPIView(APIView):
             vehicledata = Vehicle.objects.filter(is_deleted=False, i_by=request.user.id).order_by('-modified')
 
         if vehicledata:
-            return_arr = {'code': 200, 'success': 'true', 'Vehicle': []}
-            for detail in vehicledata:
-                array_local = {
-                    'id': detail.id or "",
-                    'vehicle_name': detail.vehicle_name or "",
-                    'vin_no': detail.vin_no or "",
-                    'vehicle_make': detail.vehicle_make or "",
-                    'vehicle_model': detail.vehicle_model or "",
-                    'vehicle_year': detail.vehicle_year or "",
-                    'vehicle_license': detail.vehicle_license or "",
-                    'registration_state': detail.registration_state or "",
-                    'vehiclestatus_id': detail.vehiclestatus_id or "",
-                    'group_id': detail.group_id or "",
-                    'contact_id': detail.contact_id or "",
-                    'ownership': detail.ownership or "",
-                    'company_id ': detail.company_id or "",
-                    'i_by ': detail.i_by or "",
-                    'u_by ': detail.u_by or "",
-                    'vehicle_status': vehicle_status
-                }
-                return_arr['Vehicle'].append(array_local)
+            serializer = serializer(vehicledata, many=True)
+            return_arr = {'code': 200, 'success': 'true', 'Vehicle': serializer.data}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
+
         else:
             return_arr = {'code': 200, 'success': 'true', 'message': 'No Vehicle found', 'Vehicle': []}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
