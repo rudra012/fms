@@ -114,86 +114,83 @@ class UserLoginSerializer(ModelSerializer):
         raise ValidationError("Invalid credentials")
 
 
+class UserGetUpdateSerializer(serializers.ModelSerializer):
+    # password = CharField(allow_blank=True, required=False, allow_null=True)
+    #     username = CharField(allow_blank=True, required=False, allow_null=True)
+    #     email = CharField(allow_blank=True, required=False, allow_null=True)
+    #
+    #     def create(self, validated_data):
+    #         username = validated_data.get('username')
+    #         email = validated_data.get('email') or ""
+    #         password = validated_data['password']
+    #         user_obj = User(username=username, email=email)
+    #         user_obj.set_password(password)
+    #         user_obj.first_name = validated_data.get('first_name') or ""
+    #         user_obj.group_id = validated_data.get('group_id')
+    #         user_obj.mobile_no = validated_data.get('mobile_no')
+    #         user_obj.address = validated_data.get('address')
+    #         user_obj.city_name = validated_data.get('city_name')
+    #         user_obj.state_name = validated_data.get('state_name')
+    #         user_obj.postal_code = validated_data.get('postal_code')
+    #         user_obj.country_id = validated_data.get('country_id')
+    #         user_obj.employee_no = validated_data.get('employee_no')
+    #         user_obj.job_title = validated_data.get('job_title')
+    #         user_obj.start_date = validated_data.get('start_date')
+    #         user_obj.leave_date = validated_data.get('leave_date')
+    #         user_obj.user_type = validated_data.get('user_type')
+    #         user_obj.license_no = validated_data.get('license_no')
+    #         user_obj.license_region = validated_data.get('license_region')
+    #         user_obj.company_id = validated_data.get('company_id')
+    #         user_obj.save()
+    #         return user_obj
+    #
+    #     def update(self, instance, validated_data):
+    #         instance_fields = ['username', 'email', 'password', 'group_id',
+    #                            'first_name','address','mobile_no','city_name','state_name','postal_code',
+    #                             'country_id','employee_no','job_title','start_date','leave_date','user_type','license_no',
+    #                             'license_region','company_id'
+    #                            ]
+    #         for instance_field in instance_fields:
+    #             if instance_field == "password":
+    #                 instance.set_password(validated_data.get('password'))
+    #             elif validated_data.get(instance_field):
+    #                 instance.__setattr__(instance_field, validated_data.get(instance_field))
+    #
+    #         instance.save()
+    #         return instance
+    #
+    #     def validate(self, data):
+    #         id = data.get("id")
+    #         username = data.get("username")
+    #         email = data.get("email")
+    #         password = data.get("password")
+    #         first_name = data.get("first_name")
+    #
+    #         check_obj=User.objects.filter(email=email)
+    #         if check_obj:
+    #             res = {"success": "false", "code": 601, "message": "email already in Use."}
+    #             raise CustomValidation(res, 601)
+    #
+    #         check_obj = User.objects.filter(username=username)
+    #         if check_obj:
+    #             res = {"success": "false", "code": 601, "message": "Username  already in Use."}
+    #             raise CustomValidation(res, 601)
+    #
+    #
+    #         if not email or not username or not first_name:
+    #             res = {"success": "false", "code": 601, "message": "Error in post."}
+    #             raise CustomValidation(res, 601)
+    #
+    #         return data
 
-        # class UserCreateUpdateSerializer(serializers.ModelSerializer):
-
-
-# password = CharField(allow_blank=True, required=False, allow_null=True)
-#     username = CharField(allow_blank=True, required=False, allow_null=True)
-#     email = CharField(allow_blank=True, required=False, allow_null=True)
-#
-#     def create(self, validated_data):
-#         username = validated_data.get('username')
-#         email = validated_data.get('email') or ""
-#         password = validated_data['password']
-#         user_obj = User(username=username, email=email)
-#         user_obj.set_password(password)
-#         user_obj.first_name = validated_data.get('first_name') or ""
-#         user_obj.group_id = validated_data.get('group_id')
-#         user_obj.mobile_no = validated_data.get('mobile_no')
-#         user_obj.address = validated_data.get('address')
-#         user_obj.city_name = validated_data.get('city_name')
-#         user_obj.state_name = validated_data.get('state_name')
-#         user_obj.postal_code = validated_data.get('postal_code')
-#         user_obj.country_id = validated_data.get('country_id')
-#         user_obj.employee_no = validated_data.get('employee_no')
-#         user_obj.job_title = validated_data.get('job_title')
-#         user_obj.start_date = validated_data.get('start_date')
-#         user_obj.leave_date = validated_data.get('leave_date')
-#         user_obj.user_type = validated_data.get('user_type')
-#         user_obj.license_no = validated_data.get('license_no')
-#         user_obj.license_region = validated_data.get('license_region')
-#         user_obj.company_id = validated_data.get('company_id')
-#         user_obj.save()
-#         return user_obj
-#
-#     def update(self, instance, validated_data):
-#         instance_fields = ['username', 'email', 'password', 'group_id',
-#                            'first_name','address','mobile_no','city_name','state_name','postal_code',
-#                             'country_id','employee_no','job_title','start_date','leave_date','user_type','license_no',
-#                             'license_region','company_id'
-#                            ]
-#         for instance_field in instance_fields:
-#             if instance_field == "password":
-#                 instance.set_password(validated_data.get('password'))
-#             elif validated_data.get(instance_field):
-#                 instance.__setattr__(instance_field, validated_data.get(instance_field))
-#
-#         instance.save()
-#         return instance
-#
-#     def validate(self, data):
-#         id = data.get("id")
-#         username = data.get("username")
-#         email = data.get("email")
-#         password = data.get("password")
-#         first_name = data.get("first_name")
-#
-#         check_obj=User.objects.filter(email=email)
-#         if check_obj:
-#             res = {"success": "false", "code": 601, "message": "email already in Use."}
-#             raise CustomValidation(res, 601)
-#
-#         check_obj = User.objects.filter(username=username)
-#         if check_obj:
-#             res = {"success": "false", "code": 601, "message": "Username  already in Use."}
-#             raise CustomValidation(res, 601)
-#
-#
-#         if not email or not username or not first_name:
-#             res = {"success": "false", "code": 601, "message": "Error in post."}
-#             raise CustomValidation(res, 601)
-#
-#         return data
-#
-#     class Meta:
-#         fields = ['id', 'email', 'password', 'last_login', 'first_name', 'last_name', 'username', 'date_of_birth',
-#                   'group_id', 'mobile_no', 'address', 'city_name',
-#                   'state_name', 'postal_code', 'country_id', 'employee_no', 'job_title', 'start_date',
-#                   'leave_date', 'user_type', 'license_no', 'license_region', 'company_id']
-#         model = User
-#         read_only_fields = ('id',)
-#         write_only_fields = ('password',)
+    class Meta:
+        fields = ['id', 'email', 'last_login', 'first_name', 'last_name', 'username', 'date_of_birth',
+                  'group_id', 'mobile_no', 'address', 'city_name',
+                  'state_name', 'postal_code', 'country_id', 'employee_no', 'job_title', 'start_date',
+                  'leave_date', 'user_type', 'license_no', 'license_region', 'company_id']
+        model = User
+        read_only_fields = ('id',)
+        write_only_fields = ('password',)
 
 
 class UserCreateUpdateSerializer(Serializer):
@@ -231,5 +228,5 @@ class UserCreateUpdateSerializer(Serializer):
             'state_name',
             'postal_code', 'country_id', 'city_name', 'employee_no', 'start_date', 'leave_date', 'user_type',
             'user_type', 'license_no', 'license_region', 'company_id',
-            'job_title', 'website_url', 'contact_person_email', 'contact_person_phone','contact_person',
+            'job_title', 'website_url', 'contact_person_email', 'contact_person_phone', 'contact_person',
         ]
