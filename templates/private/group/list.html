@@ -110,16 +110,18 @@
 
                                 <div class="clearfix"></div>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped" id="example1">
-                                        <thead>
+                                    <table class="table table-bordered table-striped" id="example1" style="display: block;">
+                                        <thead style="display: block;overflow-x: hidden;  ">
                                             <tr>
                                               <th ng-click="checkAll(selectedAllGroup)" class="text-center">
                                                   <input ng-change="allCheckChange(selectedAllGroup)" type="checkbox" ng-model="selectedAllGroup" id="action-toggle"></th>
-                                              <th>Name</th>
+                                              <th width="900" >Name</th>
                                               <th class="table-field-actions">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="display:block;height: 200px;
+                                            overflow-y: auto;
+                                            overflow-x: hidden;">
 
                                             <tr ng-repeat="group in groupData | filter:search as filtered_result" ng-class="(group.new)?'shake':''" >
 
@@ -152,12 +154,16 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
+                                        <th ng-if="!search && groupData && groupData.length==0" colspan="3"><center>No Records Found</center> </th>
+                                            <th ng-if="search && filtered_result.length==0" colspan="7"><center>No Results Found " {{ search }}"</center> </th>
+
                                         </tbody>
 
-                                         <tfoot>
-                                            <th ng-if="!search && groupData && groupData.length==0" colspan="3"><center>No Records Found</center> </th>
-                                            <th ng-if="search && filtered_result.length==0" colspan="7"><center>No Results Found " {{ search }}"</center> </th>
-                                        </tfoot>
+                                         <!--<tfoot style="display: block;overflow-y: hidden;">-->
+                                            <!--<th ng-if="!search && groupData && groupData.length==0" colspan="3"><center>No Records Found</center> </th>-->
+                                            <!--<th ng-if="search && filtered_result.length==0" colspan="7"><center>No Results Found " {{ search }}"</center> </th>-->
+                                        <!--</tfoot>-->
 
                                     </table>
                                 </div>

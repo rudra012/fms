@@ -29,6 +29,7 @@ class GroupAPIView(APIView):
                 }
                 return_arr['Group'].append(array_local)
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
+
         else:
             return_arr = {'code': 200, 'success': 'false', 'message': 'No Group found', 'Group': []}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
@@ -43,17 +44,11 @@ class GroupAPIView(APIView):
             group_instance.i_by = request.user.id
             group_instance.u_by = request.user.id
             group_instance.save()
-
-            return_arr = {}
-            return_arr['code'] = 200
-            return_arr['success'] = 'true'
-            return_arr['message'] = 'valid'
-            return_arr['Group'] = {
-                'id': group_instance.id or "",
-                'group_name': group_instance.group_name or "",
-                'company_id': group_instance.company_id or "",
-            }
-
+            return_arr = {"code": 200, "success": True, "messages": "valid",
+                          "Group": {'id': group_instance.id or "", 'group_name': group_instance.group_name or "",
+                                    'company_id': group_instance.company_id or "",
+                                    }
+                          }
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
         return_arr = {"code": 602, "success": False, "messages": "Error in Posting data"}

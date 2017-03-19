@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 import json
@@ -87,8 +88,17 @@ class UserAPIView(APIView):
                 # else:
                 #     userdata = userdata.filter(user_type='u')
 
-        if userdata:
-            serializer = serializer(userdata, many=True)
+        paginator = Paginator(userdata, 5)
+        page = request.GET.get('page')
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            contacts = paginator.page(1)
+        except EmptyPage:
+            contacts = paginator.page(paginator.num_pages)
+
+        if contacts:
+            serializer = serializer(contacts, many=True)
             return_arr = {'code': 200, 'success': 'true', 'User': serializer.data}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
         else:
