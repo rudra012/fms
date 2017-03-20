@@ -31,11 +31,9 @@
                                 <div class="box-header with-border" style="cursor:pointer" ng-click="addOpen()">
                                     <h3 class="box-title">Add Group <span ng-show="!open" class="fa fa-plus"></span>
                                         <span ng-show="open" class="fa fa-minus"></span></h3>
-
                                 </div>
 
                                 <div class="box-body  animate-show-hide" ng-show="open">
-
                                     <form novalidate name="GroupForm" class="form-inline"
                                           ng-submit="GroupForm.$valid && doAddGroup(group);GroupForm.$setUntouched()">
 
@@ -64,8 +62,6 @@
                                 </div>
 
                             </div>
-
-
 
 
                             <div class="pull-right filter-bottom-margin">
@@ -121,42 +117,45 @@
                                         </thead>
                                         <tbody style="display:block;height: 200px;
                                             overflow-y: auto;
-                                            overflow-x: hidden;">
-
-                                            <tr ng-repeat="group in groupData | filter:search as filtered_result" ng-class="(group.new)?'shake':''" >
-
-                                                <td class="text-center">
-                                                    <input ng-change="subCheck(group.select,group.id)"  ng-model="group.select" type="checkbox">
-                                                </td>
-
-                                                    <td width="900"  ng-dblclick="updateClick(group,$index)" > <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>
-                                                        <div  ng-show="group.edit">
-                                                            <input ng-blur="done(group,$index)" class="form-control" type="text" ng-model="group.group_name" />
-                                                        </div>
-                                                    </td>
-
-                                                <td class="table-field-actions">
-
-                                                    <div class="buttons-set">
-                                                        <button ng-show="!group.edit" ng-click="updateClick(group,$index)"  class="btn btn-default btn-sm btn-icon-only">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </button>
-
-                                                        <button ng-show="group.edit" class="btn btn-default btn-sm btn-icon-only">
-                                                            <i class="fa fa-check"></i>
-                                                        </button>
+                                            overflow-x: hidden;" scroll>
 
 
-                                                        <button href="javascript:void(0);" ng-click="deletGroup(group,$index)" class="btn btn-default btn-sm btn-icon-only">
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
+                                        <tr ng-repeat="group in groupData | filter:search as filtered_result" ng-class="(group.new)?'shake':''" >
 
+                                            <td class="text-center">
+                                                <input ng-change="subCheck(group.select,group.id)"  ng-model="group.select" type="checkbox">
+                                            </td>
+
+                                                <td width="900"  ng-dblclick="updateClick(group,$index)" > <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>
+                                                    <div  ng-show="group.edit">
+                                                        <input ng-blur="done(group,$index)" class="form-control" type="text" ng-model="group.group_name" />
                                                     </div>
                                                 </td>
-                                            </tr>
+
+                                            <td class="table-field-actions">
+
+                                                <div class="buttons-set">
+                                                    <button ng-show="!group.edit" ng-click="updateClick(group,$index)"  class="btn btn-default btn-sm btn-icon-only">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+
+                                                    <button ng-show="group.edit" class="btn btn-default btn-sm btn-icon-only">
+                                                        <i class="fa fa-check"></i>
+                                                    </button>
+
+
+                                                    <button href="javascript:void(0);" ng-click="deletGroup(group,$index)" class="btn btn-default btn-sm btn-icon-only">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr ng-if="loadMoreInitiale" > <th colspan="3" >  <center>Loading...</center>  </th> </tr>
 
                                         <th ng-if="!search && groupData && groupData.length==0" colspan="3"><center>No Records Found</center> </th>
-                                            <th ng-if="search && filtered_result.length==0" colspan="7"><center>No Results Found " {{ search }}"</center> </th>
+                                        <th ng-if="search && filtered_result.length==0" colspan="3"><center>No Results Found " {{ search }}"</center> </th>
 
                                         </tbody>
 
@@ -167,6 +166,10 @@
 
                                     </table>
                                 </div>
+
+                                showing {{ groupData.length }} of {{ total }}
+
+
                                 <!--<div class="box-footer pagination-table">-->
                                     <!--&lt;!&ndash;7 {{ List }}&ndash;&gt;-->
                                     <!--<ul class="pagination pagination-sm no-margin pull-right">-->

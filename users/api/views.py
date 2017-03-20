@@ -1,17 +1,16 @@
+import json
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponse
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
-import json
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from rest_framework.views import APIView
 
 from serializers import UserLoginSerializer, UserCreateSerializer
 from users.api import serializers
 from users.models import User
-
-from rest_framework.response import Response
-
-from rest_framework.views import APIView
-from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
-from django.http import HttpResponse
 
 
 class UserCreateAPIView(CreateAPIView):

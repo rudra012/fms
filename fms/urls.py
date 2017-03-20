@@ -19,6 +19,7 @@ from django.views.generic import TemplateView
 
 from company.api.views import CompanyAPIView
 from group.api.views import GroupAPIView
+from jobs.api.views import JobAPIView
 from users.api.views import UserLoginAPIView, UserCreateAPIView, UserAPIView
 from users.views import AngularTemplateView
 from vehicle.api.views import VehicleListAPIView, VehicleStatusAPIView
@@ -37,9 +38,7 @@ urlpatterns = [
 
     url(r'^api/v1/vehiclestatus/$', VehicleStatusAPIView.as_view(), name='register'),
 
-
-
-
+    url(r'^api/v1/jobs/$', JobAPIView.as_view(), name='register'),
 
 
 ]

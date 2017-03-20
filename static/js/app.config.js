@@ -23,6 +23,9 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
               templateUrl: 'djangotemplates/layout/left.html',
               controller:'leftController'
 
+            },
+            'footer': {
+              templateUrl: 'djangotemplates/layout/footer.html',
             }
           },
           authenticate:true,
@@ -65,8 +68,10 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           url: '/groups',
           views: {
             'container@': {
-              template: '<group></group>'
+              templateUrl: '/djangotemplates/private/group/list.html',
+                controller:"group",
             }
+
           },
           authenticate:true,
           display:"Groups",
@@ -95,7 +100,16 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Users",
         })
 
-
+        .state('private.hannan', {
+          url: '/list',
+          views: {
+            'container@': {
+              templateUrl: '/djangotemplates/private/hannan/list.html',
+            }
+          },
+          authenticate:true,
+          display:"Vendors",
+        })
 
         .state('private.vendors', {
           url: '/vendors',
@@ -364,7 +378,16 @@ mainApp
                    ],
                    'faClass':'fa fa-user text-orange',
                 },
-
+                {
+                   'name':'hannan',
+                   'display':'A.Hannan',
+                   'url':'list',
+                   'activeWhen':[
+                    'private.hannan',
+                    //'private.vendors-update',
+                   ],
+                   'faClass':'fa fa-user text-orange',
+                },
 
 
 
@@ -376,25 +399,26 @@ mainApp
 
 //mainApp.filter()
 
-mainApp.directive("scroll", function () {
-    return function(scope, element, attrs) {
+//mainApp.directive("scroll", function () {
+//    return function(scope, element, attrs) {
+//
+//        var height=angular.element(element).bind("tbody")[0].offsetHeight;
+//        console.log(height);
+//
+//        angular.element(element).bind("scroll", function() {
+//            if(this.scrollTop >= height + 20 ) {
+//                alert();
+//            } else {
+//                console.log("Less then 50");
+//            }
+//        });
+//
+//
+//
+//
+//    };
+//});
 
-        var height=angular.element(element).bind("tbody")[0].offsetHeight;
-        console.log(height);
-
-        angular.element(element).bind("scroll", function() {
-            if(this.scrollTop >= height + 20 ) {
-                alert();
-            } else {
-                console.log("Less then 50");
-            }
-        });
-
-
-
-
-    };
-});
 
 //mainApp.directive('scroll', function($window) {
 //    return {
@@ -414,3 +438,24 @@ mainApp.directive("scroll", function () {
 //        }
 //    }
 //});
+
+
+mainApp.directive('scroll', function() {
+    return {
+        restrict: 'A',
+        link: function(rootScope, element, attrs, $window, $scope,$rootScope, $document) {
+            var bind = element.bind('tbody');
+            var raw = element[0];
+            angular.element(bind).on("scroll", function() {
+                //console.log('in scroll');
+                //console.log(raw.scrollTop + raw.offsetHeight);
+                //console.log(raw.scrollHeight);
+                if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+
+                    rootScope.loadMoreGroups();
+
+                }
+            });
+        }
+    };
+});
