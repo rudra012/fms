@@ -10,6 +10,8 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           views: {
             'header': {},
             'left':{},
+
+            'footer':{}
           }
         })
         .state('private', {
@@ -22,7 +24,6 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
             'left':{
               templateUrl: 'djangotemplates/layout/left.html',
               controller:'leftController'
-
             },
             'footer': {
               templateUrl: 'djangotemplates/layout/footer.html',
@@ -68,10 +69,9 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           url: '/groups',
           views: {
             'container@': {
-              templateUrl: '/djangotemplates/private/group/list.html',
-                controller:"group",
-            }
+              template: '<group></group>',
 
+            }
           },
           authenticate:true,
           display:"Groups",
@@ -440,22 +440,3 @@ mainApp
 //});
 
 
-mainApp.directive('scroll', function() {
-    return {
-        restrict: 'A',
-        link: function(rootScope, element, attrs, $window, $scope,$rootScope, $document) {
-            var bind = element.bind('tbody');
-            var raw = element[0];
-            angular.element(bind).on("scroll", function() {
-                //console.log('in scroll');
-                //console.log(raw.scrollTop + raw.offsetHeight);
-                //console.log(raw.scrollHeight);
-                if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-
-                    rootScope.loadMoreGroups();
-
-                }
-            });
-        }
-    };
-});
