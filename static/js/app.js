@@ -28,5 +28,7 @@ var mainApp=angular.module("fms", [
     'usersAdd',
     'vendors',
     'vendorAdd',
+    'jobs',
+    'jobAdd',
 
 ]);

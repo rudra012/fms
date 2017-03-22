@@ -1,0 +1,115 @@
+ <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Job
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#/"><i class="fa fa-dashboard"></i>Home</a></li>
+                        <li class="active">Job</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h2 class="box-title">Add Job</h2>
+                        </div>
+                        <!-- /.box-header -->
+
+                        <flash-message></flash-message>
+
+                        <form novalidate role="form" class="form-horizontal" ng-submit="doAddJob(job,JobForm.$valid)"name="JobForm">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <!-- text input -->
+
+                                        <div ng-class="((JobForm.$submitted || JobForm.user_id.$touched ) && (JobForm.user_id.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">User</label>
+                                            <div class="col-sm-8">
+                                                <select ng-model="job.user_id" class="form-control"
+                                                        id="user_id" name="user_id" required aria-required="true">
+                                                    <option value="" selected="selected">--Select User--</option>
+                                                    <option ng-repeat="user in userData" value="{{ user.id }}">{{ user.first_name }}
+                                                    </option>
+                                                </select>
+                                                <div ng-messages="JobForm.user_id.$error"  style="color:red"  ng-if="JobForm.user_id.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((JobForm.$submitted || JobForm.job_startdate.$touched ) && (JobForm.job_startdate.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">Job Start Date</label>
+                                            <div class="col-sm-8">
+                                              <input datetime-picker  date-format="yyyy-MM-dd" type="text" ng-model="job.job_startdate" name="job_startdate" class="form-control" id="job_startdate" placeholder="Job Startdate" required >
+                                                <div ng-messages="JobForm.job_startdate.$error"  style="color:red"  ng-if="JobForm.job_startdate.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((JobForm.$submitted || JobForm.job_enddate.$touched ) && (JobForm.job_enddate.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">Job End Date</label>
+                                            <div class="col-sm-8">
+                                              <input datetime-picker  date-format="yyyy-MM-dd" type="text" ng-model="job.job_enddate" name="job_enddate" class="form-control" id="job_enddate" placeholder="Job Enddate" required >
+                                                <div ng-messages="JobForm.job_enddate.$error"  style="color:red"  ng-if="JobForm.job_enddate.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((JobForm.$submitted || JobForm.job_source.$touched ) && (JobForm.job_source.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">Job Source</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="job.job_source" name="job_source" class="form-control" id="job_source" placeholder="Job Source" required >
+                                                <div ng-messages="JobForm.job_source.$error"  style="color:red"  ng-if="JobForm.job_source.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((JobForm.$submitted || JobForm.job_destination.$touched ) && (JobForm.job_destination.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">Job Destination</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-model="job.job_destination" name="job_destination" class="form-control" id="job_destination" placeholder="Job Destination" required >
+                                                <div ng-messages="JobForm.job_destination.$error"  style="color:red"  ng-if="JobForm.job_destination.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-4">
+                                                <button  type="submit" class="btn btn-primary load-button">Submit</button>
+                                                <a href="#/jobs" class="btn btn-default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                        <!-- /form -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->

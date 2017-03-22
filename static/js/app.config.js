@@ -53,6 +53,7 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           authenticate:true,
           display:"Home2",
         })
+
         .state('private.vehicles', {
           url: '/vehicles',
           views: {
@@ -63,7 +64,6 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           authenticate:true,
           display:"Vehicles",
         })
-
 
         .state('private.group', {
           url: '/groups',
@@ -77,6 +77,43 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Groups",
         })
 
+        .state('private.jobs', {
+          url: '/jobs',
+          views: {
+            'container@': {
+              template: '<jobs></jobs>',
+
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
+        .state('private.job-add', {
+          url: '/job-add',
+          views: {
+            'container@': {
+                template: '<job-add></job-add>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
+
+        .state('private.job-update', {
+          url: '/job-update~index~:id',
+          views: {
+            'container@': {
+                template: '<job-add></job-add>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
+
+
         .state('private.users', {
           url: '/users',
           views: {
@@ -88,8 +125,7 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Users",
         })
 
-
-         .state('private.users-update', {
+        .state('private.users-update', {
           url: '/user-update~index~:id',
           views: {
             'container@': {
@@ -157,8 +193,6 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Vehicle",
         })
 
-
-
         .state('private.users-add', {
           url: '/user-add',
           views: {
@@ -191,6 +225,7 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           },
           authenticate:false,
           display:"Login",
+
         })
 
         .state('public.signup', {
@@ -214,7 +249,6 @@ mainApp.run(['$state', '$rootScope','$location','Auth','$http','$cookies', funct
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
             $rootScope.currentState=toState;
-
             $http.defaults.headers.common['Authorization'] ="";
             Auth.init();
             stateType=toState.name.split('.');
@@ -223,7 +257,7 @@ mainApp.run(['$state', '$rootScope','$location','Auth','$http','$cookies', funct
             {
                 $http.defaults.headers.common['Authorization'] ="JWT "+$cookies.get('token');
                 if(!Auth.isLoggedIn() && fromState.name!="")
-                    event.preventDefault();
+                        event.preventDefault();
                 else if(!Auth.isLoggedIn()  && fromState.name == "")
                     $location.path('/login')
                 else
@@ -384,6 +418,17 @@ mainApp
                    'url':'list',
                    'activeWhen':[
                     'private.hannan',
+                    //'private.vendors-update',
+                   ],
+                   'faClass':'fa fa-user text-orange',
+                },
+
+                {
+                   'name':'jobs',
+                   'display':'Jobs',
+                   'url':'jobs',
+                   'activeWhen':[
+                    'private.jobs',
                     //'private.vendors-update',
                    ],
                    'faClass':'fa fa-user text-orange',

@@ -1,6 +1,6 @@
 'use strict';
 
-vendorApp.factory("Vender", ['$http',function($http){
+mainApp.factory("Vender", ['$http',function($http){
     var obj = {};
 
     obj.getVendorList = function(data){
