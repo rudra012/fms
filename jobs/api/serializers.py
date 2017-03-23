@@ -38,3 +38,5 @@ class JobCreateUpdateSerializer(Serializer):
             'id', 'user_id', 'vehicle_id', 'job_startdate', 'job_enddate', 'job_source', 'job_destination',
             'is_deleted'
         ]
+
+
