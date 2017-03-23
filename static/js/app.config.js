@@ -487,3 +487,21 @@ mainApp
 //});
 
 
+
+
+//var  = function($scope) {
+mainApp.controller('TabCtrl', function($scope) {
+        $scope.tabs = [{
+          slug: 'dashboard',
+          title: "Dashboard",
+          content: "Your Dashboard"
+        }, {
+          slug: 'room-1',
+          title: "Room 1",
+          content: "Dynamic content 1"
+        }, {
+          slug: 'room-2',
+          title: "Room 2",
+          content: "Dynamic content 2"
+        }];
+      });

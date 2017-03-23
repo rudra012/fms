@@ -64,7 +64,7 @@ class JobAPIView(APIView):
 
             group_instance.i_by = request.user.id
             group_instance.u_by = request.user.id
-            group_instance.save()
+            print (group_instance.save())
             return_arr = {"code": 200, "success": True, "messages": "valid"}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
@@ -73,7 +73,7 @@ class JobAPIView(APIView):
 
     def put(self, request, *args, **kwargs):
         serializer = serializers.JobCreateUpdateSerializer(data=request.data, context={"request": request})
-        print (serializer.is_valid)
+        print (serializer.is_valid())
         if serializer.is_valid():
             job_model = Job.objects.filter(id=serializer.validated_data.get("id"))  # is_deleted="n", is_active='y'
             if not job_model:

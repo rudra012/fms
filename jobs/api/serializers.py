@@ -25,9 +25,9 @@ class JobReadSerializer(serializers.ModelSerializer):
 
 class JobCreateUpdateSerializer(Serializer):
     id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    is_deleted = serializers.BooleanField(required=False)
-    user_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    vehicle_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    is_deleted = serializers.CharField(required=False)
+    user_id  = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    # vehicle_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_startdate = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_enddate = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_source = serializers.CharField(required=False, allow_blank=True, max_length=100)

@@ -90,7 +90,6 @@ userAdd.component('usersAdd', {
                 User,
                 Group,
                 $tooltip,
-                ngToast,
                 $stateParams
 
             ){

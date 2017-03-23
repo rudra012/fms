@@ -102,7 +102,6 @@ vendorAdd.component('vendorAdd', {
                 Vender,
                 Group,
                 $tooltip,
-                ngToast,
                 $stateParams
 
             ){

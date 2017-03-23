@@ -11,8 +11,9 @@ var mainApp=angular.module("fms", [
     'ngResource',
     'mgcrea.ngStrap',
 
-    'angularjs-datetime-picker',
+    'ui.bootstrap',
 
+    'angularjs-datetime-picker',
 
     //internal Modules
     'left',

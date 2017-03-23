@@ -172,7 +172,6 @@ jobAdd.component('jobAdd', {
                 Job,
                 User,
                 $tooltip,
-                ngToast,
                 $stateParams,
                 Vender,
                 Vehicle
@@ -189,8 +188,6 @@ jobAdd.component('jobAdd', {
 
             Vehicle.getVehicleList().success(function(response){
                 console.log(response);
-//                console.log(response.Vehicle);
-
                 $scope.vehicleData = response.Vehicle;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
@@ -217,11 +214,6 @@ jobAdd.component('jobAdd', {
 
             $scope.doAddJob =function(job,valid){
 
-                console.log(job);
-                console.log(valid);
-
-
-
                 if(valid){
                     if(!job.id){
 
@@ -243,8 +235,6 @@ jobAdd.component('jobAdd', {
 
 
             }
-
-
 
         }
 })

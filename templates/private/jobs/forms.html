@@ -30,12 +30,28 @@
                                             <label class="col-sm-4 control-label">User</label>
                                             <div class="col-sm-8">
                                                 <select ng-model="job.user_id" class="form-control"
-                                                        id="user_id" name="user_id" required aria-required="true">
+                                                        id="user_id" name="user_id" aria-required="true">
                                                     <option value="" selected="selected">--Select User--</option>
                                                     <option ng-repeat="user in userData" value="{{ user.id }}">{{ user.first_name }}
                                                     </option>
                                                 </select>
                                                 <div ng-messages="JobForm.user_id.$error"  style="color:red"  ng-if="JobForm.user_id.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div ng-class="((JobForm.$submitted || JobForm.vehicle_id.$touched ) && (JobForm.vehicle_id.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">Vehicle</label>
+                                            <div class="col-sm-8">
+                                                <select ng-model="job.vehicle_id" class="form-control"
+                                                        id="vehicle_id" name="vehicle_id" aria-required="true">
+                                                    <option value="" selected="selected">--Select Vehicle--</option>
+                                                    <option ng-repeat="vehicle in vehicleData" value="{{ vehicle.id }}">{{ vehicle.vehicle_name }}
+                                                    </option>
+                                                </select>
+                                                <div ng-messages="JobForm.vehicle_id.$error"  style="color:red"  ng-if="JobForm.vehicle_id.$touched || JobForm.$submitted" role="alert">
                                                     <p ng-message="required">This is required.</p>
                                                 </div>
                                             </div>
