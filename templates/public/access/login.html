@@ -13,7 +13,7 @@
 
 
       <div ng-class="((LoginForm.$submitted || LoginForm.username.$touched ) && LoginForm.username.$error.required)?'form-group has-feedback has-error':'form-group has-feedback'">
-        <input id="Lusername" name="username" ng-model="user.username" type="text" ng-class="((LoginForm.$submitted || LoginForm.username.$touched ) && LoginForm.username.$error.required)?'form-control shake':'form-control'" placeholder="Email" required>
+        <input id="username" name="username" ng-model="user.username" type="text" ng-class="((LoginForm.$submitted || LoginForm.username.$touched ) && LoginForm.username.$error.required)?'form-control shake':'form-control'" placeholder="Email" required>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 

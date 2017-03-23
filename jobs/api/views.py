@@ -9,8 +9,6 @@ from jobs.api import serializers
 from jobs.models import Job
 
 
-
-
 class JobAPIView(APIView):
     permission_classes = [AllowAny]
     instance_fields = ['user_id', 'vehicle_id', 'job_startdate', 'job_enddate', 'job_source', 'job_destination',
@@ -19,13 +17,13 @@ class JobAPIView(APIView):
 
     def get(self, request, format=None):
         serializer = serializers.JobReadSerializer
-        # groupdata = Job.objects.filter(is_deleted=False).extra(
-        #     select={
-        #         "company_name": "SELECT company_name from company_company WHERE company_company.id=group_group.company_id LIMIT 1",
-        #     },
-        # ).order_by('-modified')
 
-        jobdata = Job.objects.filter(is_deleted=False).order_by('-modified')
+        jobdata = Job.objects.filter(is_deleted=False).order_by('-modified').extra(
+            select={
+                "user_first_name": "SELECT first_name from users_user WHERE users_user.id=jobs_job.user_id LIMIT 1",
+                "vehicle_name": "SELECT vehicle_name from vehicle_vehicle WHERE vehicle_vehicle.id=jobs_job.vehicle_id LIMIT 1",
+            }
+        );
 
         paginator = Paginator(jobdata, 1)
         page = request.GET.get('page')
@@ -46,12 +44,11 @@ class JobAPIView(APIView):
 
         if contacts:
             serializer = serializer(contacts, many=True)
-            return_arr = {
-                'code': 200, 'has_next': contacts.has_next(), 'has_previous': contacts.has_previous(),
-                'pages': paginator.num_pages, 'next_page_number': next_page_number, 'total': jobdata.count(),
-                'previous_page_number': previous_page_number,
-                'success': 'true', 'Job': serializer.data
-            }
+            return_arr = {'code': 200, 'has_next': contacts.has_next(), 'has_previous': contacts.has_previous(),
+                          'pages': paginator.num_pages, 'next_page_number': next_page_number, 'total': jobdata.count(),
+                          'previous_page_number': previous_page_number,
+                          'success': 'true', 'Job': serializer.data
+                          }
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
         else:
@@ -76,6 +73,7 @@ class JobAPIView(APIView):
 
     def put(self, request, *args, **kwargs):
         serializer = serializers.JobCreateUpdateSerializer(data=request.data, context={"request": request})
+        print (serializer.is_valid)
         if serializer.is_valid():
             job_model = Job.objects.filter(id=serializer.validated_data.get("id"))  # is_deleted="n", is_active='y'
             if not job_model:

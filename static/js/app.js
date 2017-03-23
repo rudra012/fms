@@ -2,7 +2,7 @@ var mainApp=angular.module("fms", [
     // external
     //'ngMaterial',
 
-    'left',
+
     'ngMessages',
     'ui.router',
     'ngAnimate',
@@ -14,10 +14,8 @@ var mainApp=angular.module("fms", [
     'angularjs-datetime-picker',
 
 
-    'ngToast',
-
     //internal Modules
-
+    'left',
     'loginDetail',
     'registerDetail',
     'vehicles',

@@ -82,10 +82,7 @@ angular.module('group', []).
 
             })
 
-            $scope.$on("call_func", function(ev) {
-                alert("new");
-                $rootScope.loadMoreGroups()
-            })
+
 
             $scope.checkCount=0;
             $scope.deletingIds=[];

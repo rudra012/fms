@@ -126,7 +126,8 @@
                                                 <input ng-change="subCheck(group.select,group.id)"  ng-model="group.select" type="checkbox">
                                             </td>
 
-                                                <td width="900"  ng-dblclick="updateClick(group,$index)" > <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>
+                                                <td width="900"  ng-dblclick="updateClick(group,$index)" >
+                                                    <div  ng-show="!group.edit" > {{ (group.group_name)?group.group_name:"-" }} </div>
                                                     <div  ng-show="group.edit">
                                                         <input ng-blur="done(group,$index)" class="form-control" type="text" ng-model="group.group_name" />
                                                     </div>

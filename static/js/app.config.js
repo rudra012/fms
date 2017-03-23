@@ -253,8 +253,8 @@ mainApp.run(['$state', '$rootScope','$location','Auth','$http','$cookies', funct
             Auth.init();
             stateType=toState.name.split('.');
             $rootScope.bodyClass="hold-transition login-page";
-            if(stateType && stateType[0]=='private' && toState.authenticate)
-            {
+            if(stateType && stateType[0]=='private' && toState.authenticate){
+
                 $http.defaults.headers.common['Authorization'] ="JWT "+$cookies.get('token');
                 if(!Auth.isLoggedIn() && fromState.name!="")
                         event.preventDefault();
@@ -299,6 +299,7 @@ mainApp
      *  Saves the current user in the root scope
      *  Call this in the app run() method
      */
+
     auth.init = function(){
         if (auth.isLoggedIn()){
             $rootScope.user = $cookies.get('username');
@@ -348,6 +349,7 @@ mainApp
 
 
     return auth;
+
 });
 
 
