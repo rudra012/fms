@@ -69,10 +69,12 @@
                                         <thead>
                                             <tr>
                                               <th class="text-center"><input ng-change="allCheckChange(selectedAllJob)" type="checkbox" ng-model="selectedAllJob" type="checkbox" id="action-toggle"></th>
+                                                <th>Job Nbr</th>
                                                 <th>User</th>
                                                 <th>Vehicle</th>
                                                   <th>Source</th>
                                                 <th>Destination</th>
+                                                <th>Job Status</th>
                                                 <th class="table-field-actions">Actions</th>
                                             </tr>
                                         </thead>
@@ -83,10 +85,14 @@
                                               <td class="text-center"><input ng-change="subCheck(job.select,job.id)"  ng-model="job.select" type="checkbox"></td>
                                               <!--<td><a href="javascript:;">{{ (user.username)?user.username:"-" }}</a></td>-->
                                               <!--<td><a href="#/job-update~index~{{ job.id }}">{{ (vehicle.vehicle_name)?vehicle.vehicle_name:"-" }}</a></td>-->
+                                              <td>{{ (job.job_nbr)?job.job_nbr:"-" }}</td>
                                               <td>{{ (job.user_first_name)?job.user_first_name:"-" }}</td>
                                               <td>{{ (job.vehicle_name)?job.vehicle_name:"-" }}</td>
                                               <td>{{ (job.job_source)?job.job_source:"-" }}</td>
                                               <td>{{ (job.job_destination)?job.job_destination:"-" }}</td>
+
+                                              <td> <span ng-class="(job.job_status=='p')?'label label-warning':'label label-success'"> {{ (job.job_status_dispaly)?job.job_status_dispaly:"-" }}</span></td>
+
 
 
                                                 <td class="table-field-actions">

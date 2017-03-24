@@ -26,6 +26,17 @@
                                     <div class="col-md-8 col-lg-6">
                                         <!-- text input -->
 
+                                        <div ng-class="((JobForm.$submitted || JobForm.job_nbr.$touched ) && (JobForm.job_nbr.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
+                                            <label class="col-sm-4 control-label">Job Number</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" ng-pattern="/^[a-zA-Z0-9]*$/" ng-model="job.job_nbr" name="job_nbr" class="form-control" id="job_nbr" placeholder="Job Startdate" required>
+                                                <div ng-messages="JobForm.job_nbr.$error"  style="color:red"  ng-if="JobForm.job_nbr.$touched || JobForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         <div ng-class="((JobForm.$submitted || JobForm.user_id.$touched ) && (JobForm.user_id.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
                                             <label class="col-sm-4 control-label">User</label>
                                             <div class="col-sm-8">
@@ -83,7 +94,7 @@
                                         <div ng-class="((JobForm.$submitted || JobForm.job_source.$touched ) && (JobForm.job_source.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
                                             <label class="col-sm-4 control-label">Job Source</label>
                                             <div class="col-sm-8">
-                                              <input type="text" ng-model="job.job_source" name="job_source" class="form-control" id="job_source" placeholder="Job Source" required >
+                                              <input places-auto-complete type="text" ng-model="job.job_source" name="job_source" class="form-control" id="job_source" placeholder="Job Source" required >
                                                 <div ng-messages="JobForm.job_source.$error"  style="color:red"  ng-if="JobForm.job_source.$touched || JobForm.$submitted" role="alert">
                                                     <p ng-message="required">This is required.</p>
                                                 </div>
@@ -94,7 +105,7 @@
                                         <div ng-class="((JobForm.$submitted || JobForm.job_destination.$touched ) && (JobForm.job_destination.$error.required ))?'form-group has-feedback has-error':'form-group has-feedback'">
                                             <label class="col-sm-4 control-label">Job Destination</label>
                                             <div class="col-sm-8">
-                                              <input type="text" ng-model="job.job_destination" name="job_destination" class="form-control" id="job_destination" placeholder="Job Destination" required >
+                                              <input places-auto-complete type="text" ng-model="job.job_destination" name="job_destination" class="form-control" id="job_destination" placeholder="Job Destination" required >
                                                 <div ng-messages="JobForm.job_destination.$error"  style="color:red"  ng-if="JobForm.job_destination.$touched || JobForm.$submitted" role="alert">
                                                     <p ng-message="required">This is required.</p>
                                                 </div>

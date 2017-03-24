@@ -271,18 +271,11 @@ mainApp.run(['$state', '$rootScope','$location','Auth','$http','$cookies', funct
 
         $rootScope.currentState=toState;
 
-        console.log($rootScope.currentState.display);
-
-
         if(stateType && stateType[0]=='private')
             $rootScope.bodyClass="hold-transition skin-blue sidebar-mini";
 
 
-
-
     });
-
-
 
 }]);
 
@@ -437,56 +430,10 @@ mainApp
                 },
 
 
-
-
             ];
 
 
 });
-
-//mainApp.filter()
-
-//mainApp.directive("scroll", function () {
-//    return function(scope, element, attrs) {
-//
-//        var height=angular.element(element).bind("tbody")[0].offsetHeight;
-//        console.log(height);
-//
-//        angular.element(element).bind("scroll", function() {
-//            if(this.scrollTop >= height + 20 ) {
-//                alert();
-//            } else {
-//                console.log("Less then 50");
-//            }
-//        });
-//
-//
-//
-//
-//    };
-//});
-
-
-//mainApp.directive('scroll', function($window) {
-//    return {
-//        scope: {
-//          offset: "@offset",
-//          scrollClass: '='
-//        },
-//        link: function (scope, element, attr) {
-//            angular.element($window).bind("scroll", function(event) {
-//                if (element.pageYOffset >= scope.offset) {
-//                    //this will change the parent scope variable value to true
-//                  //  scope.scrollClass = true;
-//                    alert();
-//                }
-//                //scope.$apply(); //need full to run digest cycle
-//            });
-//        }
-//    }
-//});
-
-
 
 
 //var  = function($scope) {

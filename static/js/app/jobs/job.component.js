@@ -217,11 +217,14 @@ jobAdd.component('jobAdd', {
                 if(valid){
                     if(!job.id){
 
-                        Job.addJob(job).success(function(response){
-                            $location.path("/jobs")
-                        }).error(function(e_data, e_status, e_headers, e_config){
-                           Flash.create("error",e_data.message,0);
-                        });
+                    console.log(job.job_source.getPlace().geometry.location);
+                    console.log(job.job_destination.getPlace().geometry.location);
+
+//                        Job.addJob(job).success(function(response){
+//                            $location.path("/jobs")
+//                        }).error(function(e_data, e_status, e_headers, e_config){
+//                           Flash.create("error",e_data.message,0);
+//                        });
 
                     }else{
 

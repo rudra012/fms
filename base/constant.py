@@ -9,3 +9,8 @@ vehicle_status = [
         'id': '2', 'title': "Available"
     },
 ]
+
+job_status = {
+    'p': "pending",
+    'a': "Assigned",
+}

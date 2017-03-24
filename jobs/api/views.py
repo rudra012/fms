@@ -12,20 +12,28 @@ from jobs.models import Job
 class JobAPIView(APIView):
     permission_classes = [AllowAny]
     instance_fields = ['user_id', 'vehicle_id', 'job_startdate', 'job_enddate', 'job_source', 'job_destination',
-                       # 'job_status'
+                       'job_nbr',  # 'job_status'
                        ]
 
     def get(self, request, format=None):
         serializer = serializers.JobReadSerializer
 
-        jobdata = Job.objects.filter(is_deleted=False).order_by('-modified').extra(
-            select={
-                "user_first_name": "SELECT first_name from users_user WHERE users_user.id=jobs_job.user_id LIMIT 1",
-                "vehicle_name": "SELECT vehicle_name from vehicle_vehicle WHERE vehicle_vehicle.id=jobs_job.vehicle_id LIMIT 1",
-            }
-        );
+        if (request.GET.get('id')):
+            jobdata = Job.objects.filter(is_deleted=False, id=request.GET.get('id')).order_by('-modified').extra(
+                select={
+                    "user_first_name": "SELECT first_name from users_user WHERE users_user.id=jobs_job.user_id LIMIT 1",
+                    "vehicle_name": "SELECT vehicle_name from vehicle_vehicle WHERE vehicle_vehicle.id=jobs_job.vehicle_id LIMIT 1",
+                }
+            );
+        else:
+            jobdata = Job.objects.filter(is_deleted=False).order_by('-modified').extra(
+                select={
+                    "user_first_name": "SELECT first_name from users_user WHERE users_user.id=jobs_job.user_id LIMIT 1",
+                    "vehicle_name": "SELECT vehicle_name from vehicle_vehicle WHERE vehicle_vehicle.id=jobs_job.vehicle_id LIMIT 1",
+                }
+            );
 
-        paginator = Paginator(jobdata, 1)
+        paginator = Paginator(jobdata, 5)
         page = request.GET.get('page')
 
         try:
@@ -58,13 +66,19 @@ class JobAPIView(APIView):
     def post(self, request, format=None):
         serializer = serializers.JobCreateUpdateSerializer(data=request.data)
         if serializer.is_valid():
-            group_instance = Job()
+            job_instance = Job()
             for instance_field in self.instance_fields:
-                group_instance.__setattr__(instance_field, serializer.data.get(instance_field))
+                job_instance.__setattr__(instance_field, serializer.data.get(instance_field))
 
-            group_instance.i_by = request.user.id
-            group_instance.u_by = request.user.id
-            print (group_instance.save())
+            if (job_instance.user_id):
+                job_instance.job_status = 'a'
+            else:
+                job_instance.job_status = 'p'
+
+            job_instance.i_by = request.user.id
+            job_instance.u_by = request.user.id
+            job_instance.save()
+
             return_arr = {"code": 200, "success": True, "messages": "valid"}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
@@ -85,9 +99,15 @@ class JobAPIView(APIView):
                 if (serializer.data.get(instance_field)):
                     job_model.__setattr__(instance_field, serializer.data.get(instance_field))
 
+            if (job_model.user_id):
+                job_model.job_status = 'a'
+            else:
+                job_model.job_status = 'p'
+
             if serializer.validated_data.get("is_deleted"):
                 job_model.is_deleted = True
-                job_model.u_by = request.user.id
+
+            job_model.u_by = request.user.id
             save_object = job_model.save()
 
             if save_object is None:

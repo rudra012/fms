@@ -10,6 +10,7 @@ var mainApp=angular.module("fms", [
     'ngFlash',
     'ngResource',
     'mgcrea.ngStrap',
+    'ngMap',
 
     'ui.bootstrap',
 

@@ -8,10 +8,11 @@ from base.models import BaseModel
 
 class Job(TimeStampedModel, BaseModel):
     id = models.AutoField(primary_key=True, db_index=True)
+    job_nbr = models.CharField(max_length=255, blank=True, null=True)
     user_id = models.CharField(max_length=255, blank=True, null=True)
     vehicle_id = models.CharField(max_length=255, blank=True, null=True)
     job_startdate = models.CharField(max_length=255, blank=True, null=True)
     job_enddate = models.CharField(max_length=255, blank=True, null=True)
     job_source = models.CharField(max_length=255, blank=True, null=True)
     job_destination = models.CharField(max_length=255, blank=True, null=True)
-    job_status = models.CharField(max_length=255, blank=True, null=True)
+    job_status = models.CharField(max_length=255, blank=True, null=True, default='p')
