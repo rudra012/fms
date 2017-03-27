@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from company.api.views import CompanyAPIView
+from fuel.api.views import FuleAPIView
 from group.api.views import GroupAPIView
 from jobs.api.views import JobAPIView
 from users.api.views import UserLoginAPIView, UserCreateAPIView, UserAPIView
@@ -30,16 +31,16 @@ urlpatterns = [
 
     url(r'^api/v1/login/$', UserLoginAPIView.as_view(), name='login'),
     url(r'^api/v1/register/$', UserCreateAPIView.as_view(), name='register'),
-    url(r'^api/v1/company/$', CompanyAPIView.as_view(), name='register'),
-    url(r'^api/v1/vehicle/$', VehicleListAPIView.as_view(), name='register'),
-    url(r'^api/v1/group/$', GroupAPIView.as_view(), name='register'),
+    url(r'^api/v1/company/$', CompanyAPIView.as_view(), name='company'),
+    url(r'^api/v1/vehicle/$', VehicleListAPIView.as_view(), name='vehicle'),
+    url(r'^api/v1/group/$', GroupAPIView.as_view(), name='group'),
 
-    url(r'^api/v1/user/$', UserAPIView.as_view(), name='register'),
+    url(r'^api/v1/user/$', UserAPIView.as_view(), name='user'),
 
-    url(r'^api/v1/vehiclestatus/$', VehicleStatusAPIView.as_view(), name='register'),
+    url(r'^api/v1/vehiclestatus/$', VehicleStatusAPIView.as_view(), name='vehiclestatus'),
 
-    url(r'^api/v1/jobs/$', JobAPIView.as_view(), name='register'),
-
+    url(r'^api/v1/jobs/$', JobAPIView.as_view(), name='jobs'),
+    url(r'^api/v1/fuel/$', FuleAPIView.as_view(), name='fuel'),
 
 ]
 urlpatterns += [
