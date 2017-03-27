@@ -21,20 +21,13 @@ User = get_user_model()
 class UserCreateSerializer(ModelSerializer):
     token = CharField(allow_blank=True, read_only=True)
     email = EmailField(label='Email Address', write_only=True)
-    email2 = EmailField(label='Confirm Email', write_only=True)
 
     class Meta:
         model = User
         fields = [
-            'username',
-            'token',
-            'email',
-            'email2',
-            'password',
+            'username', 'token', 'email', 'password',
         ]
-        extra_kwargs = {"password":
-                            {"write_only": True}
-                        }
+        extra_kwargs = {"password": {"write_only": True}}
 
     def validate(self, data):
         return data

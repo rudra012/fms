@@ -375,7 +375,7 @@ mainApp
                    'activeWhen':[
                     'private.home',
                    ],
-                   'faClass':'fa fa-desktop text-yellow',
+                   'faClass':'fa fa-desktop',
 
                 },
                 {
@@ -386,7 +386,7 @@ mainApp
                     'private.vehicles',
                     'private.vehicles-add',
                    ],
-                   'faClass':'fa fa-car text-red',
+                   'faClass':'fa fa-car',
                 },
                 {
                    'name':'group',
@@ -395,7 +395,7 @@ mainApp
                    'activeWhen':[
                     'private.group',
                    ],
-                   'faClass':'fa fa-group text-aqua',
+                   'faClass':'fa fa-group',
                 },
                 {
                    'name':'users',
@@ -405,7 +405,7 @@ mainApp
                     'private.users',
                     'private.users-update',
                    ],
-                   'faClass':'fa fa-user text-green',
+                   'faClass':'fa fa-user',
                 },
 
                  {
@@ -416,7 +416,7 @@ mainApp
                     'private.vendors',
                     //'private.vendors-update',
                    ],
-                   'faClass':'fa fa-user text-orange',
+                   'faClass':'fa fa-user',
                 },
                 {
                    'name':'jobs',
@@ -426,7 +426,7 @@ mainApp
                     'private.jobs',
                     //'private.vendors-update',
                    ],
-                   'faClass':'fa fa-user text-orange',
+                   'faClass':'fa fa-suitcase',
                 },
 
 

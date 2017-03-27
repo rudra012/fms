@@ -25,50 +25,23 @@
                         <div class="box-body">
                             <div class="pull-right filter-bottom-margin">
                                 <form id="changelist-search">
-                                    <div class="input-group" style="width: 250px;">
+                                    <div class="has-feedback" style="width: 250px;">
                                         <input type="text" ng-model="search" class="form-control pull-right" placeholder="Search" autofocus />
-
-                                        <!--<div class="input-group-btn">-->
-                                            <!--<button class="btn btn-default" type="submit" value="Search"><i class="fa fa-search"></i></button>-->
-                                        <!--</div>-->
-
+                                        <span class="form-control-feedback fa fa-search"></span>
                                     </div>
                                 </form>
                             </div>
                             <form>
-                                <!--<div id="changelist-filter" class="pull-right margin-r-10 dropdown filter-bottom-margin">-->
-                                    <!--<button id="changelist-filter-dd" class="btn btn-default" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
-                                        <!--Filters <b class="caret margin-l-5"></b>-->
-                                    <!--</button>-->
-                                    <!--<ul class="dropdown-menu" aria-labelledby="changelist-filter-dd">-->
-                                        <!--<li class="dropdown-header"> staff status </li>-->
-                                        <!--<li class="active" ><a href="javascript:;">All</a></option></li>-->
-                                        <!--<li><a href="javascript:;">Yes</a></option></li>-->
-                                        <!--<li><a href="javascript:;">No</a></option>-->
-                                        <!--<li class="dropdown-header"> superuser status </li>-->
-                                        <!--<li class="active" ><a href="javascript:;">All</a></option></li>-->
-                                        <!--<li><a href="javascript:;">Yes</a></option></li>-->
-                                        <!--<li><a href="javascript:;">No</a></option></li>-->
-                                        <!--<li class="dropdown-header"> active </li>-->
-                                        <!--<li class="active" ><a href="javascript:;">All</a></option></li>-->
-                                        <!--<li><a href="javascript:;">Yes</a></option></li>-->
-                                        <!--<li><a href="javascript:;">No</a></option></li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-
-
                                 <div class="actions pull-left filter-bottom-margin">
                                     <a href="javascript:;" class="addlink btn btn-default margin-r-5"><i class="btn-icon fa fa-trash-o"></i> Deleat All</a>
                                     <span class="action-counter" data-actions-icnt="1">{{ checkCount }} of {{ vehicleData.length }}</span>
                                 </div>
-
-
                                 <div class="clearfix"></div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                              <th class="text-center"><input ng-change="allCheckChange(selectedAllVehicle)" type="checkbox" ng-model="selectedAllVehicle" type="checkbox" id="action-toggle"></th>
+                                              <th class="text-center table-field-input"><input ng-change="allCheckChange(selectedAllVehicle)" type="checkbox" ng-model="selectedAllVehicle" type="checkbox" id="action-toggle"></th>
                                               <th>Name</th>
                                               <th>Vin No</th>
                                               <th>Vehicle Model</th>
@@ -83,7 +56,7 @@
                                         <tbody>
 
                                             <tr ng-repeat="vehicle in vehicleData | filter:search as filtered_result">
-                                                <td class="text-center"><input ng-change="subCheck(job.select,job.id)"  ng-model="vehicle.select" type="checkbox"></td>
+                                                <td class="text-center table-field-input"><input ng-change="subCheck(job.select,job.id)"  ng-model="vehicle.select" type="checkbox"></td>
 
                                                 <!--<td><a href="javascript:;">{{ (user.username)?user.username:"-" }}</a></td>-->
 
@@ -122,7 +95,9 @@
 
                                     </table>
                                 </div>
-                                showing {{ vehicleData.length }} of {{ total }}
+                                <div class="box-footer pagination-table">
+                                    showing {{ vehicleData.length }} of {{ total }}
+                                </div>
                                 <!--<div class="box-footer pagination-table">-->
                                     <!--&lt;!&ndash;7 {{ List }}&ndash;&gt;-->
                                     <!--<ul class="pagination pagination-sm no-margin pull-right">-->

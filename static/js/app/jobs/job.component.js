@@ -344,7 +344,7 @@ jobAdd.component('jobAdd', {
 
 
             $scope.doAddJob =function(job,valid){
-
+                Flash.clear();
                 if(valid){
                     if(!job.id){
 
