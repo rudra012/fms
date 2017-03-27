@@ -5,7 +5,7 @@ from rest_framework.serializers import (
 from vehicle.models import Vehicle
 
 
-class VehiclCreateUpdateSerializer():
+class VehiclCreateUpdateSerializer(Serializer):
     id = serializers.CharField(required=False, allow_blank=True, max_length=100)
     vehicle_name = serializers.CharField(required=True, allow_blank=True, max_length=100)
     vin_no = serializers.CharField(required=False)

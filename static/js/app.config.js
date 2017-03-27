@@ -89,6 +89,28 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Jobs",
         })
 
+        .state('private.assigned-jobs', {
+          url: '/assigned-jobs',
+          views: {
+            'container@': {
+                template: '<assigned-jobs></assigned-jobs>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
+        .state('private.pending-jobs', {
+          url: '/pending-jobs',
+          views: {
+            'container@': {
+                template: '<pending-jobs></pending-jobs>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
         .state('private.job-add', {
           url: '/job-add',
           views: {
@@ -134,17 +156,6 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           },
           authenticate:true,
           display:"Users",
-        })
-
-        .state('private.hannan', {
-          url: '/list',
-          views: {
-            'container@': {
-              templateUrl: '/djangotemplates/private/hannan/list.html',
-            }
-          },
-          authenticate:true,
-          display:"Vendors",
         })
 
         .state('private.vendors', {
@@ -407,17 +418,6 @@ mainApp
                    ],
                    'faClass':'fa fa-user text-orange',
                 },
-                {
-                   'name':'hannan',
-                   'display':'A.Hannan',
-                   'url':'list',
-                   'activeWhen':[
-                    'private.hannan',
-                    //'private.vendors-update',
-                   ],
-                   'faClass':'fa fa-user text-orange',
-                },
-
                 {
                    'name':'jobs',
                    'display':'Jobs',

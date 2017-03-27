@@ -4,8 +4,17 @@ mainApp.factory("Job", ['$http',function($http){
 
     var obj = {};
 
-    obj.getJobList = function(){
-        return $http.get('/api/v1/jobs/');
+    obj.getJobList = function(type){
+
+         var req = {
+             method: 'GET',
+             url: '/api/v1/jobs/',
+             params: {
+                type: type,
+             }
+         }
+        return $http(req);
+
     }
 
     obj.addJob = function(data){
@@ -14,7 +23,6 @@ mainApp.factory("Job", ['$http',function($http){
              url: '/api/v1/jobs/',
              data: data
         }
-
         return $http(req);
     }
 
@@ -36,12 +44,10 @@ mainApp.factory("Job", ['$http',function($http){
               }
         }
         return $http(req);
-
     }
 
+    return obj;
 
-
- return obj;
 }]);
 
 
@@ -60,11 +66,11 @@ angular.module('jobs', []).
                 $rootScope
             ){
 
+            $scope.currentState=$rootScope.currentState;
 
 
             $scope.checkCount=0;
             $scope.deletingIds=[];
-
             $scope.subCheck=function(select,id)
             {
                 if(select){
@@ -78,10 +84,7 @@ angular.module('jobs', []).
                     $scope.selectedAllJob=true
                 else
                     $scope.selectedAllJob=false
-
-
             }
-
             $scope.allCheckChange=function(select)
             {
                  $scope.deletingIds=[];
@@ -98,31 +101,8 @@ angular.module('jobs', []).
             }
 
 
-//            $scope.$on("loadMoreGroups", function(ev) {
-//
-//            if($scope.has_next && !$scope.loadMoreInitiale){
-//                    $scope.loadMoreInitiale=true;
-//                    Group.loadMoreGroup($scope.next_page_number).success(function(response){
-//                        $timeout(function(){
-//                            $scope.total=response.total;
-//                            $scope.has_next=response.has_next;
-//                            $scope.has_previous=response.has_previous;
-//                            $scope.previous_page_number=response.previous_page_number;
-//                            $scope.pages=response.pages;
-//                            $scope.next_page_number=response.next_page_number;
-//                            $scope.groupData = $scope.groupData.concat(response.Group);
-//                            $scope.loadMoreInitiale=false;
-//
-//                        } ,1500)
-//                    }).error(function(e_data, e_status, e_headers, e_config){
-//                    });
-//                }
-//
-//
-//            })
 
-
-            Job.getJobList().success(function(response){
+            Job.getJobList(null).success(function(response){
                 $scope.total=response.total;
                 $scope.has_next=response.has_next;
                 $scope.has_previous=response.has_previous;
@@ -136,7 +116,85 @@ angular.module('jobs', []).
             }).error(function(e_data, e_status, e_headers, e_config){
             });
 
+            $scope.deletJob=function(job,index){
 
+                var delGroup=angular.copy(job);
+                delGroup.is_deleted="Y";
+                Job.updateJob(delGroup).success(function(response){
+                    if(response.code==200)
+                        $scope.JobData.splice(index, 1);
+                }).error(function(e_data, e_status, e_headers, e_config){
+                });
+            }
+        }
+})
+
+
+
+angular.module('assignedJobs', []).
+    component('assignedJobs', {
+        templateUrl: '/djangotemplates/private/jobs/list.html',
+        controller: function(
+                $cookies,
+                $http,
+                $location,
+                $scope,
+                Flash,
+                $animate,
+                Job,
+                $timeout,
+                $rootScope
+            ){
+
+
+            $scope.currentState=$rootScope.currentState;
+
+            $scope.checkCount=0;
+            $scope.deletingIds=[];
+            $scope.subCheck=function(select,id)
+            {
+                if(select){
+                    $scope.deletingIds.push(id);
+                    $scope.checkCount += 1
+                }else{
+                    $scope.deletingIds.pop(id);
+                    $scope.checkCount -=1
+                }
+                if($scope.checkCount==$scope.JobData.length)
+                    $scope.selectedAllJob=true
+                else
+                    $scope.selectedAllJob=false
+            }
+            $scope.allCheckChange=function(select)
+            {
+                 $scope.deletingIds=[];
+                 angular.forEach($scope.JobData, function (item) {
+                     item.select = select;
+                     if(select)
+                     {
+                        $scope.deletingIds.push(item.id)
+                        $scope.checkCount=$scope.JobData.length;
+                     }
+                     else
+                        $scope.checkCount=0;
+                });
+            }
+
+
+
+            Job.getJobList('a').success(function(response){
+                $scope.total=response.total;
+                $scope.has_next=response.has_next;
+                $scope.has_previous=response.has_previous;
+                $scope.previous_page_number=response.previous_page_number;
+                $scope.pages=response.pages;
+                $scope.next_page_number=response.next_page_number;
+
+                $scope.JobData = response.Job;
+
+
+            }).error(function(e_data, e_status, e_headers, e_config){
+            });
 
             $scope.deletJob=function(job,index){
 
@@ -148,12 +206,85 @@ angular.module('jobs', []).
                 }).error(function(e_data, e_status, e_headers, e_config){
                 });
             }
+        }
+})
+
+
+angular.module('pendingJobs', []).
+    component('pendingJobs', {
+        templateUrl: '/djangotemplates/private/jobs/list.html',
+        controller: function(
+                $cookies,
+                $http,
+                $location,
+                $scope,
+                Flash,
+                $animate,
+                Job,
+                $timeout,
+                $rootScope
+            ){
+
+            $scope.currentState=$rootScope.currentState;
+
+
+            $scope.checkCount=0;
+            $scope.deletingIds=[];
+            $scope.subCheck=function(select,id)
+            {
+                if(select){
+                    $scope.deletingIds.push(id);
+                    $scope.checkCount += 1
+                }else{
+                    $scope.deletingIds.pop(id);
+                    $scope.checkCount -=1
+                }
+                if($scope.checkCount==$scope.JobData.length)
+                    $scope.selectedAllJob=true
+                else
+                    $scope.selectedAllJob=false
+            }
+            $scope.allCheckChange=function(select)
+            {
+                 $scope.deletingIds=[];
+                 angular.forEach($scope.JobData, function (item) {
+                     item.select = select;
+                     if(select)
+                     {
+                        $scope.deletingIds.push(item.id)
+                        $scope.checkCount=$scope.JobData.length;
+                     }
+                     else
+                        $scope.checkCount=0;
+                });
+            }
 
 
 
+            Job.getJobList('p').success(function(response){
+                $scope.total=response.total;
+                $scope.has_next=response.has_next;
+                $scope.has_previous=response.has_previous;
+                $scope.previous_page_number=response.previous_page_number;
+                $scope.pages=response.pages;
+                $scope.next_page_number=response.next_page_number;
+
+                $scope.JobData = response.Job;
 
 
+            }).error(function(e_data, e_status, e_headers, e_config){
+            });
 
+            $scope.deletJob=function(job,index){
+
+                var delGroup=angular.copy(job);
+                delGroup.is_deleted="Y";
+                Job.updateJob(delGroup).success(function(response){
+                    if(response.code==200)
+                        $scope.JobData.splice(index, 1);
+                }).error(function(e_data, e_status, e_headers, e_config){
+                });
+            }
         }
 })
 
@@ -217,15 +348,11 @@ jobAdd.component('jobAdd', {
                 if(valid){
                     if(!job.id){
 
-                    console.log(job.job_source.getPlace().geometry.location);
-                    console.log(job.job_destination.getPlace().geometry.location);
-
-//                        Job.addJob(job).success(function(response){
-//                            $location.path("/jobs")
-//                        }).error(function(e_data, e_status, e_headers, e_config){
-//                           Flash.create("error",e_data.message,0);
-//                        });
-
+                        Job.addJob(job).success(function(response){
+                            $location.path("/jobs")
+                        }).error(function(e_data, e_status, e_headers, e_config){
+                           Flash.create("error",e_data.message,0);
+                        });
                     }else{
 
                         Job.updateJob(job).success(function(response){

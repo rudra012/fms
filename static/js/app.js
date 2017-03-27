@@ -31,4 +31,8 @@ var mainApp=angular.module("fms", [
     'jobs',
     'jobAdd',
 
+    'assignedJobs',
+    'pendingJobs',
+
+
 ]);

@@ -33,6 +33,11 @@ class JobAPIView(APIView):
                 }
             );
 
+        if(request.GET.get('type')):
+            jobdata=jobdata.filter(job_status=request.GET.get('type'))
+
+
+
         paginator = Paginator(jobdata, 5)
         page = request.GET.get('page')
 
@@ -60,7 +65,7 @@ class JobAPIView(APIView):
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
         else:
-            return_arr = {'code': 200, 'success': 'false', 'message': 'No Group found', 'Job': []}
+            return_arr = {'code': 200, 'success': 'false', 'message': 'No Group found', 'Job': [],'total':0}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
     def post(self, request, format=None):

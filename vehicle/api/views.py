@@ -1,4 +1,7 @@
 import json
+
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger, Paginator
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from django.http import HttpResponse
@@ -30,9 +33,31 @@ class VehicleListAPIView(APIView):
         else:
             vehicledata = Vehicle.objects.filter(is_deleted=False, i_by=request.user.id).order_by('-modified')
 
+        paginator = Paginator(vehicledata, 5)
+        page = request.GET.get('page')
+
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            contacts = paginator.page(1)
+        except EmptyPage:
+            contacts = paginator.page(paginator.num_pages)
+
+        previous_page_number = 1
+        if contacts.has_previous():
+            previous_page_number = contacts.previous_page_number()
+        next_page_number = 1
+        if (contacts.has_next()):
+            next_page_number = contacts.next_page_number()
+
         if vehicledata:
-            serializer = serializer(vehicledata, many=True)
-            return_arr = {'code': 200, 'success': 'true', 'Vehicle': serializer.data}
+            serializer = serializer(contacts, many=True)
+            return_arr = {
+                'code': 200, 'has_next': contacts.has_next(), 'has_previous': contacts.has_previous(),
+                'pages': paginator.num_pages, 'next_page_number': next_page_number, 'total': vehicledata.count(),
+                'previous_page_number': previous_page_number,
+                'success': 'true', 'Vehicle': serializer.data
+            }
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
         else:
@@ -41,7 +66,6 @@ class VehicleListAPIView(APIView):
 
     def post(self, request, format=None):
         serializer = serializers.VehiclCreateUpdateSerializer(data=request.data)
-
         if serializer.is_valid():
             vehicle_instance = Vehicle()
             for instance_field in self.instance_fields:

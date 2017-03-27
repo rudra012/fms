@@ -21,8 +21,6 @@ class JobReadSerializer(serializers.ModelSerializer):
         print (job.job_status)
         return job_status.get(job.job_status)
 
-
-
     class Meta:
         fields = ['id', 'user_id', 'vehicle_id', 'job_startdate', 'job_enddate', 'job_source', 'job_destination',
                   'job_status', 'user_first_name', 'vehicle_name', 'job_nbr', 'job_status_dispaly'
@@ -36,7 +34,7 @@ class JobCreateUpdateSerializer(Serializer):
     is_deleted = serializers.CharField(required=False)
     user_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_nbr = serializers.CharField(required=False, allow_blank=True, max_length=100)
-    # vehicle_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    vehicle_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_startdate = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_enddate = serializers.CharField(required=False, allow_blank=True, max_length=100)
     job_source = serializers.CharField(required=False, allow_blank=True, max_length=100)

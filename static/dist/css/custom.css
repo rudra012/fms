@@ -1,5 +1,27 @@
 
 /* ================================================================
+    Fonts
+=================================================================== */
+
+@import "../fonts/Avenir/themefonts.css";
+
+body,
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+}
+
+body,
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+label{
+    font-weight: normal;
+}
+
+a,
+.user-panel>.info>p{
+    font-weight: 500;
+}
+
+/* ================================================================
     Reset
 =================================================================== */
 
@@ -9,11 +31,18 @@
     padding: 15px;
 }
 .box-header>.box-tools{
-    top: 10px;
+    top: 9px;
     right: 15px;
 }
 .box-header>.fa, .box-header>.glyphicon, .box-header>.ion, .box-header .box-title{
-    font-size: 22px;
+    font-weight: normal;
+}
+.box > .page-header{
+    margin: 16px 0 10px 0;
+    font-size: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 16px;
 }
 .margin-l-5{
     margin-left: 5px;
@@ -41,10 +70,10 @@
 .btn-icon-only{
     width: 25px;
     height: 25px;
-    line-height: 23px;
+    line-height: 25px;
     text-align: center;
     padding: 0px;
-    font-size: 12px;    
+    font-size: 12px;
 }
 .btn-social>:first-child{
     font-size: 1em;
@@ -64,21 +93,27 @@
 .input-group.bootstrap-timepicker .dropdown-menu + .form-control,
 .input-group.bootstrap-timepicker .dropdown-menu + .input-group-addon{
     border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;    
+    border-bottom-left-radius: 4px;
 }
 .input-group-addon:last-child{
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0    
+    border-bottom-left-radius: 0
 }
 .input-group-addon:first-child{
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0    
+    border-bottom-right-radius: 0
 }
 .input-group.bootstrap-timepicker .dropdown-menu + .input-group-addon{
     border-right: 0;
 }
+.form-control.datepicker{
+    padding: 6px 12px;
+}
 
 /* Checkbox / Radio */
+.icheckbox_minimal-blue, .iradio_minimal-blue{
+    vertical-align: -4px;
+}
 .icheckbox label,
 .iradio label{
     padding-left: 0px;
@@ -126,7 +161,7 @@
 #changelist-filter .dropdown-menu>.active>a:focus,
 #changelist-filter .dropdown-menu>.active>a:hover{
     color: #333;
-    background-color: #f4f4f4;    
+    background-color: #f4f4f4;
 }
 
 /* ================================================================
@@ -139,7 +174,22 @@
 }
 .table-field-status{
     width: 120px;
-    text-align: center;    
+    text-align: center;
+}
+.table-field-input{
+    width: 60px;
+    text-align: center;
+}
+.table-field-image{
+    float: left;
+}
+.table-field-image-content{
+    padding-left: 60px;
+}
+.table-field-image-content .heading{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-size: 16px;
 }
 .label-block{
     font-size: 14px;
@@ -148,4 +198,24 @@
     padding: .428em .6em .429em;
     max-width: 90px;
     margin: 0 auto;
+}
+
+/* ================================================================
+    Tabs
+=================================================================== */
+
+.nav-tabs-custom{
+    position: relative;
+}
+.nav-tabs-custom>.box-tools{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+.nav-tabs-custom>.nav>li>a{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.nav-tabs-custom>.tab-content{
+    padding: 15px;
 }

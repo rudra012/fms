@@ -67,12 +67,51 @@ vehicleApp.
             ){
 
 
+
+            $scope.checkCount=0;
+            $scope.deletingIds=[];
+            $scope.subCheck=function(select,id){
+
+                if(select){
+                    $scope.deletingIds.push(id);
+                    $scope.checkCount += 1
+                }else{
+                    $scope.deletingIds.pop(id);
+                    $scope.checkCount -=1
+                }
+                if($scope.checkCount==$scope.vehicleData.length)
+                    $scope.selectedAllVehicle=true
+                else
+                    $scope.selectedAllVehicle=false
+
+            }
+            $scope.allCheckChange=function(select){
+                 $scope.deletingIds=[];
+                 angular.forEach($scope.vehicleData, function (item) {
+                     item.select = select;
+                     if(select)
+                     {
+                        $scope.deletingIds.push(item.id)
+                        $scope.checkCount=$scope.vehicleData.length;
+                     }
+                     else
+                        $scope.checkCount=0;
+                });
+            }
+
+
             Vehicle.getVehicleStatusList().success(function(response){
                 $scope.vehicleStatusData = response.vehicle_status;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
 
             Vehicle.getVehicleList().success(function(response){
+                $scope.total=response.total;
+                $scope.has_next=response.has_next;
+                $scope.has_previous=response.has_previous;
+                $scope.previous_page_number=response.previous_page_number;
+                $scope.pages=response.pages;
+                $scope.next_page_number=response.next_page_number;
                 $scope.vehicleData = response.Vehicle;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
