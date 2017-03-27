@@ -33,6 +33,8 @@ var mainApp=angular.module("fms", [
 
     'assignedJobs',
     'pendingJobs',
+    'fuel',
+    'fuelAdd',
 
 
 ]);

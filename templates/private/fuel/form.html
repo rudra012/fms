@@ -1,0 +1,193 @@
+<!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Fuel Entries</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="list.html"><i class="fa fa-flask"></i> Fuel Entries</a></li>
+                        <li class="active">New Fuel Entry</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <form role="form" class="form-horizontal">
+                        <div class="box box-primary">
+                            <h2 class="page-header">Fuel Entry Details</h2>
+                            <!-- /.page-header -->
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Vehicle</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control select2" data-placeholder="Select a Vehicle" style="width: 100%;">
+                                                  <option></option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Date</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group date">
+                                                    <input type="text" class="form-control datepicker" placeholder="DD/MM/YYYY">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Odometer</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <small class="help-block">Reading at time of fuel-up</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Gallons (US)</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <small class="help-block">(e.g. 16.796)</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Price/Gallon</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <small class="help-block">Optional (e.g. 3.989)</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Fuel Type/Grade</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control select2" data-placeholder="Select a Type" style="width: 100%;">
+                                                  <option></option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+
+                            <h2 class="page-header">Additional Details</h2>
+                            <!-- /.page-header -->
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Vendor Name</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control select2" data-placeholder="Select a Vendor" style="width: 100%;">
+                                                  <option></option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                  <option>Black Jet Car</option>
+                                                </select>
+                                                <small class="help-block">Select an existing vendor or enter the name of a new one</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Reference</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <small class="help-block">Optional (e.g. invoice number, transaction ID, etc.)</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+
+                            <h2 class="page-header">Document</h2>
+                            <!-- /.page-header -->
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-4">Upload</label>
+                                            <div class="col-sm-8">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <div class="input-group input-large">
+                                                        <div class="form-control" data-trigger="fileinput">
+                                                            <i class="fa fa-file"></i>&nbsp;
+                                                            <span class="fileinput-filename"> </span>
+                                                        </div>
+                                                        <span class="input-group-btn">
+                                                            <a href="javascript:;" class="btn btn-default fileinput-exists" data-dismiss="fileinput"><i class="btn-icon fa fa-times"></i>Remove</a>
+                                                            <div class="btn btn-success btn-file">
+                                                                <span class="fileinput-new"><i class="btn-icon fa fa-paperclip"></i>Pick File</span>
+                                                                <span class="fileinput-exists"><i class="btn-icon fa fa-paperclip"></i>Change</span>
+                                                                <input type="file" name="...">
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <small class="help-block">You can upload document later as well</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+
+                            <h2 class="page-header">Comment</h2>
+                            <!-- /.page-header -->
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Comment</label>
+                                            <div class="col-sm-8">
+                                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                                <small class="help-block">Add an optional comment</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <div class="row">
+                                    <div class="col-md-8 col-lg-6">
+                                        <div class="row">
+                                            <div class="col-sm-8 col-sm-offset-4">
+                                                <button  type="submit" class="btn btn-primary load-button">Submit</button>
+                                                <a href="list.html" class="btn btn-default">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-footer -->
+
+                        </div>
+                        <!-- /.box -->
+                    </form>
+                        <!-- /form -->
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->

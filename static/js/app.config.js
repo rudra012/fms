@@ -89,6 +89,29 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Jobs",
         })
 
+        .state('private.fuel-type', {
+          url: '/fuel-type',
+          views: {
+            'container@': {
+              template: '<fuel></fuel>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+        .state('private.fuel-add', {
+          url: '/fuel-add',
+          views: {
+            'container@': {
+              template: '<fuel-add></fuel-add>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
+
+
         .state('private.assigned-jobs', {
           url: '/assigned-jobs',
           views: {
@@ -430,8 +453,9 @@ mainApp
                 },
 
 
-            ];
 
+
+            ];
 
 });
 
@@ -451,4 +475,4 @@ mainApp.controller('TabCtrl', function($scope) {
           title: "Room 2",
           content: "Dynamic content 2"
         }];
-      });
+});

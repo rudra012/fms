@@ -1,0 +1,143 @@
+<!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Fuel Entries
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li class="active">Fuel Entries</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="nav-tabs-custom">
+
+                        <div class="box-tools">
+                            <a href="form.html" class="addlink btn btn-primary pull-right">
+                                <i class="btn-icon fa fa-plus"></i> Add Fuel Entries
+                            </a>
+                        </div>
+
+
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab_1" data-toggle="tab">All Vehicles</a></li>
+                            <li><a href="#tab_2" data-toggle="tab">Assigned Vehicles</a></li>
+                            <li><a href="#tab_3" data-toggle="tab">Unassigned Vehicles</a></li>
+                            <li><a href="#tab_4" data-toggle="tab">Watched Vehicles</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_1">
+                                <div class="pull-right filter-bottom-margin">
+                                    <form id="changelist-search">
+                                        <div class="has-feedback" style="width: 250px;">
+                                            <input type="text" ng-model="search" class="form-control pull-right" placeholder="Search" autofocus />
+                                            <span class="form-control-feedback fa fa-search"></span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <form>
+                                    <div class="actions pull-left filter-bottom-margin">
+                                        <a href="javascript:;" class="addlink btn btn-default margin-r-5"><i class="btn-icon fa fa-trash-o"></i> Deleat All</a>
+                                        <span class="action-counter" data-actions-icnt="1">0 of 1 selected</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped" id="example1">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center table-field-input"><input type="checkbox" id="action-toggle"></th>
+                                                    <th>Name</th>
+                                                    <th class="table-field-status">Status</th>
+                                                    <th>Type</th>
+                                                    <th>Group</th>
+                                                    <th>Current Meter</th>
+                                                    <th>Driver/Operator</th>
+                                                    <th class="table-field-actions">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center table-field-input"><input type="checkbox"></td>
+                                                    <td>
+                                                        <div class="table-field-image">
+                                                            <img src="../../dist/img/user8-128x128.jpg" width="50px" height="50px" alt="" />
+                                                        </div>
+                                                        <div class="table-field-image-content">
+                                                            <h4 class="heading"><a href="#/user-update~index~{{ user.id }}"><strong>Black Jet Car</strong></a></h4>
+                                                            <small>
+                                                                <span class="text-muted">2006 Maruti Suzuki</span><br/>
+                                                                <span class="text-muted">VIN/SN:</span> 1954 45889 MS7890<br/>
+                                                                <span class="text-muted">License Plate: GJ 27 8567</span>
+                                                            </small>
+                                                        </div>
+                                                    </td>
+                                                    <td class="table-field-status"><a href="javascript:void(0);" class="label label-success">Active</a></td>
+                                                    <td>Car</td>
+                                                    <td>-</td>
+                                                    <td><strong>4,589 mi</strong><br/><small class="text-muted">Today</small></td>
+                                                    <td>Bhavin Shah</td>
+                                                    <td class="table-field-actions">
+                                                        <div class="buttons-set">
+                                                            <a href="javascript:;" class="btn btn-default btn-sm btn-icon-only">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                            <button type="button" class="btn btn-default btn-sm btn-icon-only">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center table-field-input"><input type="checkbox"></td>
+                                                    <td>
+                                                        <div class="table-field-image">
+                                                            <img src="../../dist/img/user8-128x128.jpg" width="50px" height="50px" alt="" />
+                                                        </div>
+                                                        <div class="table-field-image-content">
+                                                            <h4 class="heading"><a href="#/user-update~index~{{ user.id }}"><strong>Black Jet Car</strong></a></h4>
+                                                            <small>
+                                                                <span class="text-muted">2006 Maruti Suzuki</span><br/>
+                                                                <span class="text-muted">VIN/SN:</span> 1954 45889 MS7890<br/>
+                                                                <span class="text-muted">License Plate: GJ 27 8567</span>
+                                                            </small>
+                                                        </div>
+                                                    </td>
+                                                    <td class="table-field-status"><a href="javascript:void(0);" class="label label-danger">Inactive</a></td>
+                                                    <td>Car</td>
+                                                    <td>-</td>
+                                                    <td><strong>4,589 mi</strong><br/><small class="text-muted">Today</small></td>
+                                                    <td>Bhavin Shah</td>
+                                                    <td class="table-field-actions">
+                                                        <div class="buttons-set">
+                                                            <a href="javascript:;" class="btn btn-default btn-sm btn-icon-only">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+                                                            <button type="button" class="btn btn-default btn-sm btn-icon-only">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="box-footer pagination-table">
+                                        7 {{ List }}
+                                        <ul class="pagination pagination-sm no-margin pull-right">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li class="active"><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->

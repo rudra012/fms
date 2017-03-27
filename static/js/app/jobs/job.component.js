@@ -1,5 +1,4 @@
 'use strict';
-
 mainApp.factory("Job", ['$http',function($http){
 
     var obj = {};
