@@ -1,8 +1,6 @@
 var mainApp=angular.module("fms", [
     // external
     //'ngMaterial',
-
-
     'ngMessages',
     'ui.router',
     'ngAnimate',
@@ -11,9 +9,8 @@ var mainApp=angular.module("fms", [
     'ngResource',
     'mgcrea.ngStrap',
     'ngMap',
-
+    'ngWebSocket',
     'ui.bootstrap',
-
     'angularjs-datetime-picker',
 
     //internal Modules
@@ -35,6 +32,5 @@ var mainApp=angular.module("fms", [
     'pendingJobs',
     'fuel',
     'fuelAdd',
-
 
 ]);

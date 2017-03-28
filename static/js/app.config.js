@@ -99,6 +99,21 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           authenticate:true,
           display:"Jobs",
         })
+        .state('private.chat', {
+          url: '/chat',
+          views: {
+            'container@': {
+              templateUrl: "/static/templates/chatView.html",
+              templateUrl: 'djangotemplates/private/chat/list.html',
+              controller: "ChatCtrl",
+              controllerAs: "ctrl"
+            }
+          },
+          authenticate:true,
+          display:"Chat",
+        })
+
+
         .state('private.fuel-add', {
           url: '/fuel-add',
           views: {
@@ -411,6 +426,7 @@ mainApp
                    ],
                    'faClass':'fa fa-car',
                 },
+
                 {
                    'name':'group',
                    'display':'Group',
@@ -452,27 +468,19 @@ mainApp
                    'faClass':'fa fa-suitcase',
                 },
 
+                {
+                   'name':'fuel-type',
+                   'display':'Fuel Type',
+                   'url':'fuel-type',
+                   'activeWhen':[
+                    'private.fuel-type',
+                    'private.fuel-type-add',
+                   ],
+                   'faClass':'fa fa-user',
+                },
 
 
 
             ];
 
-});
-
-
-//var  = function($scope) {
-mainApp.controller('TabCtrl', function($scope) {
-        $scope.tabs = [{
-          slug: 'dashboard',
-          title: "Dashboard",
-          content: "Your Dashboard"
-        }, {
-          slug: 'room-1',
-          title: "Room 1",
-          content: "Dynamic content 1"
-        }, {
-          slug: 'room-2',
-          title: "Room 2",
-          content: "Dynamic content 2"
-        }];
 });

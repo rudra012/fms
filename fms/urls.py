@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from chat.views import message_handler
 from company.api.views import CompanyAPIView
 from fuel.api.views import FuleAPIView
 from group.api.views import GroupAPIView
@@ -41,6 +42,8 @@ urlpatterns = [
 
     url(r'^api/v1/jobs/$', JobAPIView.as_view(), name='jobs'),
     url(r'^api/v1/fuel/$', FuleAPIView.as_view(), name='fuel'),
+
+    url(r'^message/', message_handler),
 
 ]
 urlpatterns += [
