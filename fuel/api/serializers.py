@@ -14,19 +14,20 @@ class FuelReadSerializer(serializers.ModelSerializer):
 
 
 class FuelCreateUpdateSerializer(Serializer):
-    vehicle_id = serializers.CharField(required=True)
-    fuel_date = serializers.CharField(required=True)
-    odometer_id = serializers.CharField(required=True)
-    fuel_measure = serializers.CharField(required=True)
-    fuel_price = serializers.CharField(required=True)
-    currency = serializers.CharField(required=True)
-    fuel_type = serializers.CharField(required=True)
-    vendor_name = serializers.CharField(required=True)
-    comment = serializers.CharField(required=True)
-    is_deleted = serializers.CharField(required=False)
-    id = serializers.CharField(required=False)
+    vehicle_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    fuel_date = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    odometer_id = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    fuel_measure = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    fuel_price = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    currency = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    fuel_type = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    vendor_name = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    comment = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    is_deleted = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    id = serializers.CharField(required=False, allow_blank=True, max_length=100)
 
     class Meta:
         fields = [
-            'group_name ',
+            'vehicle_id', 'fuel_date', 'odometer_id', 'fuel_measure', 'fuel_price', 'currency', 'fuel_type',
+            'vendor_name', 'comment'
         ]

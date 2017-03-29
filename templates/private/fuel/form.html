@@ -47,7 +47,7 @@
                                         <div ng-class="((FuelForm.$submitted || FuelForm.odometer_id.$touched ) && (FuelForm.odometer_id.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Odometer</label>
                                             <div class="col-sm-8">
-                                                <input ng-model="fuel.odometer_id" name="odometer_id" type="text" class="form-control" placeholder="Enter ...">
+                                                <input ng-model="fuel.odometer_id" name="odometer_id" type="text" class="form-control" placeholder="Enter ..." required>
                                                 <small class="help-block">Reading at time of fuel-up</small>
                                                 <div ng-messages="FuelForm.odometer_id.$error"  style="color:red"  ng-if="FuelForm.odometer_id.$touched || FuelForm.$submitted" role="alert">
                                                     <p ng-message="required">This is required.</p>
@@ -57,7 +57,7 @@
                                         <div ng-class="((FuelForm.$submitted || FuelForm.fuel_measure.$touched ) && (FuelForm.fuel_measure.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Gallons (US)</label>
                                             <div class="col-sm-8">
-                                                <input ng-model="fuel.fuel_measure" name="fuel_measure" type="text" class="form-control" placeholder="Enter ...">
+                                                <input ng-model="fuel.fuel_measure" name="fuel_measure" type="text" class="form-control" placeholder="Enter ..." required>
                                                 <div ng-messages="FuelForm.fuel_measure.$error"  style="color:red"  ng-if="FuelForm.fuel_measure.$touched || FuelForm.$submitted" role="alert">
                                                     <p ng-message="required">This is required.</p>
                                                 </div>
@@ -68,7 +68,7 @@
                                         <div ng-class="((FuelForm.$submitted || FuelForm.fuel_price.$touched ) && (FuelForm.fuel_price.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Price/Gallon</label>
                                             <div class="col-sm-8">
-                                                <input ng-model="fuel.fuel_price" name="fuel_price" type="text" class="form-control" placeholder="Enter ...">
+                                                <input ng-model="fuel.fuel_price" name="fuel_price" type="text" class="form-control" placeholder="Enter ..." required>
                                                 <div ng-messages="FuelForm.fuel_price.$error"  style="color:red"  ng-if="FuelForm.fuel_price.$touched || FuelForm.$submitted" role="alert">
                                                     <p ng-message="required">This is required.</p>
                                                 </div>
@@ -78,7 +78,7 @@
                                         <div ng-class="((FuelForm.$submitted || FuelForm.fuel_type.$touched ) && (FuelForm.fuel_type.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Fuel Type/Grade</label>
                                             <div class="col-sm-8">
-                                                <select ng-model="fuel.fuel_type" name="fuel_type" class="form-control select2" data-placeholder="Select a Type" style="width: 100%;">
+                                                <select ng-model="fuel.fuel_type" name="fuel_type" class="form-control select2" data-placeholder="Select a Type" style="width: 100%;" required>
                                                   <option></option>
                                                   <option>Black Jet Car</option>
                                                 </select>

@@ -53,6 +53,7 @@ mainApp
         collection.length = 0;
     }
   };
+
 })
 
 })();

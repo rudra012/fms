@@ -59,6 +59,7 @@ class FuleAPIView(APIView):
             fuel_instance.i_by = request.user.id
             fuel_instance.u_by = request.user.id
             fuel_instance.save()
+
             return_arr = {"code": 200, "success": True, "messages": "valid"}
             return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 

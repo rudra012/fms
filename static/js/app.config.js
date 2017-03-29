@@ -479,8 +479,6 @@ mainApp
                    'faClass':'fa fa-user',
                 },
 
-
-
             ];
 
 });

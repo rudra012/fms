@@ -140,15 +140,10 @@ angular.module('fuelAdd').component('fuelAdd', {
 
             ){
 
-
-
             Vehicle.getVehicleList().success(function(response){
                 $scope.vehicleData = response.Vehicle;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
-
-
-
 
             if(!$stateParams.id)
                 $scope.job={};
@@ -177,28 +172,31 @@ angular.module('fuelAdd').component('fuelAdd', {
             }
 
 
-//            $scope.doAddJob =function(job,valid){
-//                Flash.clear();
-//                if(valid){
-//                    if(!job.id){
-//
-//                        Job.addJob(job).success(function(response){
-//                            $location.path("/jobs")
-//                        }).error(function(e_data, e_status, e_headers, e_config){
-//                           Flash.create("error",e_data.message,0);
-//                        });
-//                    }else{
-//
+            $scope.doAddFule=function(fuel,valid){
+                Flash.clear();
+
+                if(valid){
+                    if(!fuel.id){
+
+                        Fuel.addFuel(fuel).success(function(response){
+                            $location.path("/fuel-type")
+                        }).error(function(e_data, e_status, e_headers, e_config){
+                           Flash.create("error",e_data.message,0);
+                        });
+
+                    }else{
+
 //                        Job.updateJob(job).success(function(response){
 //                            $location.path("/jobs")
 //                        }).error(function(e_data, e_status, e_headers, e_config){
 //                           Flash.create("error",e_data.message,0);
 //                        });
-//                    }
-//                }
-//
-//
-//            }
+
+                    }
+                }
+
+
+            }
 
 
 

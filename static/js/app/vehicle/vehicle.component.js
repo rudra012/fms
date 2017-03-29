@@ -3,7 +3,7 @@
 //var vehicleApp=angular.module('vehicles');
 
 
-vehicleApp.factory("Vehicle", ['$http',function($http){
+mainApp.factory("Vehicle", ['$http',function($http){
     var obj = {};
 
     obj.getVehicleList = function(){
