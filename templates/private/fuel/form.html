@@ -4,75 +4,82 @@
                 <section class="content-header">
                     <h1>Fuel Entries</h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="list.html"><i class="fa fa-flask"></i> Fuel Entries</a></li>
+                        <li><a href="#/home"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="#/fuel-type"><i class="fa fa-flask"></i> Fuel Entries</a></li>
                         <li class="active">New Fuel Entry</li>
                     </ol>
                 </section>
                 <!-- Main content -->
                 <section class="content">
-                    <form role="form" class="form-horizontal">
+                    <form novalidate role="form" class="form-horizontal" ng-submit="doAddFule(fuel,FuelForm.$valid)" name="FuelForm">
                         <div class="box box-primary">
                             <h2 class="page-header">Fuel Entry Details</h2>
-                            <!-- /.page-header -->
 
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-md-8 col-lg-6">
-                                        <div class="form-group">
+                                        <div ng-class="((FuelForm.$submitted || FuelForm.vehicle_id.$touched ) && (FuelForm.vehicle_id.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Vehicle</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control select2" data-placeholder="Select a Vehicle" style="width: 100%;">
-                                                  <option></option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
+                                                <select ng-model="fuel.vehicle_id" name="vehicle_id" class="form-control select2" data-placeholder="Select a Vehicle" style="width: 100%;" required>
+                                                  <option value="" >-Select Vehicle-</option>
+                                                  <option ng-repeat="vehicle in vehicleData" value="{{ vehicle.id }} ">{{ vehicle.vehicle_name }}</option>
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Date</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group date">
-                                                    <input type="text" class="form-control datepicker" placeholder="DD/MM/YYYY">
-                                                    <div class="input-group-addon">
-                                                        <i class="fa fa-calendar"></i>
-                                                    </div>
+                                                <div ng-messages="FuelForm.vehicle_id.$error"  style="color:red"  ng-if="FuelForm.vehicle_id.$touched || FuelForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div ng-class="((FuelForm.$submitted || FuelForm.fuel_date.$touched ) && (FuelForm.fuel_date.$error.required ))?'form-group has-error':'form-group'">
+                                            <label class="col-sm-4 control-label">Date</label>
+                                            <div class="col-sm-8">
+                                                <div class="input-group date">
+                                                    <input ng-model="fuel.fuel_date" name="fuel_date" type="text" class="form-control datepicker" placeholder="DD/MM/YYYY" required>
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <div ng-messages="FuelForm.fuel_date.$error"  style="color:red"  ng-if="FuelForm.fuel_date.$touched || FuelForm.$submitted" role="alert">
+                                                        <p ng-message="required">This is required.</p>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div ng-class="((FuelForm.$submitted || FuelForm.odometer_id.$touched ) && (FuelForm.odometer_id.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Odometer</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <input ng-model="fuel.odometer_id" name="odometer_id" type="text" class="form-control" placeholder="Enter ...">
                                                 <small class="help-block">Reading at time of fuel-up</small>
+                                                <div ng-messages="FuelForm.odometer_id.$error"  style="color:red"  ng-if="FuelForm.odometer_id.$touched || FuelForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div ng-class="((FuelForm.$submitted || FuelForm.fuel_measure.$touched ) && (FuelForm.fuel_measure.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Gallons (US)</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <input ng-model="fuel.fuel_measure" name="fuel_measure" type="text" class="form-control" placeholder="Enter ...">
+                                                <div ng-messages="FuelForm.fuel_measure.$error"  style="color:red"  ng-if="FuelForm.fuel_measure.$touched || FuelForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
                                                 <small class="help-block">(e.g. 16.796)</small>
+
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div ng-class="((FuelForm.$submitted || FuelForm.fuel_price.$touched ) && (FuelForm.fuel_price.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Price/Gallon</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="Enter ...">
+                                                <input ng-model="fuel.fuel_price" name="fuel_price" type="text" class="form-control" placeholder="Enter ...">
+                                                <div ng-messages="FuelForm.fuel_price.$error"  style="color:red"  ng-if="FuelForm.fuel_price.$touched || FuelForm.$submitted" role="alert">
+                                                    <p ng-message="required">This is required.</p>
+                                                </div>
                                                 <small class="help-block">Optional (e.g. 3.989)</small>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div ng-class="((FuelForm.$submitted || FuelForm.fuel_type.$touched ) && (FuelForm.fuel_type.$error.required ))?'form-group has-error':'form-group'">
                                             <label class="col-sm-4 control-label">Fuel Type/Grade</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control select2" data-placeholder="Select a Type" style="width: 100%;">
+                                                <select ng-model="fuel.fuel_type" name="fuel_type" class="form-control select2" data-placeholder="Select a Type" style="width: 100%;">
                                                   <option></option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
                                                   <option>Black Jet Car</option>
                                                 </select>
                                             </div>
@@ -92,12 +99,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">Vendor Name</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control select2" data-placeholder="Select a Vendor" style="width: 100%;">
+                                                <select ng-model="fuel.vendor_name" class="form-control select2" data-placeholder="Select a Vendor" style="width: 100%;">
                                                   <option></option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
-                                                  <option>Black Jet Car</option>
                                                   <option>Black Jet Car</option>
                                                 </select>
                                                 <small class="help-block">Select an existing vendor or enter the name of a new one</small>
@@ -159,7 +162,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">Comment</label>
                                             <div class="col-sm-8">
-                                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                                <textarea ng-model="fuel.comment" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                                 <small class="help-block">Add an optional comment</small>
                                             </div>
                                         </div>
@@ -175,7 +178,7 @@
                                         <div class="row">
                                             <div class="col-sm-8 col-sm-offset-4">
                                                 <button  type="submit" class="btn btn-primary load-button">Submit</button>
-                                                <a href="list.html" class="btn btn-default">Cancel</a>
+                                                <a href="#/fuel-type" class="btn btn-default">Cancel</a>
                                             </div>
                                         </div>
                                     </div>

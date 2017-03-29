@@ -21,13 +21,11 @@ var mainApp=angular.module("fms", [
     'vehicleAdd',
     'group',
     'users',
-
     'usersAdd',
     'vendors',
     'vendorAdd',
     'jobs',
     'jobAdd',
-
     'assignedJobs',
     'pendingJobs',
     'fuel',

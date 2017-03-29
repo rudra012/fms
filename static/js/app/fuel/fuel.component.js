@@ -4,15 +4,29 @@ mainApp.factory("Fuel", ['$http',function($http){
     var obj = {};
 
     obj.getFuelList = function(){
-
          var req = {
              method: 'GET',
              url: '/api/v1/fuel/',
          }
         return $http(req);
-
     }
 
+    obj.addFuel = function(data){
+         var req = {
+             method: 'POST',
+             url: '/api/v1/fuel/',
+             data: data
+        }
+        return $http(req);
+    }
+    obj.updateFuel = function(data){
+         var req = {
+             method: 'PUT',
+             url: '/api/v1/fuel/',
+             data: data
+        }
+        return $http(req);
+    }
 
     return obj;
 
@@ -77,7 +91,6 @@ angular.module('fuel', []).
                 $scope.previous_page_number=response.previous_page_number;
                 $scope.pages=response.pages;
                 $scope.next_page_number=response.next_page_number;
-
                 $scope.fuelData = response.Fuel;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
@@ -122,10 +135,17 @@ angular.module('fuelAdd').component('fuelAdd', {
                 $animate,
                 $tooltip,
                 $stateParams,
-                Fuel
+                Fuel,
+                Vehicle
 
             ){
 
+
+
+            Vehicle.getVehicleList().success(function(response){
+                $scope.vehicleData = response.Vehicle;
+            }).error(function(e_data, e_status, e_headers, e_config){
+            });
 
 
 
@@ -145,6 +165,14 @@ angular.module('fuelAdd').component('fuelAdd', {
                    Flash.create("error",e_data.message,0);
                 });
 
+
+            }
+
+
+            $scope.doAddFule=function(fuel,valid){
+
+                if(valid)
+                    console.log(fuel);
 
             }
 
@@ -171,6 +199,8 @@ angular.module('fuelAdd').component('fuelAdd', {
 //
 //
 //            }
+
+
 
         }
 })
