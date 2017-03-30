@@ -16,7 +16,11 @@ class FuleAPIView(APIView):
 
     def get(self, request, format=None):
         serializer = serializers.FuelReadSerializer
-        fuledata = Fuel.objects.filter(is_deleted=False).order_by('-modified')
+        fuledata = Fuel.objects.filter(is_deleted=False).order_by('-modified').extra(
+            select={
+                "vehicle_name": "SELECT vehicle_name from vehicle_vehicle WHERE vehicle_vehicle.id=fuel_fuel.vehicle_id LIMIT 1",
+            }
+        );
 
         paginator = Paginator(fuledata, 5)
         page = request.GET.get('page')

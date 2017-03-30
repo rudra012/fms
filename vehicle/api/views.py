@@ -5,16 +5,17 @@ from django.core.paginator import PageNotAnInteger, Paginator
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
 from django.http import HttpResponse
-from base.constant import vehicle_status
+from base.constant import vehicle_status, fuel_type
 from vehicle.api import serializers
 from vehicle.models import Vehicle
 
 
-class VehicleStatusAPIView(APIView):
+class ConstantsAPIView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, format=None):
-        return_arr = {'code': 200, 'success': 'true', 'message': 'vehicle_status', 'vehicle_status': vehicle_status}
+        return_arr = {'code': 200, 'success': 'true', 'message': 'finds', 'vehicle_status': vehicle_status,
+                      'fuel_type': fuel_type}
         return HttpResponse(json.dumps(return_arr), status=return_arr['code'])
 
 

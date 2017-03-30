@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
@@ -27,6 +27,8 @@
                             <li><a href="#tab_3" data-toggle="tab">Unassigned Vehicles</a></li>
                             <li><a href="#tab_4" data-toggle="tab">Watched Vehicles</a></li>
                         </ul>
+
+
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
                                 <div class="pull-right filter-bottom-margin">
@@ -40,44 +42,48 @@
                                 <form>
                                     <div class="actions pull-left filter-bottom-margin">
                                         <a href="javascript:;" class="addlink btn btn-default margin-r-5"><i class="btn-icon fa fa-trash-o"></i> Deleat All</a>
-                                        <span class="action-counter" data-actions-icnt="1">0 of 1 selected</span>
+                                        <span class="action-counter" data-actions-icnt="1">{{ checkCount }} of {{ fuelData.length }}</span>
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped" id="example1">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center table-field-input"><input type="checkbox" id="action-toggle"></th>
-                                                    <th>Name</th>
-                                                    <th class="table-field-status">Status</th>
-                                                    <th>Type</th>
-                                                    <th>Group</th>
-                                                    <th>Current Meter</th>
-                                                    <th>Driver/Operator</th>
+                                                    <th class="text-center table-field-input"><input  ng-change="allCheckChange(selectedAllFuel)" ng-model="selectedAllFuel" type="checkbox" id="action-toggle"></th>
+                                                    <th>Vehicle Name</th>
+                                                    <!--<th class="table-field-status">Status</th>-->
+                                                    <th>Fuel Date</th>
+                                                    <th>Fuel Measure</th>
+                                                    <th>Fuel Price</th>
+
+
                                                     <th class="table-field-actions">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="fuel in fuelData">
-                                                    <td class="text-center table-field-input"><input type="checkbox"></td>
+                                                    <td class="text-center table-field-input"><input ng-change="subCheck(fuel.select,fuel.id)" ng-model="fuel.select" type="checkbox"></td>
                                                     <td>
-                                                        <div class="table-field-image">
-                                                            <img src="http://192.168.1.100/apps/admin_themes/AdminLTE-2.3.11/dist/img/user8-128x128.jpg" width="50px" height="50px" alt="" />
-                                                        </div>
+                                                        <!--<div class="table-field-image">-->
+                                                            <!--<img src="http://192.168.1.100/apps/admin_themes/AdminLTE-2.3.11/dist/img/user8-128x128.jpg" width="50px" height="50px" alt="" />-->
+                                                        <!--</div>-->
+
                                                         <div class="table-field-image-content">
-                                                            <h4 class="heading"><a href="#/user-update~index~{{ user.id }}"><strong>Black Jet Car</strong></a></h4>
-                                                            <small>
-                                                                <span class="text-muted">2006 Maruti Suzuki</span><br/>
-                                                                <span class="text-muted">VIN/SN:</span> 1954 45889 MS7890<br/>
-                                                                <span class="text-muted">License Plate: GJ 27 8567</span>
-                                                            </small>
+                                                            <h4 class="heading"><a href=""><strong>{{ fuel.vehicle_name }} </strong></a></h4>
+
+                                                            <!--<small>-->
+                                                                <!--<span class="text-muted">2006 Maruti Suzuki</span><br/>-->
+                                                                <!--<span class="text-muted">VIN/SN:</span> 1954 45889 MS7890<br/>-->
+                                                                <!--<span class="text-muted">License Plate: GJ 27 8567</span>-->
+                                                            <!--</small>-->
+
                                                         </div>
                                                     </td>
-                                                    <td class="table-field-status"><a href="javascript:void(0);" class="label label-success">Active</a></td>
-                                                    <td>Car</td>
-                                                    <td>-</td>
-                                                    <td><strong>4,589 mi</strong><br/><small class="text-muted">Today</small></td>
-                                                    <td>Bhavin Shah</td>
+                                                    <!--<td class="table-field-status"><a href="javascript:void(0);" class="label label-success">Active</a></td>-->
+                                                    <td>{{ fuel.fuel_date }}</td>
+                                                    <td>{{ fuel.fuel_measure }}</td>
+                                                    <!--<td><strong>4,589 mi</strong><br/><small class="text-muted">Today</small></td>-->
+                                                    <td>{{ fuel.fuel_price }}</td>
                                                     <td class="table-field-actions">
                                                         <div class="buttons-set">
                                                             <a href="javascript:;" class="btn btn-default btn-sm btn-icon-only">
@@ -126,14 +132,16 @@
                                         </table>
                                     </div>
                                     <div class="box-footer pagination-table">
-                                        7 {{ List }}
-                                        <ul class="pagination pagination-sm no-margin pull-right">
-                                            <li><a href="#">&laquo;</a></li>
-                                            <li><a href="#">1</a></li>
-                                            <li class="active"><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">&raquo;</a></li>
-                                        </ul>
+                                        showing {{ fuelData.length }} of {{ total }}
+
+                                        <!--<ul class="pagination pagination-sm no-margin pull-right">-->
+                                            <!--<li><a href="#">&laquo;</a></li>-->
+                                            <!--<li><a href="#">1</a></li>-->
+                                            <!--<li class="active"><a href="#">2</a></li>-->
+                                            <!--<li><a href="#">3</a></li>-->
+                                            <!--<li><a href="#">&raquo;</a></li>-->
+                                        <!--</ul>-->
+
                                     </div>
                                 </form>
                             </div>
@@ -142,4 +150,4 @@
                 </section>
                 <!-- /.content -->
             </div>
-            <!-- /.content-wrapper -->
+    <!-- /.content-wrapper -->

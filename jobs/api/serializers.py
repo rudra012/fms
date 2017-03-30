@@ -17,6 +17,7 @@ class JobReadSerializer(serializers.ModelSerializer):
     def is_vehicle_name(self, job):
         return job.vehicle_name
 
+
     def is_job_status_dispaly(self, job):
         print (job.job_status)
         return job_status.get(job.job_status)

@@ -24,7 +24,7 @@ from group.api.views import GroupAPIView
 from jobs.api.views import JobAPIView
 from users.api.views import UserLoginAPIView, UserCreateAPIView, UserAPIView
 from users.views import AngularTemplateView
-from vehicle.api.views import VehicleListAPIView, VehicleStatusAPIView
+from vehicle.api.views import VehicleListAPIView, ConstantsAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -38,7 +38,7 @@ urlpatterns = [
 
     url(r'^api/v1/user/$', UserAPIView.as_view(), name='user'),
 
-    url(r'^api/v1/vehiclestatus/$', VehicleStatusAPIView.as_view(), name='vehiclestatus'),
+    url(r'^api/v1/getconstants/$', ConstantsAPIView.as_view(), name='vehiclestatus'),
 
     url(r'^api/v1/jobs/$', JobAPIView.as_view(), name='jobs'),
     url(r'^api/v1/fuel/$', FuleAPIView.as_view(), name='fuel'),

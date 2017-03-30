@@ -6,9 +6,14 @@ from rest_framework.serializers import (
 
 
 class FuelReadSerializer(serializers.ModelSerializer):
+    vehicle_name = serializers.SerializerMethodField('is_vehicle_name')
+
+    def is_vehicle_name(self, fuel):
+        return fuel.vehicle_name
+
     class Meta:
         fields = ['vehicle_id', 'fuel_date', 'odometer_id', 'fuel_measure', 'fuel_price', 'currency', 'fuel_type',
-                  'vendor_name', 'comment']
+                  'vendor_name', 'comment', 'vehicle_name']
         model = Fuel
         read_only_fields = ('vehicle_id',)
 

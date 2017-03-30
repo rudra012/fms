@@ -10,8 +10,8 @@ mainApp.factory("Vehicle", ['$http',function($http){
         return $http.get('/api/v1/vehicle/');
     }
 
-    obj.getVehicleStatusList = function(){
-        return $http.get('/api/v1/vehiclestatus/');
+    obj.getConstantsList = function(){
+        return $http.get('/api/v1/getconstants/');
     }
 
     obj.addVehicle = function(data){
@@ -100,7 +100,7 @@ vehicleApp.
             }
 
 
-            Vehicle.getVehicleStatusList().success(function(response){
+            Vehicle.getConstantsList().success(function(response){
                 $scope.vehicleStatusData = response.vehicle_status;
             }).error(function(e_data, e_status, e_headers, e_config){
             });
@@ -139,7 +139,7 @@ vehicleAdd.component('vehicleAdd', {
             ){
 
 
-            Vehicle.getVehicleStatusList().success(function(response){
+            Vehicle.getConstantsList().success(function(response){
                 $scope.vehicleStatusData = response.vehicle_status;
             }).error(function(e_data, e_status, e_headers, e_config){
             });

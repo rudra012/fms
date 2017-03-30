@@ -49,38 +49,38 @@ angular.module('fuel', []).
 
 
 
-//            $scope.checkCount=0;
-//            $scope.deletingIds=[];
-//
-//            $scope.subCheck=function(select,id)
-//            {
-//
-//                if(select){
-//                    $scope.deletingIds.push(id);
-//                    $scope.checkCount += 1
-//                }else{
-//                    $scope.deletingIds.pop(id);
-//                    $scope.checkCount -=1
-//                }
-//                if($scope.checkCount==$scope.groupData.length)
-//                    $scope.selectedAllGroup=true
-//                else
-//                    $scope.selectedAllGroup=false
-//            }
-//            $scope.allCheckChange=function(select)
-//            {
-//                 $scope.deletingIds=[];
-//                 angular.forEach($scope.groupData, function (item) {
-//                     item.select = select;
-//                     if(select)
-//                     {
-//                        $scope.deletingIds.push(item.id)
-//                        $scope.checkCount=$scope.groupData.length;
-//                     }
-//                     else
-//                        $scope.checkCount=0;
-//                });
-//            }
+            $scope.checkCount=0;
+            $scope.deletingIds=[];
+
+            $scope.subCheck=function(select,id){
+
+                if(select){
+                    $scope.deletingIds.push(id);
+                    $scope.checkCount += 1
+                }else{
+                    $scope.deletingIds.pop(id);
+                    $scope.checkCount -=1
+                }
+                if($scope.checkCount==$scope.fuelData.length)
+                    $scope.selectedAllFuel=true
+                else
+                    $scope.selectedAllFuel=false
+            }
+
+            $scope.allCheckChange=function(select){
+                 $scope.deletingIds=[];
+                 angular.forEach($scope.fuelData, function (item) {
+                     item.select = select;
+                     if(select)
+                     {
+                        $scope.deletingIds.push(item.id)
+                        $scope.checkCount=$scope.fuelData.length;
+                     }
+                     else
+                        $scope.checkCount=0;
+                });
+            }
+
 
 
             Fuel.getFuelList().success(function(response){
@@ -139,6 +139,14 @@ angular.module('fuelAdd').component('fuelAdd', {
                 Vehicle
 
             ){
+
+
+            Vehicle.getConstantsList().success(function(response){
+
+                console.log(response);
+
+            }).error(function(e_data, e_status, e_headers, e_config){
+            });
 
             Vehicle.getVehicleList().success(function(response){
                 $scope.vehicleData = response.Vehicle;
