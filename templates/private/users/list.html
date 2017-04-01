@@ -6,7 +6,7 @@
                         Users
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#/"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="home"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Users</li>
                     </ol>
                 </section>
@@ -16,7 +16,7 @@
                         <div class="box-header with-border">
                             <h2 class="box-title">List</h2>
                             <div class="box-tools">
-                                <a  href="#/user-add" class="addlink btn btn-primary pull-right margin-r-5">
+                                <a  href="user-add" class="addlink btn btn-primary pull-right margin-r-5">
                                     <i class="btn-icon fa fa-plus"></i> Add New
                                 </a>
                             </div>
@@ -78,7 +78,7 @@
 
                                             <tr ng-repeat="user in userData | filter:search as filtered_result">
                                                 <td class="text-center table-field-input"><input type="checkbox"></td>
-                                                <td><a href="#/user-update~index~{{ user.id }}">{{ (user.username)?user.username:"-" }}</a></td>
+                                                <td><a href="user-update~index~{{ user.id }}">{{ (user.username)?user.username:"-" }}</a></td>
 
                                                 <td>{{ (user.email)?user.email:"-" }}</td>
                                                 <td>{{ (user.first_name)?user.first_name:"-" }}</td>
@@ -88,7 +88,7 @@
 
                                                 <td class="table-field-actions">
                                                     <div class="buttons-set">
-                                                        <a href="#/user-update~index~{{ user.id }}" class="btn btn-default btn-sm btn-icon-only">
+                                                        <a href="user-update~index~{{ user.id }}" class="btn btn-default btn-sm btn-icon-only">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
 

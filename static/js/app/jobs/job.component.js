@@ -10,10 +10,10 @@ mainApp.factory("Job", ['$http',function($http){
              url: '/api/v1/jobs/',
              params: {
                 type: type,
+                type: type,
              }
          }
         return $http(req);
-
     }
 
     obj.addJob = function(data){
@@ -348,14 +348,14 @@ jobAdd.component('jobAdd', {
                     if(!job.id){
 
                         Job.addJob(job).success(function(response){
-                            $location.path("/jobs")
+                            $location.path("jobs")
                         }).error(function(e_data, e_status, e_headers, e_config){
                            Flash.create("error",e_data.message,0);
                         });
                     }else{
 
                         Job.updateJob(job).success(function(response){
-                            $location.path("/jobs")
+                            $location.path("jobs")
                         }).error(function(e_data, e_status, e_headers, e_config){
                            Flash.create("error",e_data.message,0);
                         });

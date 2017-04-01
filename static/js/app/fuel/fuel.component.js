@@ -187,7 +187,7 @@ angular.module('fuelAdd').component('fuelAdd', {
                     if(!fuel.id){
 
                         Fuel.addFuel(fuel).success(function(response){
-                            $location.path("/fuel-type")
+                            $location.path("fuel-type")
                         }).error(function(e_data, e_status, e_headers, e_config){
                            Flash.create("error",e_data.message,0);
                         });

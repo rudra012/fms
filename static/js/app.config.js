@@ -1,6 +1,6 @@
 //var mainApp=angular.module("fms",['ngAnimate',]);
 
-mainApp.config(function($stateProvider, $urlRouterProvider) {
+mainApp.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
 
     $urlRouterProvider.otherwise('/home');
     $stateProvider
@@ -307,6 +307,8 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           display:"Signup",
 
         })
+
+        $locationProvider.html5Mode(true);
 
 });
 
