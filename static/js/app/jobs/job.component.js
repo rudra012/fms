@@ -341,7 +341,6 @@ jobAdd.component('jobAdd', {
 
             }
 
-
             $scope.doAddJob =function(job,valid){
                 Flash.clear();
                 if(valid){
@@ -361,7 +360,6 @@ jobAdd.component('jobAdd', {
                         });
                     }
                 }
-
 
             }
 
