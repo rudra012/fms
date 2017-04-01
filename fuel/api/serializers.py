@@ -12,7 +12,7 @@ class FuelReadSerializer(serializers.ModelSerializer):
         return fuel.vehicle_name
 
     class Meta:
-        fields = ['vehicle_id', 'fuel_date', 'odometer_id', 'fuel_measure', 'fuel_price', 'currency', 'fuel_type',
+        fields = ['id', 'vehicle_id', 'fuel_date', 'odometer_id', 'fuel_measure', 'fuel_price', 'currency', 'fuel_type',
                   'vendor_name', 'comment', 'vehicle_name']
         model = Fuel
         read_only_fields = ('vehicle_id',)

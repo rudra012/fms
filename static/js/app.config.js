@@ -99,6 +99,34 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
           authenticate:true,
           display:"Jobs",
         })
+
+
+        .state('private.fuel-add', {
+          url: '/fuel-add',
+          views: {
+            'container@': {
+              template: '<fuel-add></fuel-add>',
+            }
+          },
+          authenticate:true,
+          display:"Fuel",
+        })
+
+
+        .state('private.fuel-update', {
+          url: '/fuel-update~index~:id',
+          views: {
+            'container@': {
+                template: '<fuel-add></fuel-add>',
+            }
+          },
+          authenticate:true,
+          display:"Jobs",
+        })
+
+
+
+
         .state('private.chat', {
           url: '/chat',
           views: {
@@ -114,16 +142,7 @@ mainApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
 
-        .state('private.fuel-add', {
-          url: '/fuel-add',
-          views: {
-            'container@': {
-              template: '<fuel-add></fuel-add>',
-            }
-          },
-          authenticate:true,
-          display:"Jobs",
-        })
+
 
 
 
